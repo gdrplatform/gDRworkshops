@@ -1,0 +1,844 @@
+Function Arguments:
+$qcs_id
+NULL
+
+$manifest
+[1] "/gne/web/dev/apache/htdocs/projects/gDR/ref_files/workshops26/SmallDrugCombo_Zhou_CellChemBio_2026/*Manifest*"
+
+$treatment
+[1] "/gne/web/dev/apache/htdocs/projects/gDR/ref_files/workshops26/SmallDrugCombo_Zhou_CellChemBio_2026/*reat*"
+
+$raw_data
+[1] "/gne/web/dev/apache/htdocs/projects/gDR/ref_files/workshops26/SmallDrugCombo_Zhou_CellChemBio_2026/*rawdata*"
+
+$prism_data_path
+NULL
+
+$cell_line_data_path
+NULL
+
+$treatment_data_path
+NULL
+
+$drug_annotation_path
+NULL
+
+$cell_line_annotation_path
+NULL
+
+$meta_data_path
+NULL
+
+$feat_data_path
+NULL
+
+$feature_sets
+[1] "CRISPRGeneEffect"                         
+[2] "OmicsExpressionProteinCodingGenesTPMLogp1"
+[3] "OmicsSomaticMutationsMatrixHotspot"       
+[4] "OmicsSomaticMutationsMatrixDamaging"      
+[5] "OmicsCNGene"                              
+
+$metadata_columns
+[1] "OncotreeLineage" "PatientRace"    
+
+$output_dir
+[1] "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026"
+
+$viz_format
+[1] "svg"
+
+$push_to_DSDB
+[1] FALSE
+
+$rmd_template_path
+[1] "/home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/gDRinternal/report_templates"
+
+$steps
+[1] 1 2 3
+
+$mae
+NULL
+
+$special_sections
+NULL
+
+$username
+NULL
+
+$verbose_mode
+[1] TRUE
+
+$with_decoding
+[1] TRUE
+
+$dpi
+[1] 96
+
+$embed
+[1] TRUE
+
+$configuration_file_path
+NULL
+
+$remove_on_failure
+[1] TRUE
+
+$resume
+[1] FALSE
+
+$testing
+[1] TRUE
+
+1/20                
+2/20 [setup]        
+3/20                
+4/20 [gDR_style]    
+5/20                
+6/20 [libraries]    
+7/20                
+8/20 [get_wd]       
+9/20                
+10/20 [load_data]    
+11/20                
+12/20 [plate_vis]    
+13/20                
+14/20 [plate_vis_ls] 
+15/20                
+1/19                     
+2/19 [plate_viz_stack_01]
+3/19                     
+4/19 [plate_viz_stack_02]
+5/19                     
+6/19 [plate_viz_stack_03]
+7/19                     
+8/19 [plate_viz_stack_04]
+9/19                     
+10/19 [plate_viz_stack_05]
+11/19                     
+12/19 [plate_viz_stack_06]
+13/19                     
+14/19 [plate_viz_stack_07]
+15/19                     
+16/19 [plate_viz_stack_08]
+17/19                     
+18/19 [plate_viz_stack_09]
+19/19                     
+16/20 [cleanup_data] 
+17/20                
+18/20 [summary]      
+19/20                
+20/20 [plot_packages]
+/apps/rocs/cedar/2020.08/cascadelake/software/Pandoc/2.13/bin/pandoc +RTS -K512m -RTS 1-data_import.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/1-data_import.html --lua-filter /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_10_03/incremental/rlibs/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/slurmjob.39922833/Rtmp5dgDma/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_08_05/incremental/rlibs/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/slurmjob.39922833/Rtmp5dgDma/rmarkdown-str299d3946e87701.html --variable code_folding=hide --variable code_menu=1 
+1/100                            
+2/100 [setup]                    
+3/100                            
+4/100 [gDR_style]                
+5/100                            
+6/100 [libraries]                
+7/100                            
+8/100 [drug_dose_layout]         
+9/100                            
+10/100 [split_types]              
+11/100                            
+12/100 [extract_data_sa]          
+13/100                            
+14/100 [extract_data_combo]       
+15/100                            
+16/100 [create_SE_sa_rowData]     
+17/100                            
+18/100 [create_SE_sa_colData]     
+19/100                            
+20/100 [create_SE_combo_rowData]  
+21/100                            
+22/100 [create_SE_combo_colData]  
+23/100                            
+24/100 [create_SE_sa_qc]          
+25/100                            
+1/1
+26/100 [sa_controls]              
+27/100                            
+28/100 [sa_controls_save]         
+29/100                            
+30/100 [create_SE_combo_qc]       
+31/100                            
+1/1
+32/100 [combo_controls]           
+33/100                            
+34/100 [combo_controls_save]      
+35/100                            
+36/100 [normalize_data_sa]        
+37/100                            
+38/100 [normalize_data_combo]     
+39/100                            
+40/100 [verbose_mode_info]        
+41/100                            
+42/100 [sa_norm_data_viz_RV]      
+43/100                            
+44/100 [sa_norm_data_viz_GR]      
+45/100                            
+46/100 [sa_norm_data_tab_RV]      
+47/100                            
+1/9                    
+2/9 [sa_norm_tab_RV_01]
+3/9                    
+4/9 [sa_norm_tab_RV_02]
+5/9                    
+6/9 [sa_norm_tab_RV_03]
+7/9                    
+8/9 [sa_norm_tab_RV_04]
+9/9                    
+48/100 [sa_norm_data_tab_GR]      
+49/100                            
+1/9                    
+2/9 [sa_norm_tab_GR_01]
+3/9                    
+4/9 [sa_norm_tab_GR_02]
+5/9                    
+6/9 [sa_norm_tab_GR_03]
+7/9                    
+8/9 [sa_norm_tab_GR_04]
+9/9                    
+50/100 [combo_norm_data_viz_RV]   
+51/100                            
+52/100 [combo_norm_data_viz_GR]   
+53/100                            
+54/100 [combo_norm_data_tab_RV]   
+55/100                            
+1/9                       
+2/9 [combo_norm_tab_RV_01]
+3/9                       
+4/9 [combo_norm_tab_RV_02]
+5/9                       
+6/9 [combo_norm_tab_RV_03]
+7/9                       
+8/9 [combo_norm_tab_RV_04]
+9/9                       
+56/100 [norm_data_tab_GR]         
+57/100                            
+1/9                       
+2/9 [combo_norm_tab_GR_01]
+3/9                       
+4/9 [combo_norm_tab_GR_02]
+5/9                       
+6/9 [combo_norm_tab_GR_03]
+7/9                       
+8/9 [combo_norm_tab_GR_04]
+9/9                       
+58/100 [average_data_sa]          
+59/100                            
+60/100 [average_data_combo]       
+61/100                            
+62/100 [average_data_viz_RV]      
+63/100                            
+64/100 [average_data_viz_GR]      
+65/100                            
+66/100 [average_data_tab_RV]      
+67/100                            
+1/5                    
+2/5 [average_tab_RV_01]
+3/5                    
+4/5 [average_tab_RV_02]
+5/5                    
+68/100 [average_data_tab_GR]      
+69/100                            
+1/5                    
+2/5 [average_tab_GR_01]
+3/5                    
+4/5 [average_tab_GR_02]
+5/5                    
+70/100 [average_data_combo_viz_RV]
+71/100                            
+72/100 [average_data_combo_viz_GR]
+73/100                            
+74/100 [average_data_combo_tab_RV]
+75/100                            
+1/5                          
+2/5 [average_combo_tab_RV_01]
+3/5                          
+4/5 [average_combo_tab_RV_02]
+5/5                          
+76/100 [average_data_combo_tab_GR]
+77/100                            
+1/5                          
+2/5 [average_combo_tab_GR_01]
+3/5                          
+4/5 [average_combo_tab_GR_02]
+5/5                          
+78/100 [fit_data_sa]              
+79/100                            
+80/100 [fit_data_combo]           
+81/100                            
+82/100 [fit_data_curv_panel_RV]   
+83/100                            
+84/100 [fit_data_curv_panel_GR]   
+85/100                            
+86/100 [fit_data_panel_tab_RV]    
+87/100                            
+1/9                      
+2/9 [fit_panel_tab_RV_01]
+3/9                      
+4/9 [fit_panel_tab_RV_02]
+5/9                      
+6/9 [fit_panel_tab_RV_03]
+7/9                      
+8/9 [fit_panel_tab_RV_04]
+9/9                      
+88/100 [fit_data_panel_tab_GR]    
+89/100                            
+1/9                      
+2/9 [fit_panel_tab_GR_01]
+3/9                      
+4/9 [fit_panel_tab_GR_02]
+5/9                      
+6/9 [fit_panel_tab_GR_03]
+7/9                      
+8/9 [fit_panel_tab_GR_04]
+9/9                      
+90/100 [fit_data_prec_viz_RV]     
+91/100                            
+92/100 [fit_data_prec_viz_GR]     
+93/100                            
+94/100 [fit_data_prec_tab_RV]     
+95/100                            
+1/9                     
+2/9 [fit_prec_tab_RV_01]
+3/9                     
+4/9 [fit_prec_tab_RV_02]
+5/9                     
+6/9 [fit_prec_tab_RV_03]
+7/9                     
+8/9 [fit_prec_tab_RV_04]
+9/9                     
+96/100 [fit_data_prec_tab_GR]     
+97/100                            
+1/9                     
+2/9 [fit_prec_tab_GR_01]
+3/9                     
+4/9 [fit_prec_tab_GR_02]
+5/9                     
+6/9 [fit_prec_tab_GR_03]
+7/9                     
+8/9 [fit_prec_tab_GR_04]
+9/9                     
+98/100 [create_mae]               
+99/100                            
+100/100 [plot_packages]            
+/apps/rocs/cedar/2020.08/cascadelake/software/Pandoc/2.13/bin/pandoc +RTS -K512m -RTS 2-processing_and_QC.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/2-processing_and_QC.html --lua-filter /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_10_03/incremental/rlibs/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/slurmjob.39922833/Rtmp5dgDma/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_08_05/incremental/rlibs/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/slurmjob.39922833/Rtmp5dgDma/rmarkdown-str299d397dee4c15.html --variable code_folding=hide --variable code_menu=1 
+1/138                                         
+2/138 [setup]                                 
+3/138                                         
+4/138 [gDR_style]                             
+5/138                                         
+6/138 [libraries]                             
+7/138                                         
+8/138 [load_mae]                              
+9/138                                         
+10/138 [split_assay]                           
+11/138                                         
+12/138 [save_xlsx]                             
+13/138                                         
+14/138 [prepare_data_sa]                       
+15/138                                         
+16/138 [verbose_mode_info]                     
+17/138                                         
+18/138 [prepare_data_combo]                    
+19/138                                         
+20/138 [fit_data_curv_cl_viz_RV]               
+21/138                                         
+22/138 [fit_data_curv_cl_viz_GR]               
+23/138                                         
+24/138 [fit_data_curv_cl_tab]                  
+25/138                                         
+1/7                        
+2/7 [fit_curv_cl_tab_RV_01]
+3/7                        
+4/7 [fit_curv_cl_tab_RV_02]
+5/7                        
+6/7 [fit_curv_cl_tab_RV_03]
+7/7                        
+26/138 [fit_data_curv_cl_tab_GR]               
+27/138                                         
+1/7                        
+2/7 [fit_curv_cl_tab_GR_01]
+3/7                        
+4/7 [fit_curv_cl_tab_GR_02]
+5/7                        
+6/7 [fit_curv_cl_tab_GR_03]
+7/7                        
+28/138 [fit_data_curv_d_viz_RV]                
+29/138                                         
+30/138 [fit_data_curv_d_viz_GR]                
+31/138                                         
+32/138 [fit_data_curv_d_tab]                   
+33/138                                         
+1/9                       
+2/9 [fit_curv_d_tab_RV_01]
+3/9                       
+4/9 [fit_curv_d_tab_RV_02]
+5/9                       
+6/9 [fit_curv_d_tab_RV_03]
+7/9                       
+8/9 [fit_curv_d_tab_RV_04]
+9/9                       
+34/138 [fit_data_curv_d_tab_GR]                
+35/138                                         
+1/9                       
+2/9 [fit_curv_d_tab_GR_01]
+3/9                       
+4/9 [fit_curv_d_tab_GR_02]
+5/9                       
+6/9 [fit_curv_d_tab_GR_03]
+7/9                       
+8/9 [fit_curv_d_tab_GR_04]
+9/9                       
+36/138 [fit_data_heat_RV]                      
+37/138                                         
+38/138 [fit_data_heat_GR]                      
+39/138                                         
+40/138 [fit_data_tab_heat_RV]                  
+41/138                                         
+1/11                    
+2/11 [fit_sa_heat_RV_01]
+3/11                    
+4/11 [fit_sa_heat_RV_02]
+5/11                    
+6/11 [fit_sa_heat_RV_03]
+7/11                    
+8/11 [fit_sa_heat_RV_04]
+9/11                    
+10/11 [fit_sa_heat_RV_05]
+11/11                    
+42/138 [fit_data_tab_heat_GR]                  
+43/138                                         
+1/11                    
+2/11 [fit_sa_heat_GR_01]
+3/11                    
+4/11 [fit_sa_heat_GR_02]
+5/11                    
+6/11 [fit_sa_heat_GR_03]
+7/11                    
+8/11 [fit_sa_heat_GR_04]
+9/11                    
+10/11 [fit_sa_heat_GR_05]
+11/11                    
+44/138 [fit_data_box_cl_RV]                    
+45/138                                         
+46/138 [fit_data_box_cl_GR]                    
+47/138                                         
+48/138 [fit_data_tab_box_cl_RV]                
+49/138                                         
+1/11                          
+2/11 [fit_sa_box_cl_tab_RV_01]
+3/11                          
+4/11 [fit_sa_box_cl_tab_RV_02]
+5/11                          
+6/11 [fit_sa_box_cl_tab_RV_03]
+7/11                          
+8/11 [fit_sa_box_cl_tab_RV_04]
+9/11                          
+10/11 [fit_sa_box_cl_tab_RV_05]
+11/11                          
+50/138 [fit_data_tab_box_cl_GR]                
+51/138                                         
+1/11                          
+2/11 [fit_sa_box_cl_tab_GR_01]
+3/11                          
+4/11 [fit_sa_box_cl_tab_GR_02]
+5/11                          
+6/11 [fit_sa_box_cl_tab_GR_03]
+7/11                          
+8/11 [fit_sa_box_cl_tab_GR_04]
+9/11                          
+10/11 [fit_sa_box_cl_tab_GR_05]
+11/11                          
+52/138 [fit_data_box_d_RV]                     
+53/138                                         
+54/138 [fit_data_box_d_GR]                     
+55/138                                         
+56/138 [fit_data_tab_box_d_RV]                 
+57/138                                         
+1/11                         
+2/11 [fit_sa_box_d_tab_RV_01]
+3/11                         
+4/11 [fit_sa_box_d_tab_RV_02]
+5/11                         
+6/11 [fit_sa_box_d_tab_RV_03]
+7/11                         
+8/11 [fit_sa_box_d_tab_RV_04]
+9/11                         
+10/11 [fit_sa_box_d_tab_RV_05]
+11/11                         
+58/138 [fit_data_tab_box_d_GR]                 
+59/138                                         
+1/11                         
+2/11 [fit_sa_box_d_tab_GR_01]
+3/11                         
+4/11 [fit_sa_box_d_tab_GR_02]
+5/11                         
+6/11 [fit_sa_box_d_tab_GR_03]
+7/11                         
+8/11 [fit_sa_box_d_tab_GR_04]
+9/11                         
+10/11 [fit_sa_box_d_tab_GR_05]
+11/11                         
+60/138 [fit_data_box_t_RV]                     
+61/138                                         
+62/138 [fit_data_box_t_RV_viz]                 
+63/138                                         
+64/138 [fit_data_box_t_GR_viz]                 
+65/138                                         
+66/138 [fit_data_tab_box_t_RV]                 
+67/138                                         
+1/31                                             
+2/31 [fit_sa_box_t_tab_RV_log10(IC50)_01]        
+3/31                                             
+4/31 [fit_sa_box_t_tab_RV_log10(IC50)_02]        
+5/31                                             
+6/31 [fit_sa_box_t_tab_RV_log10(IC50)_03]        
+7/31                                             
+8/31 [fit_sa_box_t_tab_RV_EMax_01]               
+9/31                                             
+10/31 [fit_sa_box_t_tab_RV_EMax_02]               
+11/31                                             
+12/31 [fit_sa_box_t_tab_RV_EMax_03]               
+13/31                                             
+14/31 [fit_sa_box_t_tab_RV_RVMean_01]             
+15/31                                             
+16/31 [fit_sa_box_t_tab_RV_RVMean_02]             
+17/31                                             
+18/31 [fit_sa_box_t_tab_RV_RVMean_03]             
+19/31                                             
+20/31 [fit_sa_box_t_tab_RV_RVAOC_01]              
+21/31                                             
+22/31 [fit_sa_box_t_tab_RV_RVAOC_02]              
+23/31                                             
+24/31 [fit_sa_box_t_tab_RV_RVAOC_03]              
+25/31                                             
+26/31 [fit_sa_box_t_tab_RV_RVAOCwithinsetrange_01]
+27/31                                             
+28/31 [fit_sa_box_t_tab_RV_RVAOCwithinsetrange_02]
+29/31                                             
+30/31 [fit_sa_box_t_tab_RV_RVAOCwithinsetrange_03]
+31/31                                             
+68/138 [fit_data_tab_box_t_GR]                 
+69/138                                         
+1/31                                             
+2/31 [fit_sa_box_t_tab_GR_log10(GR50)_01]        
+3/31                                             
+4/31 [fit_sa_box_t_tab_GR_log10(GR50)_02]        
+5/31                                             
+6/31 [fit_sa_box_t_tab_GR_log10(GR50)_03]        
+7/31                                             
+8/31 [fit_sa_box_t_tab_GR_GRMax_01]              
+9/31                                             
+10/31 [fit_sa_box_t_tab_GR_GRMax_02]              
+11/31                                             
+12/31 [fit_sa_box_t_tab_GR_GRMax_03]              
+13/31                                             
+14/31 [fit_sa_box_t_tab_GR_GRMean_01]             
+15/31                                             
+16/31 [fit_sa_box_t_tab_GR_GRMean_02]             
+17/31                                             
+18/31 [fit_sa_box_t_tab_GR_GRMean_03]             
+19/31                                             
+20/31 [fit_sa_box_t_tab_GR_GRAOC_01]              
+21/31                                             
+22/31 [fit_sa_box_t_tab_GR_GRAOC_02]              
+23/31                                             
+24/31 [fit_sa_box_t_tab_GR_GRAOC_03]              
+25/31                                             
+26/31 [fit_sa_box_t_tab_GR_GRAOCwithinsetrange_01]
+27/31                                             
+28/31 [fit_sa_box_t_tab_GR_GRAOCwithinsetrange_02]
+29/31                                             
+30/31 [fit_sa_box_t_tab_GR_GRAOCwithinsetrange_03]
+31/31                                             
+70/138 [title_combo]                           
+71/138                                         
+72/138 [fit_data_combo_curv_cl_viz_GR]         
+73/138                                         
+74/138 [fit_data_combo_curv_cl_viz_RV]         
+75/138                                         
+76/138 [fit_data_combo_curv_cl_tab_RV]         
+77/138                                         
+1/9                              
+2/9 [fit_combo_curv_cl_tab_RV_01]
+3/9                              
+4/9 [fit_combo_curv_cl_tab_RV_02]
+5/9                              
+6/9 [fit_combo_curv_cl_tab_RV_03]
+7/9                              
+8/9 [fit_combo_curv_cl_tab_RV_04]
+9/9                              
+78/138 [fit_data_combo_curv_cl_tab_GR]         
+79/138                                         
+1/9                              
+2/9 [fit_combo_curv_cl_tab_GR_01]
+3/9                              
+4/9 [fit_combo_curv_cl_tab_GR_02]
+5/9                              
+6/9 [fit_combo_curv_cl_tab_GR_03]
+7/9                              
+8/9 [fit_combo_curv_cl_tab_GR_04]
+9/9                              
+80/138 [fit_data_combo_heat_viz_RV]            
+81/138                                         
+82/138 [fit_data_combo_heat_viz_GR]            
+83/138                                         
+84/138 [fit_data_combo_heat_tab_RV]            
+85/138                                         
+1/17                           
+2/17 [fit_combo_heat_tab_RV_01]
+3/17                           
+4/17 [fit_combo_heat_tab_RV_02]
+5/17                           
+6/17 [fit_combo_heat_tab_RV_03]
+7/17                           
+8/17 [fit_combo_heat_tab_RV_04]
+9/17                           
+10/17 [fit_combo_heat_tab_RV_05]
+11/17                           
+12/17 [fit_combo_heat_tab_RV_06]
+13/17                           
+14/17 [fit_combo_heat_tab_RV_07]
+15/17                           
+16/17 [fit_combo_heat_tab_RV_08]
+17/17                           
+86/138 [fit_data_combo_heat_tab_GR]            
+87/138                                         
+1/17                           
+2/17 [fit_combo_heat_tab_GR_01]
+3/17                           
+4/17 [fit_combo_heat_tab_GR_02]
+5/17                           
+6/17 [fit_combo_heat_tab_GR_03]
+7/17                           
+8/17 [fit_combo_heat_tab_GR_04]
+9/17                           
+10/17 [fit_combo_heat_tab_GR_05]
+11/17                           
+12/17 [fit_combo_heat_tab_GR_06]
+13/17                           
+14/17 [fit_combo_heat_tab_GR_07]
+15/17                           
+16/17 [fit_combo_heat_tab_GR_08]
+17/17                           
+88/138 [fit_data_combo_iso_viz_RV]             
+89/138                                         
+90/138 [fit_data_combo_iso_viz_GR]             
+91/138                                         
+92/138 [fit_data_combo_iso_tab_RV_smooth]      
+93/138                                         
+1/5                                 
+2/5 [fit_combo_iso_tab_RV_smooth_01]
+3/5                                 
+4/5 [fit_combo_iso_tab_RV_smooth_02]
+5/5                                 
+94/138 [fit_data_combo_iso_tab_GR_smooth]      
+95/138                                         
+1/5                                 
+2/5 [fit_combo_iso_tab_GR_smooth_01]
+3/5                                 
+4/5 [fit_combo_iso_tab_GR_smooth_02]
+5/5                                 
+96/138 [fit_data_combo_iso_tab_RV_hsa_excess]  
+97/138                                         
+1/5                                     
+2/5 [fit_combo_iso_tab_RV_hsa_excess_01]
+3/5                                     
+4/5 [fit_combo_iso_tab_RV_hsa_excess_02]
+5/5                                     
+98/138 [fit_data_combo_iso_tab_GR_hsa_excess]  
+99/138                                         
+1/5                                     
+2/5 [fit_combo_iso_tab_GR_hsa_excess_01]
+3/5                                     
+4/5 [fit_combo_iso_tab_GR_hsa_excess_02]
+5/5                                     
+100/138 [fit_data_combo_iso_tab_RV_bliss_excess]
+101/138                                         
+1/5                                       
+2/5 [fit_combo_iso_tab_RV_bliss_excess_01]
+3/5                                       
+4/5 [fit_combo_iso_tab_RV_bliss_excess_02]
+5/5                                       
+102/138 [fit_data_combo_iso_tab_GR_bliss_excess]
+103/138                                         
+1/5                                       
+2/5 [fit_combo_iso_tab_GR_bliss_excess_01]
+3/5                                       
+4/5 [fit_combo_iso_tab_GR_bliss_excess_02]
+5/5                                       
+104/138 [fit_data_combo_viz_RV]                 
+105/138                                         
+106/138 [fit_data_combo_viz_GR]                 
+107/138                                         
+108/138 [fit_data_combo_tab_RV]                 
+109/138                                         
+1/5                      
+2/5 [fit_combo_tab_RV_01]
+3/5                      
+4/5 [fit_combo_tab_RV_02]
+5/5                      
+110/138 [fit_data_combo_tab_GR]                 
+111/138                                         
+1/5                      
+2/5 [fit_combo_tab_GR_01]
+3/5                      
+4/5 [fit_combo_tab_GR_02]
+5/5                      
+112/138 [fit_data_combo_box_cl_RV]              
+113/138                                         
+114/138 [fit_data_combo_box_cl_GR]              
+115/138                                         
+116/138 [fit_data_combo_tab_box_cl_RV]          
+117/138                                         
+1/5                             
+2/5 [fit_combo_box_cl_tab_RV_01]
+3/5                             
+4/5 [fit_combo_box_cl_tab_RV_02]
+5/5                             
+118/138 [fit_data_comb_tab_box_cl_GR]           
+119/138                                         
+1/5                             
+2/5 [fit_combo_box_cl_tab_GR_01]
+3/5                             
+4/5 [fit_combo_box_cl_tab_GR_02]
+5/5                             
+120/138 [fit_data_combo_box_d_RV]               
+121/138                                         
+122/138 [fit_data_combo_box_d_GR]               
+123/138                                         
+124/138 [fit_data_combo_tab_box_d_RV]           
+125/138                                         
+1/5                            
+2/5 [fit_combo_box_d_tab_RV_01]
+3/5                            
+4/5 [fit_combo_box_d_tab_RV_02]
+5/5                            
+126/138 [fit_data_comb_tab_box_d_GR]            
+127/138                                         
+1/5                            
+2/5 [fit_combo_box_d_tab_GR_01]
+3/5                            
+4/5 [fit_combo_box_d_tab_GR_02]
+5/5                            
+128/138 [fit_data_combo_box_t_RV]               
+129/138                                         
+130/138 [fit_data_combo_box_t_RV_vis]           
+131/138                                         
+132/138 [fit_data_combo_box_t_GR_vis]           
+133/138                                         
+134/138 [fit_data_combo_tab_box_t_RV]           
+135/138                                         
+1/9                                         
+2/9 [fit_combo_box_t_tab_RV_HSAScoreRV_01]  
+3/9                                         
+4/9 [fit_combo_box_t_tab_RV_HSAScoreRV_02]  
+5/9                                         
+6/9 [fit_combo_box_t_tab_RV_BlissScoreRV_01]
+7/9                                         
+8/9 [fit_combo_box_t_tab_RV_BlissScoreRV_02]
+9/9                                         
+136/138 [fit_data_comb_tab_box_t_GR]            
+137/138                                         
+1/9                                         
+2/9 [fit_combo_box_t_tab_GR_HSAScoreGR_01]  
+3/9                                         
+4/9 [fit_combo_box_t_tab_GR_HSAScoreGR_02]  
+5/9                                         
+6/9 [fit_combo_box_t_tab_GR_BlissScoreGR_01]
+7/9                                         
+8/9 [fit_combo_box_t_tab_GR_BlissScoreGR_02]
+9/9                                         
+138/138 [plot_packages]                         
+/apps/rocs/cedar/2020.08/cascadelake/software/Pandoc/2.13/bin/pandoc +RTS -K512m -RTS 3-analysis.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/3-analysis.html --lua-filter /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_10_03/incremental/rlibs/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/czechb3/R/cascadelake/cedar_r4.5_bioc3.22-devel/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/slurmjob.39922833/Rtmp5dgDma/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /apps/rocs/cedar/2020.08/cascadelake/site-libs/R/cedar_r4.5_bioc3.22-devel/2025_08_05/incremental/rlibs/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/slurmjob.39922833/Rtmp5dgDma/rmarkdown-str299d396555df29.html --variable code_folding=hide --variable code_menu=1 
+
+Session Info:
+R version 4.5.0 (2025-04-11)
+Platform: x86_64-pc-linux-gnu
+Running under: Red Hat Enterprise Linux 8.10 (Ootpa)
+
+Matrix products: default
+BLAS/LAPACK: /apps/rocs/2020.08/cascadelake/software/OpenBLAS/0.3.9-GCC-9.3.0/lib/libopenblas_skylakexp-r0.3.9.so;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/Los_Angeles
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] ggplot2_4.0.3               writexl_1.5.4              
+ [3] MultiAssayExperiment_1.36.2 SummarizedExperiment_1.40.0
+ [5] Biobase_2.70.0              GenomicRanges_1.62.1       
+ [7] Seqinfo_1.0.0               IRanges_2.44.0             
+ [9] S4Vectors_0.48.1            BiocGenerics_0.56.0        
+[11] generics_0.1.4              MatrixGenerics_1.22.0      
+[13] matrixStats_1.5.0           gDRplots_0.0.107           
+[15] gDR_1.7.2                   gDRcore_1.9.7              
+[17] gDRimport_1.9.9             gDRutils_1.9.8             
+[19] summarytools_1.1.4          data.table_1.18.4          
+[21] purrr_1.2.2                 qs2_0.2.1                  
+[23] BiocStyle_2.37.1            gDRinternal_1.0.263        
+
+loaded via a namespace (and not attached):
+  [1] splines_4.5.0         later_1.4.4           filelock_1.0.3       
+  [4] tibble_3.3.1          R.oo_1.27.1           cellranger_1.1.0     
+  [7] XML_3.99-0.23         lifecycle_1.0.4       rstatix_0.7.3        
+ [10] tcltk_4.5.0           processx_3.8.6        lattice_0.22-7       
+ [13] MASS_7.3-65           crosstalk_1.2.2       backports_1.5.1      
+ [16] magrittr_2.0.4        sass_0.4.10           rmarkdown_2.31       
+ [19] plotrix_3.8-14        jquerylib_0.1.4       yaml_2.3.12          
+ [22] httpuv_1.6.17         otel_0.2.0            gp.auth_1.16.4       
+ [25] cowplot_1.2.0         chromote_0.5.1        RColorBrewer_1.1-3   
+ [28] gp.version_1.2.1      lubridate_1.9.4       multcomp_1.4-30      
+ [31] abind_1.4-8           R.utils_2.13.0        BumpyMatrix_1.18.0   
+ [34] TH.data_1.1-5         sandwich_3.1-1        ggrepel_0.9.8        
+ [37] testthat_3.2.3        pheatmap_1.0.13       rematch_2.0.0        
+ [40] svglite_2.2.1         commonmark_2.0.0      codetools_0.2-20     
+ [43] DelayedArray_0.36.1   DT_0.34.0             ggtext_0.1.2         
+ [46] xml2_1.5.2            tidyselect_1.2.1      futile.logger_1.4.9  
+ [49] farver_2.1.2          base64enc_0.1-6       googledrive_2.1.2    
+ [52] jsonlite_2.0.0        Formula_1.2-5         survival_3.8-3       
+ [55] systemfonts_1.2.3     tools_4.5.0           ragg_1.4.0           
+ [58] pryr_0.1.6            rio_1.3.0             Rcpp_1.1.0           
+ [61] glue_1.8.1            gridExtra_2.3         SparseArray_1.10.10  
+ [64] BiocBaseUtils_1.12.0  xfun_0.58             websocket_1.4.4      
+ [67] dplyr_1.1.4           withr_3.0.2           formatR_1.14         
+ [70] BiocManager_1.30.26   fastmap_1.2.0         litedown_0.9         
+ [73] digest_0.6.39         timechange_0.3.0      R6_2.6.1             
+ [76] mime_0.13             textshaping_1.0.3     colorspace_2.1-2     
+ [79] GeneDataScreenR_1.0.9 gtools_3.9.5          dichromat_2.0-0.1    
+ [82] markdown_2.0          R.methodsS3_1.8.2     googlesheets4_1.1.2  
+ [85] tidyr_1.3.2           httr_1.4.8            htmlwidgets_1.6.4    
+ [88] S4Arrays_1.10.1       whisker_0.4.1         pkgconfig_2.0.3      
+ [91] gtable_0.3.6          S7_0.2.2              XVector_0.50.0       
+ [94] brio_1.1.5            htmltools_0.5.9       carData_3.0-6        
+ [97] bookdown_0.45         base64url_1.4         scales_1.4.0         
+[100] knitr_1.51            lambda.r_1.2.4        reshape2_1.4.5       
+[103] checkmate_2.3.4       curl_7.0.0            zoo_1.8-15           
+[106] cachem_1.1.0          stringr_1.6.0         parallel_4.5.0       
+[109] pillar_1.11.1         grid_4.5.0            vctrs_0.6.5          
+[112] ggpubr_0.6.2          promises_1.4.0        stringfish_0.19.0    
+[115] car_3.1-5             xtable_1.8-8          evaluate_1.0.5       
+[118] tinytex_0.59          magick_2.9.0          mvtnorm_1.4-0        
+[121] cli_3.6.6             compiler_4.5.0        futile.options_1.0.1 
+[124] rlang_1.1.6           ggsignif_0.6.4        dcmad_0.0.6          
+[127] labeling_0.4.3        ps_1.9.1              getPass_0.2-4        
+[130] plyr_1.8.9            fs_2.1.0              stringi_1.8.7        
+[133] pander_0.6.6          logExtra_0.1.19       BiocParallel_1.44.0  
+[136] assertthat_0.2.1      Matrix_1.7-4          rapportools_1.2      
+[139] shiny_1.11.1          gridtext_0.1.6        drc_3.0-1            
+[142] broom_1.0.13          rgauth2_0.1.9         gargle_1.6.1         
+[145] RcppParallel_5.1.11-1 bslib_0.11.0          readxl_1.4.5         
