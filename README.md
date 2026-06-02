@@ -45,7 +45,7 @@ data/
 └── PRISMBroadScreen_Hagenbeek_NatComm_2026/
 ```
 
-Each dataset directory contains:
+Each dataset directory contains its own `README.md` with a detailed description. The general structure is:
 
 | File/Directory | Description |
 |----------------|-------------|
