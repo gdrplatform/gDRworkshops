@@ -2,7 +2,7 @@
 title: "2. Dose-Response Data Processing"
 author: 
 - name: gDR team
-  email: gdr-support-d@gene.com
+  url: https://github.com/gdrplatform
 date: "`r Sys.Date()`"
 output:
   BiocStyle::html_document:
@@ -140,25 +140,7 @@ a:hover {
   color: var(--gdr-slate);
 }
 
-/* Confidentiality Banner */
-.confidential-banner {
-  background-color: var(--gdr-red-bg);
-  border-left: 5px solid var(--gdr-red-border);
-  padding: 15px 20px;
-  margin-bottom: 40px;
-  border-radius: 0 4px 4px 0;
-  color: #b52b27;
-  font-size: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
 
-.confidential-banner strong {
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: block;
-  margin-bottom: 5px;
-}
 
 /* Support & Feedback Card */
 .feedback-panel {
@@ -198,15 +180,7 @@ a:hover {
   transform: translateY(-1px);
 }
 
-.contact-list {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
-}
 
-.contact-list li {
-  margin-bottom: 8px;
-}
 
 .fullwidth p {
   padding-left: 0px;
@@ -241,14 +215,10 @@ Date: `r Sys.Date()`
 
 
 
-Author: <a href="mailto:gdr-support-d@gene.com">gDR team</a>
+Author: <a href="https://github.com/gdrplatform">gDR team</a>
 </div>
 </div>
 
-<div class="confidential-banner">
-<strong>Confidential For Internal Use Only</strong>
-Please contact <a href="mailto:gerosa.luca@gene.com" style="color:#b52b27; text-decoration:underline;">Luca Gerosa</a> and <a href="mailto:hafner.marc@gene.com" style="color:#b52b27; text-decoration:underline;">Marc Hafner</a> for information on the use of these data outside of the scope they have been generated for.
-</div>
 
 # Introduction
 
@@ -1092,15 +1062,8 @@ The data processing and dose-response fitting are complete. The final, comprehen
 
 <div class="feedback-panel">
 <h3>We Value Your Feedback!</h3>
-<p>Thank you for using gDR! We are always looking to improve our reports, and your feedback is incredibly valuable to us.</p>
-
-<a href="https://forms.gle/aKW9ySTtejZNy2iH8" target="_blank" class="btn-feedback">📝 Share your thoughts via our Quick Feedback Form</a>
-
-<p>If you need direct assistance, you can also reach out to us:</p>
-<ul class="contact-list">
-<li><strong>Email:</strong> <a href="mailto:gdr-support-d@gene.com">gdr-support-d@gene.com</a></li>
-<li><strong>Slack:</strong> <a href="https://gred.slack.com/archives/C02AS7W94Q2" target="_blank">#gdr-support channel</a></li>
-</ul>
+<p>Thank you for using gDR! We are always looking to improve, and your feedback is incredibly valuable to us.</p>
+<a href="https://github.com/gdrplatform/gDRworkshops/issues" target="_blank" class="btn-feedback">Share feedback or request features on GitHub</a>
 </div>
 
 # gDR session info
