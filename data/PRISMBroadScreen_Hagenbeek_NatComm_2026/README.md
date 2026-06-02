@@ -29,12 +29,6 @@ Broad single-agent dose-response screen (PRISM) with integrated multi-omics biom
 | 3 | [analysis](3-analysis.html) | Dose-response analysis and visualization |
 | 3-1 | [PRISM_analysis](3-1-PRISM_analysis.html) | Biomarker analysis with DepMap omics data |
 
-## Preview
-
-<p align="center">
-  <img src="plots/sa_avg_RV__RV_value.svg" alt="Single-agent average RV" width="600">
-</p>
-
 ## Data
 
 | Directory | Contents |

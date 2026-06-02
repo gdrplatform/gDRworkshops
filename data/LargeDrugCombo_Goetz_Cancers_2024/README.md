@@ -30,12 +30,6 @@ Large-scale drug combination screen evaluating RAF/MEK inhibitor synergy in skin
 | 2 | [processing_and_QC](2-processing_and_QC.html) | Dose-response processing and quality control |
 | 3 | [analysis](3-analysis.html) | Synergy analysis (Bliss, HSA) and visualization |
 
-## Preview
-
-<p align="center">
-  <img src="plots/combo_fit_GR__Bliss_Score_GR.svg" alt="Bliss synergy scores" width="600">
-</p>
-
 ## Data
 
 | Directory | Contents |
