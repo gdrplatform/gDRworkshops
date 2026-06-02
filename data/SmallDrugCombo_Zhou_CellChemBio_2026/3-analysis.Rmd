@@ -351,7 +351,7 @@ These files contain the specific data used to generate the summary heatmaps, pre
 This section loads the final `MultiAssayExperiment` (MAE) object, which contains all the processed data and results from the previous step.
 
 ```{r load_mae}
-wd <- "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose"
+wd <- here::here()
 mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
 
 ```

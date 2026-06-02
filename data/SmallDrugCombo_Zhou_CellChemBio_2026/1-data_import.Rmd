@@ -269,7 +269,7 @@ library(gDRplots)
 
 ```{r get_wd}
 # get working directory path
-wd <- "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose"
+wd <- here::here()
 
 
 ```
@@ -315,18 +315,18 @@ The process for annotating the data adheres to the guidelines specified in the g
 ```{r load_data}
 #import data
 manifest <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/9545combo_Manifest.xlsx"
+  "raw_data/9545combo_Manifest.xlsx"
 )
 treatment <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/0077_1uM_9545 combo_Treatment.xlsx",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/0077_9545 combo_Treatment.xlsx",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Evero_9545 combo_Treatment.xlsx",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Evero1uM_9545 combo_Treatment.xlsx",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Untreated.xlsx"
+  "raw_data/0077_1uM_9545 combo_Treatment.xlsx",
+  "raw_data/0077_9545 combo_Treatment.xlsx",
+  "raw_data/Evero_9545 combo_Treatment.xlsx",
+  "raw_data/Evero1uM_9545 combo_Treatment.xlsx",
+  "raw_data/Untreated.xlsx"
 )
 raw_data <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/9545combo_rawdata.xlsx",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Day0.rawdata.xlsx"
+  "raw_data/9545combo_rawdata.xlsx",
+  "raw_data/Day0.rawdata.xlsx"
 )
 
 # copy files to raw_data
