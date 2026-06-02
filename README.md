@@ -22,6 +22,20 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 | **LargeDrugCombo** | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
 | **PRISMBroadScreen** | Hagenbeek et al., *Nat Commun* 2026 (accepted) | Single-agent broad screen |
 
+## Prerequisites
+
+- **R** (≥ 4.4)
+- **Bioconductor** packages:
+  ```r
+  BiocManager::install(c("gDR", "gDRcore", "gDRimport", "gDRutils", "gDRplots",
+                          "MultiAssayExperiment", "SummarizedExperiment"))
+  ```
+- **CRAN** packages:
+  ```r
+  install.packages(c("data.table", "ggplot2", "purrr", "qs2",
+                      "summarytools", "writexl", "BiocStyle"))
+  ```
+
 ## Repository structure
 
 ```
@@ -59,3 +73,11 @@ Each dataset directory contains:
 - [gDRutils](https://github.com/gdrplatform/gDRutils) — utility functions
 - [gDRviz](https://github.com/gdrplatform/gDRviz) — visualization
 - [gDRimport](https://github.com/gdrplatform/gDRimport) — data import
+
+## Contact
+
+For questions or support, reach out to the gDR team at **gdr-support-d@gene.com**.
+
+## License
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
