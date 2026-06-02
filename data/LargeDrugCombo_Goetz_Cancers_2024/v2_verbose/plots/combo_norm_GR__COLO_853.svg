@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='756.00pt' height='468.00pt' viewBox='0 0 756.00 468.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA='>
+    <rect x='0.00' y='0.00' width='756.00' height='468.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
+<rect x='0.00' y='-0.00000000000011' width='756.00' height='468.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNDcuOTJ8NzUwLjUyfDIyLjc3fDMzOS45Mg=='>
+    <rect x='47.92' y='22.77' width='702.60' height='317.15' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNDcuOTJ8NzUwLjUyfDIyLjc3fDMzOS45Mg==)'>
+<polyline points='47.92,300.28 750.52,300.28 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,220.99 750.52,220.99 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,141.70 750.52,141.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,62.41 750.52,62.41 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,339.92 750.52,339.92 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,260.63 750.52,260.63 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,181.34 750.52,181.34 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,102.06 750.52,102.06 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='47.92,22.77 750.52,22.77 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='239.54,339.92 239.54,22.77 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='558.90,339.92 558.90,22.77 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<line x1='47.92' y1='181.34' x2='750.52' y2='181.34' style='stroke-width: 1.07; stroke: #B3B3B3; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
+<text x='42.99' y='342.95' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.92px' lengthAdjust='spacingAndGlyphs'>-0.050</text>
+<text x='42.99' y='263.66' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.92px' lengthAdjust='spacingAndGlyphs'>-0.025</text>
+<text x='42.99' y='184.37' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='22.00px' lengthAdjust='spacingAndGlyphs'>0.000</text>
+<text x='42.99' y='105.08' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='22.00px' lengthAdjust='spacingAndGlyphs'>0.025</text>
+<text x='42.99' y='25.79' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='22.00px' lengthAdjust='spacingAndGlyphs'>0.050</text>
+<text transform='translate(245.60,344.85) rotate(-90)' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='104.61px' lengthAdjust='spacingAndGlyphs'>Belvarafenib x Cobimetinib</text>
+<text transform='translate(564.96,344.85) rotate(-90)' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='105.08px' lengthAdjust='spacingAndGlyphs'>Vemurafenib x Cobimetinib</text>
+<text x='399.22' y='460.24' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='53.19px' lengthAdjust='spacingAndGlyphs'>DrugName</text>
+<text transform='translate(13.05,181.34) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='40.97px' lengthAdjust='spacingAndGlyphs'>x for GR</text>
+<text x='47.92' y='14.55' style='font-size: 13.20px; font-family: "Liberation Sans";' textLength='136.27px' lengthAdjust='spacingAndGlyphs'>COLO 853 (CL586612)</text>
+</g>
+</g>
+</svg>
