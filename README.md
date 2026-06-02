@@ -76,7 +76,7 @@ Each dataset directory contains its own `README.md` with a detailed description.
 
 ## Contact
 
-For questions or support, reach out to the gDR team at **gdr-support-d@gene.com**.
+For questions, bug reports, or feature requests, please [open an issue](https://github.com/gdrplatform/gDRworkshops/issues) on GitHub.
 
 ## License
 
