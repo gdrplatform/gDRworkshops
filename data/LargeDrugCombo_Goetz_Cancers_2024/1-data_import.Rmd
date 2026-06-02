@@ -269,7 +269,7 @@ library(gDRplots)
 
 ```{r get_wd}
 # get working directory path
-wd <- "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose"
+wd <- here::here()
 
 
 ```
@@ -315,55 +315,55 @@ The process for annotating the data adheres to the guidelines specified in the g
 ```{r load_data}
 #import data
 manifest <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/Project41.Belva.S01.manifest.xlsx"
+  "raw_data/Project41.Belva.S01.manifest.xlsx"
 )
 treatment <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/P41.Belva.mtx17.template.xlsx"
+  "raw_data/P41.Belva.mtx17.template.xlsx"
 )
 raw_data <- c(
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E63903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E68903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E73903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E74908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E75908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E76908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E77903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E78903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E79903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E80903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E81903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E82903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E83903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E84903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E85903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E86903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E87903mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E88908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E90915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E91908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E92915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E93915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E95908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E97908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/E98908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H01908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H02908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H03915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H04908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H09915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H16908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H19908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H23908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H24908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/H26908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K03915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K05908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K06908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K07917mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K11915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K12908mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K14915mtx17.csv",
-  "/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/LargeDrugCombo_Goetz_Cancers_2024/v2_verbose/raw_data/K16915mtx17.csv"
+  "raw_data/E63903mtx17.csv",
+  "raw_data/E68903mtx17.csv",
+  "raw_data/E73903mtx17.csv",
+  "raw_data/E74908mtx17.csv",
+  "raw_data/E75908mtx17.csv",
+  "raw_data/E76908mtx17.csv",
+  "raw_data/E77903mtx17.csv",
+  "raw_data/E78903mtx17.csv",
+  "raw_data/E79903mtx17.csv",
+  "raw_data/E80903mtx17.csv",
+  "raw_data/E81903mtx17.csv",
+  "raw_data/E82903mtx17.csv",
+  "raw_data/E83903mtx17.csv",
+  "raw_data/E84903mtx17.csv",
+  "raw_data/E85903mtx17.csv",
+  "raw_data/E86903mtx17.csv",
+  "raw_data/E87903mtx17.csv",
+  "raw_data/E88908mtx17.csv",
+  "raw_data/E90915mtx17.csv",
+  "raw_data/E91908mtx17.csv",
+  "raw_data/E92915mtx17.csv",
+  "raw_data/E93915mtx17.csv",
+  "raw_data/E95908mtx17.csv",
+  "raw_data/E97908mtx17.csv",
+  "raw_data/E98908mtx17.csv",
+  "raw_data/H01908mtx17.csv",
+  "raw_data/H02908mtx17.csv",
+  "raw_data/H03915mtx17.csv",
+  "raw_data/H04908mtx17.csv",
+  "raw_data/H09915mtx17.csv",
+  "raw_data/H16908mtx17.csv",
+  "raw_data/H19908mtx17.csv",
+  "raw_data/H23908mtx17.csv",
+  "raw_data/H24908mtx17.csv",
+  "raw_data/H26908mtx17.csv",
+  "raw_data/K03915mtx17.csv",
+  "raw_data/K05908mtx17.csv",
+  "raw_data/K06908mtx17.csv",
+  "raw_data/K07917mtx17.csv",
+  "raw_data/K11915mtx17.csv",
+  "raw_data/K12908mtx17.csv",
+  "raw_data/K14915mtx17.csv",
+  "raw_data/K16915mtx17.csv"
 )
 
 # copy files to raw_data
