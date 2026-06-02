@@ -6,9 +6,9 @@ Workshop materials for the [gDR platform](https://github.com/gdrplatform) — do
 
 | Directory | Reference | Type |
 |-----------|-----------|------|
-| `SmallDrugCombo_Zhou_CellChemBio_2026` | Zhou et al., *Cell Chem Bio* 2026 | Drug combination (small) |
-| `LargeDrugCombo_Goetz_Cancers_2024` | Goetz et al., *Cancers* 2024 | Drug combination (large) |
-| `PRISMBroadScreen_Hagenbeek_NatComm_2026` | Hagenbeek et al., *Nat Commun* 2026 | Single-agent broad screen |
+| `SmallDrugCombo_Zhou_CellChemBio_2026` | [Zhou et al., *Cell Chem Bio* 2026](https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(26)00143-1) | Drug combination (small) |
+| `LargeDrugCombo_Goetz_Cancers_2024` | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
+| `PRISMBroadScreen_Hagenbeek_NatComm_2026` | Hagenbeek et al., *Nat Commun* 2026 (accepted) | Single-agent broad screen |
 
 ## Structure
 
