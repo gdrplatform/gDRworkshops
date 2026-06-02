@@ -490,7 +490,7 @@ library(gDRcore)
 library(gDR)
 library(gDRplots)</code></pre>
 <pre class="r"><code># get working directory path
-wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2&quot;</code></pre>
+wd &lt;- &quot;here::here()&quot;</code></pre>
 </div>
 <div id="key-output-files" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Key Output Files</h1>
@@ -535,8 +535,8 @@ wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScr
 <h2><span class="header-section-number">3.3</span> Annotation Guidelines</h2>
 <p>The process for annotating the data adheres to the guidelines specified in the gDR annotation documentation. Detailed guidelines and instructions can be found in the <a href="https://github.com/gdrplatform/gDRcore/blob/main/vignettes/gDR-annotation.Rmd">gDR Annotation Documentation</a>.</p>
 <pre class="r"><code>#import data
-data_imported &lt;- convert_LEVEL5_prism_to_gDR_input(prism_data_path = &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2/raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025&quot;,
-                                                   meta_data_path = &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2/raw_data/Model.csv&quot;)
+data_imported &lt;- convert_LEVEL5_prism_to_gDR_input(prism_data_path = &quot;raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025&quot;,
+                                                   meta_data_path = &quot;raw_data/Model.csv&quot;)
 data_imported &lt;- cleanup_metadata(data_imported)</code></pre>
 <p>Before executing the pipeline, there exists a provision for manual alterations within the raw data. This allows for the manual modification of certain annotations and the correction of data as needed.</p>
 <pre class="r"><code># preview the annotation used in the preprocessing

@@ -502,7 +502,7 @@ library(gDRplots)</code></pre>
 <div id="read-input-data-and-identify-experiment-types" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Read Input Data and Identify Experiment Types</h1>
 <p>The first step is to load the prepared data from Step 1. The pipeline then automatically identifies the type of experiment for each data point (e.g., single-agent vs. combination) and splits the data into separate objects for specialized processing.</p>
-<pre class="r"><code>wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose&quot;
+<pre class="r"><code>wd &lt;- &quot;here::here()&quot;
 data_imported &lt;- qs_read(file.path(wd, &quot;gDR_data&quot;, &quot;gDR_input.qs2&quot;))</code></pre>
 <pre class="r"><code>dt_ &lt;- identify_data_type(data_imported)
 dt_list &lt;- split_raw_data(dt_)</code></pre>

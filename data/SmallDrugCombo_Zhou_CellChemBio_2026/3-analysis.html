@@ -556,7 +556,7 @@ library(ggplot2)</code></pre>
 <div id="read-the-gdr-mae-data" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Read the gDR MAE data</h1>
 <p>This section loads the final <code>MultiAssayExperiment</code> (MAE) object, which contains all the processed data and results from the previous step.</p>
-<pre class="r"><code>wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose&quot;
+<pre class="r"><code>wd &lt;- &quot;here::here()&quot;
 mae &lt;- qs_read(file.path(wd, &quot;gDR_data&quot;, &quot;gDR_mae.qs2&quot;))</code></pre>
 </div>
 <div id="split-se-objects-into-list-of-assays-and-save-as-an-xlsx-file" class="section level1" number="4">

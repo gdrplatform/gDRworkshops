@@ -512,7 +512,7 @@ library(writexl)</code></pre>
 <div id="read-the-gdr-mae-data" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Read the gDR MAE data</h1>
 <p>This section loads the final <code>MultiAssayExperiment</code> (MAE) object, which contains all the processed data and results from the previous step.</p>
-<pre class="r"><code>wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2&quot;
+<pre class="r"><code>wd &lt;- &quot;here::here()&quot;
 mae &lt;- qs_read(file.path(wd, &quot;gDR_data&quot;, &quot;gDR_mae.qs2&quot;))</code></pre>
 </div>
 <div id="split-se-objects-into-list-of-assays" class="section level1" number="4">
@@ -588,8 +588,8 @@ obj_plot &lt;- create_PRISM_plot_list_sa(drug_name_vec = drug_name_vec,
                                       dt_average = response_data_sa,
                                       normalization_type_vec = normalization_type_vec,
                                       metric = c(&quot;x_mean&quot;, &quot;xc50&quot;, &quot;x_max&quot;),
-                                      meta_data_path = &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2/raw_data/Model.csv&quot;,
-                                      feat_data_path = &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/PRISMBroadScreen_Hagenbeek_NatComm_2026/v2/raw_data/meta&quot;,
+                                      meta_data_path = &quot;raw_data/Model.csv&quot;,
+                                      feat_data_path = &quot;raw_data/meta&quot;,
                                       feature_sets = feature_sets,
                                       metadata_columns = metadata_columns,
                                       with_decoding = TRUE)

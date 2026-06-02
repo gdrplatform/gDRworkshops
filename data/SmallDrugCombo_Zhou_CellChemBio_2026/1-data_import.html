@@ -490,7 +490,7 @@ library(gDRcore)
 library(gDR)
 library(gDRplots)</code></pre>
 <pre class="r"><code># get working directory path
-wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose&quot;</code></pre>
+wd &lt;- &quot;here::here()&quot;</code></pre>
 </div>
 <div id="key-output-files" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Key Output Files</h1>
@@ -535,18 +535,18 @@ wd &lt;- &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugComb
 <p>The process for annotating the data adheres to the guidelines specified in the gDR annotation documentation. Detailed guidelines and instructions can be found in the <a href="https://github.com/gdrplatform/gDRcore/blob/main/vignettes/gDR-annotation.Rmd">gDR Annotation Documentation</a>.</p>
 <pre class="r"><code>#import data
 manifest &lt;- c(
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/9545combo_Manifest.xlsx&quot;
+  &quot;raw_data/9545combo_Manifest.xlsx&quot;
 )
 treatment &lt;- c(
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/0077_1uM_9545 combo_Treatment.xlsx&quot;,
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/0077_9545 combo_Treatment.xlsx&quot;,
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Evero_9545 combo_Treatment.xlsx&quot;,
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Evero1uM_9545 combo_Treatment.xlsx&quot;,
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Untreated.xlsx&quot;
+  &quot;raw_data/0077_1uM_9545 combo_Treatment.xlsx&quot;,
+  &quot;raw_data/0077_9545 combo_Treatment.xlsx&quot;,
+  &quot;raw_data/Evero_9545 combo_Treatment.xlsx&quot;,
+  &quot;raw_data/Evero1uM_9545 combo_Treatment.xlsx&quot;,
+  &quot;raw_data/Untreated.xlsx&quot;
 )
 raw_data &lt;- c(
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/9545combo_rawdata.xlsx&quot;,
-  &quot;/gne/web/dev/apache/htdocs/projects/gDR/reports/tmp/SmallDrugCombo_Zhou_CellChemBio_2026/v1_verbose/raw_data/Day0.rawdata.xlsx&quot;
+  &quot;raw_data/9545combo_rawdata.xlsx&quot;,
+  &quot;raw_data/Day0.rawdata.xlsx&quot;
 )
 
 # copy files to raw_data
