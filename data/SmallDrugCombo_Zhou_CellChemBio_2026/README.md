@@ -30,6 +30,14 @@ Drug combination screen analyzing synergy between targeted therapies in ER+ brea
 | 2 | [processing_and_QC](2-processing_and_QC.html) | Dose-response processing and quality control |
 | 3 | [analysis](3-analysis.html) | Synergy analysis (Bliss, HSA) and visualization |
 
+## Quick start
+
+1. Open `SmallDrugCombo.Rproj` in RStudio
+2. Run `run_analysis.R` line by line — it walks through the full gDR pipeline:
+   - Import raw data → annotate → run processing → extract assays → visualize
+
+The script is self-contained and produces dose-response curves, synergy heatmaps, and summary statistics.
+
 ## Data
 
 | Directory | Contents |
