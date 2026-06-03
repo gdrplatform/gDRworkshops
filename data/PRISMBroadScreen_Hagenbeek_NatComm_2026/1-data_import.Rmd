@@ -14,11 +14,6 @@ output:
     self_contained: TRUE
   md_document:
     preserve_yaml: yes
-compilation:
-  ncpu: 1
-  memory: 20000
-  time: 120
-  module: R/devel
 editor_options: 
   chunk_output_type: console
 ---
@@ -260,7 +255,7 @@ This report generates several key files that are used in the subsequent steps of
 
 # Import PRISM data
 
-This step involves transforming the data extracted from PRISM into a format that is compatible with the gDR (Genentech Drug Response) pipeline. The transformation process ensures that the data aligns with the required fields for input into the gDR pipeline and incorporates annotations essential for comprehensive analysis.
+This step involves transforming the data extracted from PRISM into a format that is compatible with the gDR (generalised Dose Response) pipeline. The transformation process ensures that the data aligns with the required fields for input into the gDR pipeline and incorporates annotations essential for comprehensive analysis.
 
 Converting GDS data into a gDR-friendly format is essential to seamlessly integrate it with the gDR pipeline, enabling efficient analysis of drug response data. By adding annotations such as cell line information, drug details, and subtype classifications, researchers can enhance the interpretability and utility of the data for downstream analysis.
 

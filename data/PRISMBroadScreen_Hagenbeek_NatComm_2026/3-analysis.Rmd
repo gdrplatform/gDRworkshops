@@ -14,11 +14,6 @@ output:
     self_contained: TRUE
   md_document:
     preserve_yaml: yes
-compilation:
-  ncpu: 1
-  memory: 20000
-  time: 120
-  module: R/devel
 editor_options: 
   chunk_output_type: console
 ---
