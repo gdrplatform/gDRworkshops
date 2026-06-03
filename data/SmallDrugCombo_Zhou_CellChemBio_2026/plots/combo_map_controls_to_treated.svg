@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='864.00pt' height='504.00pt' viewBox='0 0 864.00 504.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw4NjQuMDB8MC4wMHw1MDQuMDA='>
+    <rect x='0.00' y='0.00' width='864.00' height='504.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw4NjQuMDB8MC4wMHw1MDQuMDA=)'>
+<text x='357.60' y='11.19' text-anchor='middle' style='font-size: 13.00px; font-weight: bold; font-family: "Liberation Sans";' textLength='168.98px' lengthAdjust='spacingAndGlyphs'>Counts of mapped controls</text>
+<rect x='5.00' y='18.42' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='5.00' y='237.32' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='181.30' y='18.42' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='181.30' y='237.32' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='357.60' y='18.42' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='357.60' y='237.32' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='533.90' y='18.42' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='533.90' y='237.32' width='176.30' height='218.90' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<text transform='translate(96.59,459.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='30.55px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>
+<text transform='translate(272.89,459.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='27.22px' lengthAdjust='spacingAndGlyphs'>T-47D</text>
+<text transform='translate(449.19,459.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='37.78px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
+<text transform='translate(625.49,459.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='35.56px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
+<text x='713.20' y='131.31' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='115.05px' lengthAdjust='spacingAndGlyphs'>Everolimus x Giredestrant</text>
+<text x='713.20' y='350.21' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='107.28px' lengthAdjust='spacingAndGlyphs'>Inavolisib x Giredestrant</text>
+<rect x='835.25' y='164.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #CEEFC8;' />
+<rect x='835.25' y='160.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #CBEEC5;' />
+<rect x='835.25' y='155.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #C8EDC2;' />
+<rect x='835.25' y='151.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #C6ECBF;' />
+<rect x='835.25' y='147.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #C3EBBC;' />
+<rect x='835.25' y='143.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #C1EBB9;' />
+<rect x='835.25' y='139.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #BEEAB6;' />
+<rect x='835.25' y='135.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #BCE9B4;' />
+<rect x='835.25' y='130.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #B9E8B1;' />
+<rect x='835.25' y='126.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #B7E7AE;' />
+<rect x='835.25' y='122.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #B4E7AB;' />
+<rect x='835.25' y='118.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #B2E6A8;' />
+<rect x='835.25' y='114.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #AFE5A5;' />
+<rect x='835.25' y='110.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #ADE4A2;' />
+<rect x='835.25' y='105.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #AAE3A0;' />
+<rect x='835.25' y='101.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #A8E39D;' />
+<rect x='835.25' y='97.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #A5E29A;' />
+<rect x='835.25' y='93.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #A3E197;' />
+<rect x='835.25' y='89.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #A0E094;' />
+<rect x='835.25' y='85.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #9EDF91;' />
+<rect x='835.25' y='80.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #9BDF8E;' />
+<rect x='835.25' y='76.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #99DE8C;' />
+<rect x='835.25' y='72.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #96DD89;' />
+<rect x='835.25' y='68.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #94DC86;' />
+<rect x='835.25' y='64.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #91DB83;' />
+<rect x='835.25' y='60.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #8FDB80;' />
+<rect x='835.25' y='55.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #8CDA7D;' />
+<rect x='835.25' y='51.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #8AD97A;' />
+<rect x='835.25' y='47.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #87D878;' />
+<rect x='835.25' y='43.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #85D775;' />
+<rect x='835.25' y='39.26' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #82D772;' />
+<rect x='835.25' y='35.09' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #80D66F;' />
+<rect x='835.25' y='30.92' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #7DD56C;' />
+<rect x='835.25' y='26.76' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #7BD469;' />
+<rect x='835.25' y='22.59' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #78D366;' />
+<rect x='835.25' y='18.42' width='10.00' height='4.17' style='stroke-width: 0.75; stroke: none; fill: #76D364;' />
+<text x='849.25' y='21.87' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='11.12px' lengthAdjust='spacingAndGlyphs'>36</text>
+</g>
+</g>
+</svg>
