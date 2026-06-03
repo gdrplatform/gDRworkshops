@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMTUyLjU2fDU2Ny40NHwwLjAwfDQzMi4wMA=='>
+    <rect x='152.56' y='0.00' width='414.87' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTUyLjU2fDU2Ny40NHwwLjAwfDQzMi4wMA==)'>
+<rect x='152.56' y='0.00' width='414.87' height='432.00' style='stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMTcwLjYzfDU2MS45NnwxOS45Mnw0MTEuMjQ='>
+    <rect x='170.63' y='19.92' width='391.32' height='391.32' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTcwLjYzfDU2MS45NnwxOS45Mnw0MTEuMjQ=)'>
+<rect x='170.63' y='19.92' width='391.32' height='391.32' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='170.63' y='19.92' width='391.32' height='391.32' style='stroke-width: 1.07; stroke: #333333;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<text x='315.64' y='421.95' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='68.53px' lengthAdjust='spacingAndGlyphs'>Concentration</text>
+<text x='384.17' y='421.95' style='font-size: 11.00px; font-family: "DejaVu Sans";' textLength='3.50px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='387.67' y='421.95' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='3.06px' lengthAdjust='spacingAndGlyphs'>[</text>
+<text x='390.73' y='421.95' style='font-size: 11.00px; font-family: "DejaVu Sans";' textLength='3.50px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='394.23' y='421.95' style='font-size: 11.00px; font-family: "DejaVu Sans";' textLength='7.00px' lengthAdjust='spacingAndGlyphs'>μ</text>
+<text x='401.23' y='421.95' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='9.16px' lengthAdjust='spacingAndGlyphs'>M</text>
+<text x='410.39' y='421.95' style='font-size: 11.00px; font-family: "DejaVu Sans";' textLength='3.50px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='413.89' y='421.95' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='3.06px' lengthAdjust='spacingAndGlyphs'>]</text>
+<text transform='translate(165.61,215.58) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='16.50px' lengthAdjust='spacingAndGlyphs'>GR</text>
+<text x='170.63' y='12.36' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='47.81px' lengthAdjust='spacingAndGlyphs'>COLO 853</text>
+</g>
+</g>
+</svg>
