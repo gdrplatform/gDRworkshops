@@ -29,6 +29,14 @@ Broad single-agent dose-response screen (PRISM) with integrated multi-omics biom
 | 3 | [analysis](3-analysis.html) | Dose-response analysis and visualization |
 | 3-1 | [PRISM_analysis](3-1-PRISM_analysis.html) | Biomarker analysis with DepMap omics data |
 
+## Quick start
+
+1. Open `PRISMBroadScreen.Rproj` in RStudio
+2. Run `run_analysis.R` line by line — it walks through the full gDR pipeline:
+   - Import PRISM data → annotate → run processing → extract assays → visualize
+
+The script produces dose-response curves, sensitivity rankings by cell line and tissue, and a tissue-level boxplot of drug sensitivity.
+
 ## Data
 
 | Directory | Contents |
