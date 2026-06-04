@@ -33,10 +33,7 @@ Large-scale drug combination screen evaluating RAF/MEK inhibitor synergy in skin
 ## Quick start
 
 1. Open `LargeDrugCombo.Rproj` in RStudio
-2. Run `run_analysis.R` line by line — it walks through the full gDR pipeline:
-   - Import 43 plates → annotate → run processing → extract assays → visualize
-
-The script produces dose-response curves, combo synergy panels, boxplots, and a ranked synergy summary across all cell lines.
+2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
 ## Data
 

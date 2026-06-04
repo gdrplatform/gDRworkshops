@@ -39,13 +39,13 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 ## Repository structure
 
 ```
-data/
+examples/
 ├── SmallDrugCombo_Zhou_CellChemBio_2026/
 ├── LargeDrugCombo_Goetz_Cancers_2024/
 └── PRISMBroadScreen_Hagenbeek_NatComm_2026/
 ```
 
-Each dataset directory contains its own `README.md` with a detailed description. The general structure is:
+Each example directory contains its own `README.md` with a detailed description. The general structure is:
 
 | File/Directory | Description |
 |----------------|-------------|
