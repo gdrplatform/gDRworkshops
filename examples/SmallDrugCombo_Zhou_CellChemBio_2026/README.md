@@ -33,10 +33,7 @@ Drug combination screen analyzing synergy between targeted therapies in ER+ brea
 ## Quick start
 
 1. Open `SmallDrugCombo.Rproj` in RStudio
-2. Run `run_analysis.R` line by line — it walks through the full gDR pipeline:
-   - Import raw data → annotate → run processing → extract assays → visualize
-
-The script is self-contained and produces dose-response curves, synergy heatmaps, and summary statistics.
+2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
 ## Data
 
