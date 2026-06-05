@@ -1,7 +1,6 @@
 # Minimal working example: SmallDrugCombo (Zhou et al., Cell Chem Bio 2026)
 # Drug combination screen: Inavolisib x Giredestrant, Everolimus x Giredestrant
-# Run this script from the SmallDrugCombo_Zhou_CellChemBio_2026/ directory
-# (Open SmallDrugCombo.Rproj in RStudio first)
+# Run this script from the repository root or set wd below to the dataset path
 
 library(gDR)
 library(gDRimport)
@@ -14,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- here::here()
+wd <- file.path(here::here(), "examples", "SmallDrugCombo_Zhou_CellChemBio_2026")
 
 # ==============================================================================
 # Step 1: Import raw data
