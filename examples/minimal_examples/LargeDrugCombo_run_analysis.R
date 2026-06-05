@@ -1,7 +1,6 @@
 # Minimal working example: LargeDrugCombo (Goetz et al., Cancers 2024)
 # Drug combination screen: Belvarafenib x Cobimetinib, Vemurafenib x Cobimetinib
-# Run this script from the LargeDrugCombo_Goetz_Cancers_2024/ directory
-# (Open LargeDrugCombo.Rproj in RStudio first)
+# Run this script from the repository root or set wd below to the dataset path
 
 library(gDR)
 library(gDRimport)
@@ -14,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- here::here()
+wd <- file.path(here::here(), "examples", "LargeDrugCombo_Goetz_Cancers_2024")
 
 # ==============================================================================
 # Step 1: Import raw data

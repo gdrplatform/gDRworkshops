@@ -1,7 +1,6 @@
 # Minimal working example: PRISMBroadScreen (Hagenbeek et al., Nat Commun 2026)
 # Single-agent broad screen: GDC-8025 (TEAD inhibitor) across 774 cell lines
-# Run this script from the PRISMBroadScreen_Hagenbeek_NatComm_2026/ directory
-# (Open PRISMBroadScreen.Rproj in RStudio first)
+# Run this script from the repository root or set wd below to the dataset path
 
 library(gDR)
 library(gDRimport)
@@ -14,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- here::here()
+wd <- file.path(here::here(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
 
 # ==============================================================================
 # Step 1: Import PRISM data

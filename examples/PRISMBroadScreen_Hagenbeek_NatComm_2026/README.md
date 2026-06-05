@@ -32,10 +32,7 @@ Broad single-agent dose-response screen (PRISM) with integrated multi-omics biom
 ## Quick start
 
 1. Open `PRISMBroadScreen.Rproj` in RStudio
-2. Run `run_analysis.R` line by line — it walks through the full gDR pipeline:
-   - Import PRISM data → annotate → run processing → extract assays → visualize
-
-The script produces dose-response curves, sensitivity rankings by cell line and tissue, and a tissue-level boxplot of drug sensitivity.
+2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
 ## Data
 
