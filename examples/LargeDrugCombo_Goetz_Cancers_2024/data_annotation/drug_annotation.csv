@@ -1,4 +1,4 @@
 Gnumber,DrugName,drug_moa
-G03083045.23-1,Belvarafenib,BRAF|RAF1|ARAF
-G00044364.1-13,Vemurafenib,BRAF
-G00050939.150-10,Cobimetinib,MAP2K1|MAP2K2
+G00103,Belvarafenib,BRAF|RAF1|ARAF
+G00104,Vemurafenib,BRAF
+G00105,Cobimetinib,MAP2K1|MAP2K2
