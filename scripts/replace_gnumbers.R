@@ -13,9 +13,9 @@ gnumber_map <- data.table(
   old = c("G02843881.1-7", "G02967907.1-49", "G03069545.15-4",
           "G03083045.23-1", "G00044364.1-13", "G00050939.150-10",
           "G03498025"),
-  new = c("G00001", "G00002", "G00003",
-          "G00004", "G00005", "G00006",
-          "G00007"),
+  new = c("G00100", "G00101", "G00102",
+          "G00103", "G00104", "G00105",
+          "G00106"),
   drug_name = c("Everolimus", "Inavolisib", "Giredestrant",
                 "Belvarafenib", "Vemurafenib", "Cobimetinib",
                 "GDC-8025")
