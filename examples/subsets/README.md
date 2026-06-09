@@ -12,10 +12,7 @@ Reduced datasets for running the gDR pipeline locally during workshops. Each sub
 
 ## How to use
 
-Each subset directory contains a `run_analysis.R` script. Run it from the repository root:
-
-- **SmallDrugCombo** and **PRISMBroadScreen**: ready to run directly
-- **LargeDrugCombo**: first run `create_subsets.R` to generate subset data from the full example, then run the analysis script
+Each subset directory contains a `run_analysis.R` script and all necessary input data. Run any script from the repository root — all subsets are ready to use directly.
 
 ## Cell lines selected
 

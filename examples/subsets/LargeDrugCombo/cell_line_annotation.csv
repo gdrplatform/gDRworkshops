@@ -1,0 +1,11 @@
+clid,CellLineName,Tissue,parental_identifier,subtype,ReferenceDivisionTime
+CL00108,A-375,Skin,A-375,Melanoma,25
+CL00109,A-431,Skin,A-431,Carcinoma Squamous Cell,30
+CL00110,A2058,Skin,A2058,Melanoma,18
+CL00112,COLO 800,Skin,COLO 800,Melanoma,45
+CL00113,COLO 829,Skin,COLO 829,Melanoma,56
+CL00121,HSC-1,Skin,HSC-1,Carcinoma Squamous Cell,57
+CL00123,HT-144,Skin,HT-144,Melanoma,57
+CL00131,MEL-JUSO,Skin,MEL-JUSO,Melanoma,29
+CL00138,SK-MEL-28,Skin,SK-MEL-28,Melanoma,39
+CL00146,WM-266-4,Skin,WM-266-4,Melanoma,29
