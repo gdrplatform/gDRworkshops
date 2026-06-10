@@ -300,10 +300,16 @@ for (file_path in c(manifest, treatment, raw_data)) {
   file.copy(file_path, file.path(wd, "raw_data", file_name))
 }
 
+# load annotations
+drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
+cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
+
 data_imported <- import_data(manifest,
                              treatment,
                              raw_data,
-                             instrument = detect_file_format(raw_data[1]))
+                             instrument = detect_file_format(raw_data[1]),
+                             cell_line_annotation = cell_line_annotation,
+                             drug_annotation = drug_annotation)
 
 
 ```
