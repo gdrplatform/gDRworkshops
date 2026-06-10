@@ -13,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(here::here(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
+wd <- file.path(getwd(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
 
 # ==============================================================================
 # Step 1: Import PRISM data

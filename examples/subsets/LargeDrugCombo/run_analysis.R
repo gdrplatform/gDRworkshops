@@ -13,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(here::here(), "examples", "subsets", "LargeDrugCombo")
+wd <- file.path(getwd(), "examples", "subsets", "LargeDrugCombo")
 
 # Load annotations
 drug_annotation <- fread(file.path(wd, "drug_annotation.csv"))
