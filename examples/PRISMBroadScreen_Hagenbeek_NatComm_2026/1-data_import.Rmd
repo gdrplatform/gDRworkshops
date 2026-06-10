@@ -281,9 +281,15 @@ The process for annotating the data adheres to the guidelines specified in the g
 
 ```{r load_data}
 #import data
+# load annotations
+drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
+cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
+
 data_imported <- convert_LEVEL5_prism_to_gDR_input(prism_data_path = "raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025",
                                                    meta_data_path = "raw_data/Model.csv")
-data_imported <- cleanup_metadata(data_imported)
+data_imported <- cleanup_metadata(data_imported,
+                                  cell_line_annotation = cell_line_annotation,
+                                  drug_annotation = drug_annotation)
 
 
 ```
