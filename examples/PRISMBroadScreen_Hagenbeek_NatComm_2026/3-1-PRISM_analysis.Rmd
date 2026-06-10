@@ -255,7 +255,7 @@ These files provide a convenient summary of only the most statistically signific
 This section loads the final `MultiAssayExperiment` (MAE) object, which contains all the processed data and results from the previous step.
 
 ```{r load_mae}
-wd <- here::here()
+wd <- getwd()
 mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
 
 

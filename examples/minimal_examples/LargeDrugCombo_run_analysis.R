@@ -13,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(here::here(), "examples", "LargeDrugCombo_Goetz_Cancers_2024")
+wd <- file.path(getwd(), "examples", "LargeDrugCombo_Goetz_Cancers_2024")
 
 # ==============================================================================
 # Step 1: Import raw data

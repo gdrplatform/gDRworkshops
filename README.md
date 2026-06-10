@@ -32,7 +32,7 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
   ```
 - **CRAN** packages:
   ```r
-  install.packages(c("data.table", "ggplot2", "here", "purrr", "qs2",
+  install.packages(c("data.table", "ggplot2", "purrr", "qs2",
                       "summarytools", "writexl", "BiocStyle"))
   ```
 

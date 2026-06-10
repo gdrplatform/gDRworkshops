@@ -234,7 +234,7 @@ library(gDRplots)
 
 ```{r get_wd}
 # get working directory path
-wd <- here::here()
+wd <- getwd()
 
 
 ```
