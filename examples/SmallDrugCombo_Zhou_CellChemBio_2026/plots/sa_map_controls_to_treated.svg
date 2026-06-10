@@ -39,10 +39,10 @@
 <rect x='578.91' y='18.42' width='191.30' height='157.93' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
 <rect x='578.91' y='176.36' width='191.30' height='157.93' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
 <rect x='578.91' y='334.29' width='191.30' height='157.93' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
-<text transform='translate(104.09,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='30.55px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>
-<text transform='translate(295.40,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='27.22px' lengthAdjust='spacingAndGlyphs'>T-47D</text>
-<text transform='translate(486.70,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='37.78px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
-<text transform='translate(678.00,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='35.56px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
+<text transform='translate(104.09,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='37.78px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
+<text transform='translate(295.40,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='35.56px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
+<text transform='translate(486.70,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='30.55px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>
+<text transform='translate(678.00,495.22) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='27.22px' lengthAdjust='spacingAndGlyphs'>T-47D</text>
 <text x='773.21' y='100.83' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='49.45px' lengthAdjust='spacingAndGlyphs'>Everolimus</text>
 <text x='773.21' y='258.76' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='41.69px' lengthAdjust='spacingAndGlyphs'>Inavolisib</text>
 <text x='773.21' y='416.69' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='55.03px' lengthAdjust='spacingAndGlyphs'>Giredestrant</text>
