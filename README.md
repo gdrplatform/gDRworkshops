@@ -71,8 +71,9 @@ Each example directory contains its own `README.md` with a detailed description.
 
 - [gDRcore](https://github.com/gdrplatform/gDRcore) — core processing engine
 - [gDRutils](https://github.com/gdrplatform/gDRutils) — utility functions
-- [gDRviz](https://github.com/gdrplatform/gDRviz) — visualization
 - [gDRimport](https://github.com/gdrplatform/gDRimport) — data import
+- [gDRplots](https://github.com/gdrplatform/gDRplots) — static visualizations
+- [gDRviz](https://github.com/gdrplatform/gDRviz) — interactive Shiny application
 
 ## Contact
 
