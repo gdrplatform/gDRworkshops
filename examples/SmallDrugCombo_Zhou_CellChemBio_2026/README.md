@@ -32,7 +32,7 @@ Drug combination screen analyzing synergy between targeted therapies in ER+ brea
 
 ## Quick start
 
-1. Open `SmallDrugCombo.Rproj` in RStudio
+1. Set your working directory to this folder in RStudio
 2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
 ## Data

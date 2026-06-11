@@ -56,14 +56,14 @@
 <line x1='490.16' y1='204.90' x2='490.16' y2='257.47' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt;' />
 <polygon points='384.32,137.64 384.32,204.90 596.00,204.90 596.00,137.64 384.32,137.64 ' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter; fill: #A6CEE3; fill-opacity: 0.25;' />
 <line x1='384.32' y1='167.43' x2='596.00' y2='167.43' style='stroke-width: 2.13; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='167.48' cy='105.89' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='487.40' cy='147.47' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='204.66' cy='35.05' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='500.20' cy='108.13' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='179.70' cy='108.00' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
-<circle cx='463.19' cy='187.38' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
-<circle cx='255.63' cy='112.73' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
-<circle cx='440.83' cy='257.47' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
+<circle cx='171.33' cy='108.00' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='491.43' cy='187.38' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='217.88' cy='112.73' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='521.16' cy='257.47' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='184.66' cy='105.89' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='497.42' cy='147.47' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='245.85' cy='35.05' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
+<circle cx='445.27' cy='108.13' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
 <rect x='38.58' y='19.92' width='620.93' height='332.99' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
@@ -87,13 +87,13 @@
 <rect x='670.47' y='138.71' width='80.05' height='95.41' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='675.95' y='152.89' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='69.09px' lengthAdjust='spacingAndGlyphs'>CellLineName</text>
 <rect x='675.95' y='159.52' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='684.59' cy='168.16' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='684.59' cy='168.16' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
 <rect x='675.95' y='176.80' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='684.59' cy='185.44' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
+<circle cx='684.59' cy='185.44' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
 <rect x='675.95' y='194.08' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='684.59' cy='202.72' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='684.59' cy='202.72' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
 <rect x='675.95' y='211.36' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='684.59' cy='220.00' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='684.59' cy='220.00' r='2.49' style='stroke-width: 0.71; stroke: #E7298A; stroke-opacity: 0.75; fill: #E7298A; fill-opacity: 0.75;' />
 <text x='698.71' y='171.18' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='33.25px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
 <text x='698.71' y='188.46' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
 <text x='698.71' y='205.74' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='26.88px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>

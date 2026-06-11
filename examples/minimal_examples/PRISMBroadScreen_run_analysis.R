@@ -13,23 +13,23 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(here::here(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
+wd <- file.path(getwd(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
 
 # ==============================================================================
 # Step 1: Import PRISM data
 # ==============================================================================
 
+# Load annotations
+drug_annotation <- fread(file.path(wd, "data_annotation/drug_annotation.csv"))
+cell_line_annotation <- fread(file.path(wd, "data_annotation/cell_line_annotation.csv"))
+
 data_imported <- convert_LEVEL5_prism_to_gDR_input(
   prism_data_path = file.path(wd, "raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025"),
   meta_data_path = file.path(wd, "raw_data/Model.csv")
 )
-data_imported <- cleanup_metadata(data_imported)
-
-# Annotate with drug and cell line metadata
-drug_annotation <- fread(file.path(wd, "data_annotation/drug_annotation.csv"))
-cell_line_annotation <- fread(file.path(wd, "data_annotation/cell_line_annotation.csv"))
-data_imported <- annotate_dt_with_drug(data_imported, drug_annotation)
-data_imported <- annotate_dt_with_cell_line(data_imported, cell_line_annotation)
+data_imported <- cleanup_metadata(data_imported,
+                                  cell_line_annotation = cell_line_annotation,
+                                  drug_annotation = drug_annotation)
 
 # ==============================================================================
 # Step 2: Run gDR processing pipeline
