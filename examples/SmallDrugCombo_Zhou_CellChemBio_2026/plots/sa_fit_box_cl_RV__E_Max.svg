@@ -68,18 +68,18 @@
 <line x1='568.42' y1='271.97' x2='568.42' y2='324.24' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt;' />
 <polygon points='512.76,195.95 512.76,271.97 624.07,271.97 624.07,195.95 512.76,195.95 ' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter; fill: #A6CEE3; fill-opacity: 0.25;' />
 <line x1='512.76' y1='219.69' x2='624.07' y2='219.69' style='stroke-width: 2.13; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='119.19' cy='306.28' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='104.81' cy='212.99' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='142.19' cy='37.86' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
-<circle cx='268.73' cy='275.72' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='257.56' cy='215.40' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='242.23' cy='384.89' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
-<circle cx='438.84' cy='299.85' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='410.81' cy='305.82' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='439.00' cy='293.89' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
-<circle cx='593.87' cy='172.21' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
-<circle cx='548.41' cy='219.69' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
-<circle cx='554.75' cy='324.24' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='140.99' cy='306.28' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='133.57' cy='212.99' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='147.84' cy='37.86' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='260.18' cy='275.72' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='289.65' cy='215.40' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='277.44' cy='384.89' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='433.05' cy='299.85' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='409.42' cy='305.82' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='435.79' cy='293.89' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
+<circle cx='540.99' cy='172.21' r='2.49' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.75; fill: #1B9E77; fill-opacity: 0.75;' />
+<circle cx='567.58' cy='219.69' r='2.49' style='stroke-width: 0.71; stroke: #D95F02; stroke-opacity: 0.75; fill: #D95F02; fill-opacity: 0.75;' />
+<circle cx='559.02' cy='324.24' r='2.49' style='stroke-width: 0.71; stroke: #7570B3; stroke-opacity: 0.75; fill: #7570B3; fill-opacity: 0.75;' />
 <rect x='34.13' y='19.92' width='623.34' height='394.82' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>

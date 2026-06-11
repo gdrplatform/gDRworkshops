@@ -47,14 +47,14 @@
 <line x1='358.00' y1='188.62' x2='358.00' y2='190.05' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt;' />
 <polygon points='155.58,149.34 155.58,188.62 560.42,188.62 560.42,149.34 155.58,149.34 ' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.25;' />
 <line x1='155.58' y1='187.27' x2='560.42' y2='187.27' style='stroke-width: 2.13; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter;' />
-<text x='369.75' y='33.73' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>
-<text x='368.54' y='180.90' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='23.23px' lengthAdjust='spacingAndGlyphs'>T-47D</text>
-<text x='334.59' y='187.80' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='30.36px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
-<text x='365.99' y='200.79' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='32.23px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
-<circle cx='460.48' cy='38.19' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='321.01' cy='186.39' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='260.79' cy='188.14' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='421.85' cy='190.05' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<text x='370.11' y='33.60' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>MCF-7</text>
+<text x='347.35' y='179.22' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='23.23px' lengthAdjust='spacingAndGlyphs'>T-47D</text>
+<text x='381.32' y='187.33' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='30.36px' lengthAdjust='spacingAndGlyphs'>EFM-19</text>
+<text x='350.99' y='200.63' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='32.23px' lengthAdjust='spacingAndGlyphs'>CAMA-1</text>
+<circle cx='429.11' cy='38.19' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='269.22' cy='186.39' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='383.07' cy='188.14' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='359.67' cy='190.05' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
 <rect x='34.13' y='19.92' width='647.75' height='401.94' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>

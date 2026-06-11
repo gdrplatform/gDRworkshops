@@ -48,64 +48,64 @@
 <line x1='356.29' y1='334.32' x2='356.29' y2='375.85' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt;' />
 <polygon points='154.94,246.82 154.94,334.32 557.64,334.32 557.64,246.82 154.94,246.82 ' style='stroke-width: 1.07; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.25;' />
 <line x1='154.94' y1='290.60' x2='557.64' y2='290.60' style='stroke-width: 2.13; stroke: #A9A9A9; stroke-linecap: butt; stroke-linejoin: miter;' />
-<text x='344.54' y='49.00' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='34.64px' lengthAdjust='spacingAndGlyphs'>Hs 852.T</text>
-<text x='344.53' y='68.50' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='25.59px' lengthAdjust='spacingAndGlyphs'>HSC-5</text>
-<text x='372.66' y='81.74' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='22.78px' lengthAdjust='spacingAndGlyphs'>A-431</text>
-<text x='344.48' y='128.35' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='43.17px' lengthAdjust='spacingAndGlyphs'>RPMI-7951</text>
-<text x='367.92' y='156.74' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='19.94px' lengthAdjust='spacingAndGlyphs'>A388</text>
-<text x='339.05' y='169.96' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='23.73px' lengthAdjust='spacingAndGlyphs'>G-361</text>
-<text x='382.85' y='172.40' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='43.14px' lengthAdjust='spacingAndGlyphs'>MEL-JUSO</text>
-<text x='344.04' y='184.36' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='19.94px' lengthAdjust='spacingAndGlyphs'>501A</text>
-<text x='374.12' y='194.64' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='25.59px' lengthAdjust='spacingAndGlyphs'>HSC-1</text>
-<text x='344.56' y='207.77' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='22.78px' lengthAdjust='spacingAndGlyphs'>A-253</text>
-<text x='344.82' y='235.53' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='30.38px' lengthAdjust='spacingAndGlyphs'>928 mel</text>
-<text x='383.15' y='249.89' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='44.11px' lengthAdjust='spacingAndGlyphs'>SK-MEL-30</text>
-<text x='337.44' y='249.93' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='27.98px' lengthAdjust='spacingAndGlyphs'>HT-144</text>
-<text x='375.23' y='263.69' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='27.52px' lengthAdjust='spacingAndGlyphs'>IGR-39</text>
-<text x='331.67' y='272.09' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='39.36px' lengthAdjust='spacingAndGlyphs'>SK-MEL-2</text>
-<circle cx='250.11' cy='38.53' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='434.01' cy='58.19' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='284.82' cy='81.10' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='276.51' cy='117.90' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='362.82' cy='161.36' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='459.43' cy='162.62' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='303.53' cy='170.28' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='394.07' cy='188.83' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='449.70' cy='193.37' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='378.65' cy='197.42' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='343.74' cy='239.98' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='297.83' cy='253.67' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='326.80' cy='255.88' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='458.84' cy='260.09' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='338.91' cy='264.75' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
-<circle cx='301.67' cy='267.71' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='432.10' cy='276.11' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='338.86' cy='283.86' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='424.21' cy='286.17' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='311.28' cy='287.26' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='398.34' cy='289.91' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='437.63' cy='290.60' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='411.72' cy='292.02' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='379.12' cy='312.61' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='286.81' cy='313.44' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='417.85' cy='313.68' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='380.19' cy='315.51' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='314.04' cy='317.42' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='358.09' cy='323.53' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='319.28' cy='324.88' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='414.73' cy='331.68' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='295.70' cy='331.72' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='392.80' cy='336.92' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='385.44' cy='345.23' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='436.88' cy='348.83' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='351.90' cy='355.14' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='291.35' cy='359.33' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='424.68' cy='359.80' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='455.07' cy='361.02' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='363.91' cy='367.44' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='262.86' cy='369.92' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='462.07' cy='373.58' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
-<circle cx='412.42' cy='375.85' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<text x='344.52' y='49.03' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='34.64px' lengthAdjust='spacingAndGlyphs'>Hs 852.T</text>
+<text x='368.10' y='68.62' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='25.59px' lengthAdjust='spacingAndGlyphs'>HSC-5</text>
+<text x='344.46' y='91.60' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='22.78px' lengthAdjust='spacingAndGlyphs'>A-431</text>
+<text x='368.13' y='113.40' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='43.17px' lengthAdjust='spacingAndGlyphs'>RPMI-7951</text>
+<text x='366.02' y='154.88' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='19.94px' lengthAdjust='spacingAndGlyphs'>A388</text>
+<text x='338.81' y='168.00' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='23.73px' lengthAdjust='spacingAndGlyphs'>G-361</text>
+<text x='332.68' y='181.17' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='43.14px' lengthAdjust='spacingAndGlyphs'>MEL-JUSO</text>
+<text x='371.59' y='193.52' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='19.94px' lengthAdjust='spacingAndGlyphs'>501A</text>
+<text x='338.60' y='194.39' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='25.59px' lengthAdjust='spacingAndGlyphs'>HSC-1</text>
+<text x='368.07' y='207.88' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='22.78px' lengthAdjust='spacingAndGlyphs'>A-253</text>
+<text x='344.62' y='235.41' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='30.38px' lengthAdjust='spacingAndGlyphs'>928 mel</text>
+<text x='383.13' y='249.90' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='44.11px' lengthAdjust='spacingAndGlyphs'>SK-MEL-30</text>
+<text x='337.47' y='249.85' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='27.98px' lengthAdjust='spacingAndGlyphs'>HT-144</text>
+<text x='375.31' y='263.66' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='27.52px' lengthAdjust='spacingAndGlyphs'>IGR-39</text>
+<text x='331.59' y='272.13' text-anchor='middle' style='font-size: 8.54px; font-family: "Liberation Sans";' textLength='39.36px' lengthAdjust='spacingAndGlyphs'>SK-MEL-2</text>
+<circle cx='343.26' cy='38.53' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='382.19' cy='58.19' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='299.49' cy='81.10' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='268.17' cy='117.90' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='375.93' cy='161.36' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='431.58' cy='162.62' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='330.20' cy='170.28' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='412.95' cy='188.83' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='378.10' cy='193.37' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='275.86' cy='197.42' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='326.63' cy='239.98' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='402.57' cy='253.67' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='331.11' cy='255.88' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='315.13' cy='260.09' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='354.36' cy='264.75' r='2.49' style='stroke-width: 0.71; stroke: #FF0000; stroke-opacity: 0.75; fill: #FF0000; fill-opacity: 0.75;' />
+<circle cx='356.00' cy='267.71' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='415.46' cy='276.11' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='378.83' cy='283.86' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='451.32' cy='286.17' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='432.19' cy='287.26' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='408.10' cy='289.91' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='369.01' cy='290.60' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='317.10' cy='292.02' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='287.89' cy='312.61' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='326.44' cy='313.44' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='450.47' cy='313.68' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='358.20' cy='315.51' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='355.38' cy='317.42' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='333.90' cy='323.53' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='366.28' cy='324.88' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='372.31' cy='331.68' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='437.64' cy='331.72' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='358.29' cy='336.92' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='311.52' cy='345.23' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='383.56' cy='348.83' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='271.20' cy='355.14' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='425.34' cy='359.33' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='319.25' cy='359.80' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='289.75' cy='361.02' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='381.06' cy='367.44' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='384.37' cy='369.92' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='456.43' cy='373.58' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
+<circle cx='296.83' cy='375.85' r='2.49' style='stroke-width: 0.71; stroke: #4C4C4C; stroke-opacity: 0.75; fill: #4C4C4C; fill-opacity: 0.75;' />
 <rect x='34.13' y='19.92' width='644.33' height='409.51' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>

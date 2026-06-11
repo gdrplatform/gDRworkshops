@@ -1,4 +1,4 @@
 Gnumber,DrugName,drug_moa
-G02843881.1-7,Everolimus,MTOR
-G02967907.1-49,Inavolisib,PIK3CA
-G03069545.15-4,Giredestrant,ESR1
+G00100,Everolimus,MTOR
+G00101,Inavolisib,PIK3CA
+G00102,Giredestrant,ESR1

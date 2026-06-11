@@ -31,7 +31,7 @@ Broad single-agent dose-response screen (PRISM) with integrated multi-omics biom
 
 ## Quick start
 
-1. Open `PRISMBroadScreen.Rproj` in RStudio
+1. Set your working directory to this folder in RStudio
 2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
 ## Data

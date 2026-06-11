@@ -246,7 +246,7 @@ This report generates the primary data object used for all downstream analysis a
 The first step is to load the prepared data from Step 1. The pipeline then automatically identifies the type of experiment for each data point (e.g., single-agent vs. combination) and splits the data into separate objects for specialized processing.
 
 ```{r drug_dose_layout}
-wd <- here::here()
+wd <- getwd()
 data_imported <- qs_read(file.path(wd, "gDR_data", "gDR_input.qs2"))
 
 

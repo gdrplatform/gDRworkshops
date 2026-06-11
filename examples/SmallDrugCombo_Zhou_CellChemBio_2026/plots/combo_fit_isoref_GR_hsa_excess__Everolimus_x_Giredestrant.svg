@@ -38,15 +38,21 @@
 <rect x='0.000000000000048' y='149.01' width='91.64' height='113.16' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='5.48' y='163.44' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='80.11px' lengthAdjust='spacingAndGlyphs'>HSA Excess GR</text>
 <image width='28.80' height='86.40' x='5.48' y='170.29' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAy0lEQVQ4je2RQZLDIBADm8Fvyf8/sk9ilAMsZggkTirHXKaQGgmw+bvdZAmoA8BSSgzeBcop36FMZ1ykM/gKXZ02vDdKjoyRD4ycMVUZPLqn06ugx4Z9x7+M3rgvtuQc6Kq5ex80z7HXzWbPRv/2v9GGC8wdTArSBVYczD21VR0ldUAA5z6BlRLo3OJgXtKmYK5/zC6by5Td1F9o9rKhkjABhjRKSRioAZaeMERbaQKo/YVRBjpkF6etEoq03nnRNwBt7jJmebj4jt4B1CvlvOXwvvEAAAAASUVORK5CYII='/>
-<polyline points='30.82,235.59 34.28,235.59 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='30.82,254.54 34.28,254.54 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='30.82,234.01 34.28,234.01 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <polyline points='30.82,213.49 34.28,213.49 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='30.82,191.39 34.28,191.39 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='8.94,235.59 5.48,235.59 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='30.82,192.97 34.28,192.97 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='30.82,172.44 34.28,172.44 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='8.94,254.54 5.48,254.54 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='8.94,234.01 5.48,234.01 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <polyline points='8.94,213.49 5.48,213.49 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='8.94,191.39 5.48,191.39 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<text x='39.76' y='238.62' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='20.03px' lengthAdjust='spacingAndGlyphs'>-0.25</text>
+<polyline points='8.94,192.97 5.48,192.97 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='8.94,172.44 5.48,172.44 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<text x='39.76' y='257.56' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='20.03px' lengthAdjust='spacingAndGlyphs'>-0.40</text>
+<text x='39.76' y='237.04' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='20.03px' lengthAdjust='spacingAndGlyphs'>-0.20</text>
 <text x='39.76' y='216.52' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='39.76' y='194.42' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.25</text>
+<text x='39.76' y='196.00' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.20</text>
+<text x='39.76' y='175.47' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.40</text>
 <rect x='0.000000000000048' y='273.13' width='85.25' height='61.32' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='5.48' y='287.55' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='28.75px' lengthAdjust='spacingAndGlyphs'>GR50</text>
 <rect x='5.48' y='294.41' width='28.80' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
@@ -205,7 +211,7 @@
 <text transform='translate(355.46,201.50) rotate(-45)' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>1</text>
 <text x='281.02' y='233.83' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='85.25px' lengthAdjust='spacingAndGlyphs'>Giredestrant [µM]</text>
 <text transform='translate(163.42,114.09) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='79.09px' lengthAdjust='spacingAndGlyphs'>Everolimus [µM]</text>
-<text x='202.43' y='27.82' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='93.38px' lengthAdjust='spacingAndGlyphs'>CAMA-1 (CL131438)</text>
+<text x='202.43' y='27.82' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='87.81px' lengthAdjust='spacingAndGlyphs'>CAMA-1 (CL00100)</text>
 </g>
 <defs>
   <clipPath id='cpNDg0Ljc4fDY5NS4wNHwxNS40NnwyNDEuNzM='>
@@ -347,7 +353,7 @@
 <text transform='translate(685.41,201.50) rotate(-45)' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>1</text>
 <text x='610.97' y='233.83' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='85.25px' lengthAdjust='spacingAndGlyphs'>Giredestrant [µM]</text>
 <text transform='translate(497.83,114.09) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='79.09px' lengthAdjust='spacingAndGlyphs'>Everolimus [µM]</text>
-<text x='532.38' y='27.82' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='91.16px' lengthAdjust='spacingAndGlyphs'>EFM-19 (CL131891)</text>
+<text x='532.38' y='27.82' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='85.59px' lengthAdjust='spacingAndGlyphs'>EFM-19 (CL00101)</text>
 </g>
 <defs>
   <clipPath id='cpMTUyLjYwfDM2Mi44NnwyNDEuNzN8NDY4LjAw'>
@@ -489,7 +495,7 @@
 <text transform='translate(353.23,427.77) rotate(-45)' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>1</text>
 <text x='278.79' y='460.10' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='85.25px' lengthAdjust='spacingAndGlyphs'>Giredestrant [µM]</text>
 <text transform='translate(165.65,340.36) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='79.09px' lengthAdjust='spacingAndGlyphs'>Everolimus [µM]</text>
-<text x='200.20' y='254.09' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='86.14px' lengthAdjust='spacingAndGlyphs'>MCF-7 (CL129757)</text>
+<text x='200.20' y='254.09' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='80.58px' lengthAdjust='spacingAndGlyphs'>MCF-7 (CL00102)</text>
 </g>
 <defs>
   <clipPath id='cpNDg0Ljc4fDY5NS4wNHwyNDEuNzN8NDY4LjAw'>
@@ -631,8 +637,8 @@
 <text transform='translate(685.41,427.77) rotate(-45)' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>1</text>
 <text x='610.97' y='460.10' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='85.25px' lengthAdjust='spacingAndGlyphs'>Giredestrant [µM]</text>
 <text transform='translate(497.83,340.36) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='79.09px' lengthAdjust='spacingAndGlyphs'>Everolimus [µM]</text>
-<text x='532.38' y='254.09' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>T-47D (CL130742)</text>
-<text x='378.00' y='11.86' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='334.11px' lengthAdjust='spacingAndGlyphs'>Everolimus (G02843881.1-7) x Giredestrant (G03069545.15-4)</text>
+<text x='532.38' y='254.09' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='77.25px' lengthAdjust='spacingAndGlyphs'>T-47D (CL00103)</text>
+<text x='378.00' y='11.86' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='246.06px' lengthAdjust='spacingAndGlyphs'>Everolimus (G00100) x Giredestrant (G00102)</text>
 </g>
 </g>
 </svg>
