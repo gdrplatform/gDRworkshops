@@ -5630,7 +5630,7 @@
 <rect x='143.14' y='320.92' width='28.80' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <line x1='146.02' y1='329.56' x2='169.06' y2='329.56' style='stroke-width: 2.13; stroke: #C52B06; stroke-linecap: butt;' />
 <text x='177.42' y='332.59' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='18.58px' lengthAdjust='spacingAndGlyphs'>IC50</text>
-<text x='281.48' y='12.36' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='299.11px' lengthAdjust='spacingAndGlyphs'>Belvarafenib (G03083045.23-1) x Cobimetinib (G00050939.150-10)</text>
+<text x='281.48' y='12.36' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='209.02px' lengthAdjust='spacingAndGlyphs'>Belvarafenib (G00103) x Cobimetinib (G00105)</text>
 </g>
 </g>
 </svg>
