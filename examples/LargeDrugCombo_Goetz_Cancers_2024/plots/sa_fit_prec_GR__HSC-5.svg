@@ -74,7 +74,7 @@
 <text x='35.72' y='78.31' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='35.72' y='34.65' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text transform='translate(13.05,118.95) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='45.25px' lengthAdjust='spacingAndGlyphs'>r2 for GR</text>
-<text x='40.65' y='14.55' style='font-size: 13.20px; font-family: "Liberation Sans";' textLength='112.84px' lengthAdjust='spacingAndGlyphs'>HSC-5 (CL586959)</text>
+<text x='40.65' y='14.55' style='font-size: 13.20px; font-family: "Liberation Sans";' textLength='105.52px' lengthAdjust='spacingAndGlyphs'>HSC-5 (CL00122)</text>
 <text x='498.52' y='226.54' text-anchor='end' style='font-size: 8.80px; font-family: "Liberation Sans";' textLength='138.53px' lengthAdjust='spacingAndGlyphs'>*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</text>
 </g>
 <defs>
@@ -254,7 +254,7 @@
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
 <g clip-path='url(#cpNTc4Ljk1fDYzNS4yNHwyMTcuMTZ8MjM0LjAw)'>
-<text x='607.09' y='228.33' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='44.95px' lengthAdjust='spacingAndGlyphs'>Vemurafenib</text>
+<text x='607.09' y='228.33' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='44.52px' lengthAdjust='spacingAndGlyphs'>Belvarafenib</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
@@ -264,7 +264,7 @@
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
 <g clip-path='url(#cpNTc4Ljk1fDYzNS4yNHwyMzQuMDB8MjUwLjg0)'>
-<text x='607.09' y='245.17' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='42.28px' lengthAdjust='spacingAndGlyphs'>Cobimetinib</text>
+<text x='607.09' y='245.17' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='44.95px' lengthAdjust='spacingAndGlyphs'>Vemurafenib</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
@@ -274,7 +274,7 @@
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
 <g clip-path='url(#cpNTc4Ljk1fDYzNS4yNHwyNTAuODR8MjY3LjY4)'>
-<text x='607.09' y='262.01' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='44.52px' lengthAdjust='spacingAndGlyphs'>Belvarafenib</text>
+<text x='607.09' y='262.01' text-anchor='middle' style='font-size: 8.00px; font-family: "Liberation Sans";' textLength='42.28px' lengthAdjust='spacingAndGlyphs'>Cobimetinib</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NjguMDA=)'>
 </g>
