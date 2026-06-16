@@ -235,6 +235,8 @@ library(gDRplots)
 ```{r get_wd}
 # get working directory path
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
 
 
 ```

@@ -247,6 +247,8 @@ The first step is to load the prepared data from Step 1. The pipeline then autom
 
 ```{r drug_dose_layout}
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
 data_imported <- qs_read(file.path(wd, "gDR_data", "gDR_input.qs2"))
 
 

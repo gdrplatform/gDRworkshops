@@ -235,6 +235,8 @@ library(gDRplots)
 ```{r get_wd}
 # get working directory path
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
 
 
 ```
@@ -396,6 +398,7 @@ data_imported <- annotate_dt_with_cell_line(data_imported, cell_line_annotation)
 fwrite(cell_line_annotation, cell_line_annotation_path)
 generate_datatable(cell_line_annotation)
 
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE)
 qs_save(data_imported, file.path(wd, "gDR_data", "gDR_input.qs2"))
 
 
