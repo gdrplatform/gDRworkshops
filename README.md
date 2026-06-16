@@ -10,6 +10,10 @@
 
 ---
 
+## Presentation
+
+An overview slide deck covering what gDR is and walking through all three examples is available at **[`docs/index.html`](docs/index.html)** — open it in a browser to view it.
+
 ## Overview
 
 This repository contains reproducible analyses demonstrating the gDR workflow on real-world published datasets. Each example walks through the full pipeline: data import, processing & QC, and downstream analysis.
