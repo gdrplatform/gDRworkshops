@@ -41,7 +41,7 @@ mae <- runDrugResponseProcessingPipeline(data_imported)
 
 # Explore
 names(mae)
-se_combo <- mae[["combination matrix"]]
+se_combo <- mae[["combination"]]
 assayNames(se_combo)
 
 # Extract synergy scores

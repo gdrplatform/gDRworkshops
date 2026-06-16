@@ -62,7 +62,7 @@ mae <- runDrugResponseProcessingPipeline(data_imported)
 names(mae)
 
 # Get the combo SummarizedExperiment
-se_combo <- mae[["combination matrix"]]
+se_combo <- mae[["combination"]]
 
 # What assays are available?
 assayNames(se_combo)

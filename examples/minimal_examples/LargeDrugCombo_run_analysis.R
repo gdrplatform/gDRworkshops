@@ -51,7 +51,7 @@ mae <- runDrugResponseProcessingPipeline(data_imported)
 # ==============================================================================
 
 names(mae)
-se_combo <- mae[["combination matrix"]]
+se_combo <- mae[["combination"]]
 assayNames(se_combo)
 
 # Row metadata = drug combinations
