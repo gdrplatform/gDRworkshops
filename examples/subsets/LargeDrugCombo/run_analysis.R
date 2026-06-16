@@ -13,7 +13,14 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- normalizePath(dirname(sys.frame(1)$ofile))
+wd <- local({
+  d <- tryCatch(dirname(sys.frame(1)$ofile), error = function(e) NULL)
+  if (is.null(d) && requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable())
+    d <- dirname(rstudioapi::getSourceEditorContext()$path)
+  if (is.null(d) || !nzchar(d))
+    stop("Use source() or the Source button in RStudio to run this script.")
+  normalizePath(d)
+})
 
 # Load annotations
 drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
