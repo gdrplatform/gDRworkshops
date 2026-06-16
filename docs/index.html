@@ -863,7 +863,7 @@ ls_plt_RV <- pmap(tab_grid,
         <li><strong>1. Load</strong> — <code>qs_read("gDR_data/gDR_mae.qs2")</code></li>
         <li><strong>2. Extract</strong> — <code>convert_se_assay_to_dt(mae[["single-agent"]], "Metrics")</code></li>
         <li><strong>3. Filter</strong> — keep one drug, <code>normalization_type == "RV"</code></li>
-        <li><strong>4. Rank</strong> — sort cell lines by <code>x_AOC</code> (area over curve)</li>
+        <li><strong>4. Rank</strong> — sort cell lines by <code>x_mean</code> (mean response, ~ AUC)</li>
         <li><strong>5. Select</strong> — top 3 most sensitive &amp; bottom 3 most resistant</li>
         <li><strong>6. Plot</strong> — overlay their dose-response curves, colored by group</li>
       </ul>
