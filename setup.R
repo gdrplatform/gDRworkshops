@@ -100,11 +100,14 @@ message("Saved Model.csv (full: ", nrow(model_for_full),
 # Free memory before loading large omics matrices
 rm(prism_full_data, prism_sub_data, model_full, model_for_full, model_for_sub)
 gc()
+message("Memory freed. Starting omics file subsetting...")
 
 # Subset omics files by ModelID and save to full example only
 omics_files <- setdiff(required_files, "Model.csv")
 for (fname in omics_files) {
-  dt <- fread(cached_paths[[fname]])
+  message("Reading: ", fname, " ...")
+  dt <- fread(cached_paths[[fname]], nThread = 1)
+  message("Loaded: ", fname, " (", nrow(dt), " rows). Filtering...")
   id_col <- names(dt)[1]
   dt <- dt[get(id_col) %in% full_model_ids]
   fwrite(dt, file.path(prism_meta, fname))
