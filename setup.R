@@ -103,23 +103,33 @@ gc()
 message("Memory freed. Starting omics file subsetting...")
 
 # Subset omics files by ModelID and save to full example only.
-# Filter rows at the OS level (grep) to avoid loading full matrices into R RAM.
-ids_file <- tempfile()
-writeLines(full_model_ids, ids_file)
+# On Linux (Posit Cloud, 1GB RAM): filter rows via grep at OS level to avoid OOM.
+# On macOS/Windows (local): fread directly — RAM is not a constraint.
+on_linux <- Sys.info()[["sysname"]] == "Linux"
+if (on_linux) {
+  ids_file <- tempfile()
+  writeLines(full_model_ids, ids_file)
+}
 
 omics_files <- setdiff(required_files, "Model.csv")
 for (fname in omics_files) {
   message("Filtering: ", fname, " ...")
   src <- cached_paths[[fname]]
-  cmd <- sprintf('bash -c "{ head -1 %s; grep -F -f %s %s; }"',
-                 shQuote(src), shQuote(ids_file), shQuote(src))
-  dt <- fread(cmd = cmd, nThread = 1)
+  if (on_linux) {
+    cmd <- sprintf('bash -c "{ head -1 %s; grep -F -f %s %s; }"',
+                   shQuote(src), shQuote(ids_file), shQuote(src))
+    dt <- fread(cmd = cmd, nThread = 1)
+  } else {
+    dt <- fread(src, nThread = 4)
+    id_col <- names(dt)[1]
+    dt <- dt[get(id_col) %in% full_model_ids]
+  }
   fwrite(dt, file.path(prism_meta, fname))
   message("Saved ", fname, " (", nrow(dt), " cell lines)")
   rm(dt)
   gc()
 }
-unlink(ids_file)
+if (on_linux) unlink(ids_file)
 
 message("\nSetup complete! Please restart your R session before opening the workshop files.")
 message("In RStudio / Posit Cloud: Session > Restart R  (Ctrl+Shift+F10 / Cmd+Shift+F10)")
