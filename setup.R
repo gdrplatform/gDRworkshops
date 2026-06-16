@@ -17,7 +17,7 @@ if (!requireNamespace("remotes", quietly = TRUE))
   install.packages("remotes")
 
 bioc_pkgs <- c(
-  "gDR", "gDRcore", "gDRutils",
+  "gDR", "gDRcore", "gDRutils", "gDRtestData",
   "MultiAssayExperiment", "SummarizedExperiment",
   "depmap", "BiocStyle"
 )
