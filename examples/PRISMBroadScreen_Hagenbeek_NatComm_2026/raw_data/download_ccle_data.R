@@ -30,7 +30,8 @@ required_files <- c(
 )
 
 available <- dmfiles()
-to_download <- available[available$name %in% required_files, ]
+latest_dataset_id <- max(available$dataset_id)
+to_download <- available[available$dataset_id == latest_dataset_id & available$name %in% required_files, ]
 
 if (nrow(to_download) < length(required_files)) {
   missing <- setdiff(required_files, to_download$name)

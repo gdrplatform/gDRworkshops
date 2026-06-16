@@ -1,6 +1,13 @@
 # gDR Workshops — Setup Script
 # Run this script once before the workshop to install all dependencies
 # and download required external data.
+#
+# NOTE: macOS users must install cmake first (required by the nloptr package):
+#   brew install cmake
+#
+# If you have trouble installing packages locally, use Posit Cloud instead:
+#   https://posit.cloud/ — create a blank RStudio project (R 4.6), clone this
+#   repo, then: setwd("gDRworkshops"); source("setup.R")
 
 # --- 1. Install packages ---
 
@@ -12,14 +19,15 @@ if (!requireNamespace("remotes", quietly = TRUE))
 bioc_pkgs <- c(
   "gDR", "gDRcore", "gDRimport", "gDRutils",
   "MultiAssayExperiment", "SummarizedExperiment",
-  "depmap"
+  "depmap", "BiocStyle"
 )
 
 cran_pkgs <- c(
   "data.table", "ggplot2", "purrr", "qs2",
-  "summarytools", "writexl", "BiocStyle"
+  "summarytools", "writexl"
 )
 
+options(Ncpus = 1)  # limit parallelism to reduce peak memory usage
 BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE)
 install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "https://cloud.r-project.org")
 
@@ -59,7 +67,8 @@ required_files <- c(
 )
 
 available <- dmfiles()
-to_download <- available[available$name %in% required_files, ]
+latest_dataset_id <- max(available$dataset_id)
+to_download <- available[available$dataset_id == latest_dataset_id & available$name %in% required_files, ]
 
 if (nrow(to_download) < length(required_files)) {
   missing <- setdiff(required_files, to_download$name)
