@@ -44,15 +44,15 @@ drug_annotation <- fread(file.path(wd, "data_annotation/drug_annotation.csv"))
 cell_line_annotation <- fread(file.path(wd, "data_annotation/cell_line_annotation.csv"))
 
 data_imported <- import_data(manifest, treatment, raw_data,
-                             instrument = detect_file_format(raw_data[1]),
-                             cell_line_annotation = cell_line_annotation,
-                             drug_annotation = drug_annotation)
+                             instrument = detect_file_format(raw_data[1]))
 
 # ==============================================================================
 # Step 2: Run gDR processing pipeline
 # ==============================================================================
 
-mae <- runDrugResponseProcessingPipeline(data_imported)
+mae <- runDrugResponseProcessingPipeline(data_imported,
+                                         cell_line_annotation = cell_line_annotation,
+                                         drug_annotation = drug_annotation)
 
 # ==============================================================================
 # Step 3: Explore the MultiAssayExperiment (MAE) structure

@@ -32,12 +32,12 @@ treatment <- file.path(wd, "raw_data", "template.xlsx")
 raw_data <- file.path(wd, "raw_data", list.files(file.path(wd, "raw_data"), pattern = "mtx17\\.csv$"))
 
 data_imported <- import_data(manifest, treatment, raw_data,
-                             instrument = detect_file_format(raw_data[1]),
-                             cell_line_annotation = cell_line_annotation,
-                             drug_annotation = drug_annotation)
+                             instrument = detect_file_format(raw_data[1]))
 
 # Run pipeline
-mae <- runDrugResponseProcessingPipeline(data_imported)
+mae <- runDrugResponseProcessingPipeline(data_imported,
+                                         cell_line_annotation = cell_line_annotation,
+                                         drug_annotation = drug_annotation)
 
 # Explore
 names(mae)
