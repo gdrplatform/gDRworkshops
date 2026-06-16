@@ -102,18 +102,23 @@ rm(prism_full_data, prism_sub_data, model_full, model_for_full, model_for_sub)
 gc()
 message("Memory freed. Starting omics file subsetting...")
 
-# Subset omics files by ModelID and save to full example only
+# Subset omics files by ModelID and save to full example only.
+# Filter rows at the OS level (grep) to avoid loading full matrices into R RAM.
+ids_file <- tempfile()
+writeLines(full_model_ids, ids_file)
+
 omics_files <- setdiff(required_files, "Model.csv")
 for (fname in omics_files) {
-  message("Reading: ", fname, " ...")
-  dt <- fread(cached_paths[[fname]], nThread = 1)
-  message("Loaded: ", fname, " (", nrow(dt), " rows). Filtering...")
-  id_col <- names(dt)[1]
-  dt <- dt[get(id_col) %in% full_model_ids]
+  message("Filtering: ", fname, " ...")
+  src <- cached_paths[[fname]]
+  cmd <- sprintf('bash -c "{ head -1 %s; grep -F -f %s %s; }"',
+                 shQuote(src), shQuote(ids_file), shQuote(src))
+  dt <- fread(cmd = cmd, nThread = 1)
   fwrite(dt, file.path(prism_meta, fname))
   message("Saved ", fname, " (", nrow(dt), " cell lines)")
   rm(dt)
   gc()
 }
+unlink(ids_file)
 
 message("\nSetup complete! You're ready for the workshop.")
