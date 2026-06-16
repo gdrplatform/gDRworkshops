@@ -35,6 +35,10 @@ install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "ht
 # gDRplots is not yet on Bioconductor — install from GitHub
 remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
 
+# gDRimport: use branch with CoreGx/PharmacoGx as optional (Suggests)
+# to avoid >1GB compilation in memory-constrained environments
+remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional", upgrade = "never", force = TRUE)
+
 # --- 2. Download CCLE/DepMap data (subsetted to relevant cell lines) ---
 
 library(depmap)
