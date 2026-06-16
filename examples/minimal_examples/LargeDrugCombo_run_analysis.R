@@ -75,7 +75,7 @@ metrics_combo <- metrics[!is.na(DrugName_2) & DrugName_2 != ""]
 head(metrics_combo[, .(CellLineName, DrugName, DrugName_2, normalization_type, xc50, x_mean)])
 
 # Synergy scores
-scores <- convert_mae_assay_to_dt(mae, "Scores")
+scores <- convert_mae_assay_to_dt(mae, "scores")
 head(scores[, .(CellLineName, DrugName, DrugName_2, Bliss_score, HSA_score)])
 
 # Excess matrix (per dose combination)
@@ -107,7 +107,7 @@ curves_RV[["Belvarafenib"]]
 
 # --- Combo dose-response panel ---
 response_metrics_excess <- convert_mae_assay_to_dt(mae, "excess")
-response_metrics_scores <- convert_mae_assay_to_dt(mae, "Scores")
+response_metrics_scores <- convert_mae_assay_to_dt(mae, "scores")
 
 combo_panels <- plot_dose_response_combo_panel(
   dt_average = averaged_combo,

@@ -86,7 +86,7 @@ metrics <- convert_mae_assay_to_dt(mae, "Metrics")
 head(metrics[, .(CellLineName, DrugName, DrugName_2, normalization_type, xc50, x_mean, x_AOC)])
 
 # Synergy scores (Bliss, HSA)
-scores <- convert_mae_assay_to_dt(mae, "Scores")
+scores <- convert_mae_assay_to_dt(mae, "scores")
 head(scores[, .(CellLineName, DrugName, DrugName_2, Bliss_score, HSA_score)])
 
 # Excess over Bliss/HSA per dose combination
@@ -125,7 +125,7 @@ response_data_combo <- response_data_combo[!is.na(DrugName_2) & DrugName_2 != ""
 response_metrics_combo <- convert_mae_assay_to_dt(mae, "Metrics")
 response_metrics_combo <- response_metrics_combo[!is.na(DrugName_2) & DrugName_2 != ""]
 response_metrics_excess <- convert_mae_assay_to_dt(mae, "excess")
-response_metrics_scores <- convert_mae_assay_to_dt(mae, "Scores")
+response_metrics_scores <- convert_mae_assay_to_dt(mae, "scores")
 
 # Combo dose-response panel for one cell line
 combo_panels <- plot_dose_response_combo_panel(
