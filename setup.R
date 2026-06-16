@@ -121,9 +121,5 @@ for (fname in omics_files) {
 }
 unlink(ids_file)
 
-message("\nSetup complete! Restarting R session to free memory for the workshop...")
-if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
-  rstudioapi::restartSession()
-} else {
-  message("Please restart your R session manually before opening the workshop files.")
-}
+message("\nSetup complete! Please restart your R session before opening the workshop files.")
+message("In RStudio / Posit Cloud: Session > Restart R  (Ctrl+Shift+F10 / Cmd+Shift+F10)")
