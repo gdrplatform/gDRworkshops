@@ -64,6 +64,8 @@ dir.create(prism_meta, showWarnings = FALSE, recursive = TRUE)
 # Subset PRISM example
 prism_subset_raw <- file.path(workshop_dir, "examples",
   "subsets", "PRISMBroadScreen", "raw_data")
+prism_subset_meta <- file.path(prism_subset_raw, "meta")
+dir.create(prism_subset_meta, showWarnings = FALSE, recursive = TRUE)
 
 # Get ccle_names from both PRISM datasets
 prism_full_data <- fread(file.path(prism_raw, "CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025"))
@@ -101,6 +103,7 @@ full_model_ids <- model_for_full$ModelID
 fwrite(model_for_full, file.path(prism_raw, "Model.csv"))
 
 model_for_sub <- model_full[CCLEName %in% sub_ccle_names]
+sub_model_ids <- model_for_sub$ModelID
 fwrite(model_for_sub, file.path(prism_subset_raw, "Model.csv"))
 
 message("Saved Model.csv (full: ", nrow(model_for_full),
@@ -134,8 +137,12 @@ for (fname in omics_files) {
     dt <- dt[get(id_col) %in% full_model_ids]
   }
   fwrite(dt, file.path(prism_meta, fname))
-  message("Saved ", fname, " (", nrow(dt), " cell lines)")
-  rm(dt)
+  message("Saved full ", fname, " (", nrow(dt), " cell lines)")
+  id_col <- names(dt)[1]
+  dt_sub <- dt[get(id_col) %in% sub_model_ids]
+  fwrite(dt_sub, file.path(prism_subset_meta, fname))
+  message("Saved subset ", fname, " (", nrow(dt_sub), " cell lines)")
+  rm(dt, dt_sub)
   gc()
 }
 if (on_linux) unlink(ids_file)
