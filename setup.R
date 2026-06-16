@@ -97,6 +97,10 @@ fwrite(model_for_sub, file.path(prism_subset_raw, "Model.csv"))
 message("Saved Model.csv (full: ", nrow(model_for_full),
         ", subset: ", nrow(model_for_sub), " cell lines)")
 
+# Free memory before loading large omics matrices
+rm(prism_full_data, prism_sub_data, model_full, model_for_full, model_for_sub)
+gc()
+
 # Subset omics files by ModelID and save to full example only
 omics_files <- setdiff(required_files, "Model.csv")
 for (fname in omics_files) {
@@ -105,6 +109,8 @@ for (fname in omics_files) {
   dt <- dt[get(id_col) %in% full_model_ids]
   fwrite(dt, file.path(prism_meta, fname))
   message("Saved ", fname, " (", nrow(dt), " cell lines)")
+  rm(dt)
+  gc()
 }
 
 message("\nSetup complete! You're ready for the workshop.")
