@@ -367,8 +367,9 @@ The data import and quality control step is complete. The final dataset has been
 gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
 message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
-gdr_sdt <- rbind(gdr_sdt, data.table(Package = "Report duration", Version = sprintf("%.1f s", gdr_elapsed)))
 generate_datatable(gdr_sdt)
 
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 ```
