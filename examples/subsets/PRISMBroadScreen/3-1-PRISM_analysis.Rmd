@@ -258,6 +258,7 @@ This section loads the final `MultiAssayExperiment` (MAE) object, which contains
 wd <- getwd()
 dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
 dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "tables"), showWarnings = FALSE, recursive = TRUE)
 mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
 
 
