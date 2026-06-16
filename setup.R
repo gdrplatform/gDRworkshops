@@ -45,7 +45,15 @@ remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
 library(depmap)
 library(data.table)
 
-workshop_dir <- normalizePath(dirname(sys.frame(1)$ofile))
+workshop_dir <- local({
+  d <- tryCatch(dirname(sys.frame(1)$ofile), error = function(e) NULL)
+  if (is.null(d)) {
+    f <- sub("--file=", "", commandArgs(FALSE)[grep("--file=", commandArgs(FALSE))])
+    if (length(f) > 0 && nzchar(f)) d <- dirname(f)
+  }
+  if (is.null(d) || !nzchar(d)) d <- getwd()
+  normalizePath(d)
+})
 
 # Full PRISM example
 prism_raw <- file.path(workshop_dir, "examples",
