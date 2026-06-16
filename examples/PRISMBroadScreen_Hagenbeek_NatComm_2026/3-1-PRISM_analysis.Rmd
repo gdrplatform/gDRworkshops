@@ -326,7 +326,9 @@ These plots (usually 4) show the raw data for the top 4 most significant hits fr
 
 ```{r depmap}
 # omics feature set to be correlated
-feature_sets <- c('OmicsExpressionProteinCodingGenesTPMLogp1', 'OmicsSomaticMutationsMatrixHotspot', 'OmicsSomaticMutationsMatrixDamaging', 'OmicsCNGene')
+feature_sets <- c('OmicsExpressionProteinCodingGenesTPMLogp1')
+# Additional omics features (uncomment if downloaded via download_ccle_data.R):
+# feature_sets <- c(feature_sets, 'OmicsSomaticMutationsMatrixHotspot', 'OmicsSomaticMutationsMatrixDamaging', 'OmicsCNGene')
 if (all(nchar(feature_sets) == 0)) {
   feature_sets <- info_feature_sets <- NULL
 } else {
