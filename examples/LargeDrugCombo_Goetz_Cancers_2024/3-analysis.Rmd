@@ -2004,7 +2004,7 @@ This report concludes the gDR data analysis workflow. The processed data has bee
 gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
 message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
-gdr_sdt <- rbind(gdr_sdt, data.table(package = "**Report duration**", version = sprintf("%.1f s", gdr_elapsed)))
+gdr_sdt <- rbind(gdr_sdt, data.table(Package = "Report duration", Version = sprintf("%.1f s", gdr_elapsed)))
 generate_datatable(gdr_sdt)
 
 ```
