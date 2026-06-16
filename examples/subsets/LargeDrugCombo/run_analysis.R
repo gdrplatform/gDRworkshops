@@ -28,7 +28,7 @@ wd <- local({
 
 # Import data (subset: 10 cell lines)
 manifest <- file.path(wd, "raw_data", "manifest.xlsx")
-treatment <- file.path(wd, "raw_data", "template.xlsx")
+treatment <- file.path(wd, "raw_data", "P41.Belva.mtx17.template.xlsx")
 raw_data <- file.path(wd, "raw_data", list.files(file.path(wd, "raw_data"), pattern = "mtx17\\.csv$"))
 
 data_imported <- import_data(manifest, treatment, raw_data,

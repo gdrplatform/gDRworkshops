@@ -286,7 +286,7 @@ manifest <- c(
   "raw_data/manifest.xlsx"
 )
 treatment <- c(
-  "raw_data/template.xlsx"
+  "raw_data/P41.Belva.mtx17.template.xlsx"
 )
 raw_data <- list.files("raw_data", pattern = "mtx17\\.csv$", full.names = TRUE)
 
