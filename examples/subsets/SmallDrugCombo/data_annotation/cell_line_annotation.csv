@@ -1,0 +1,5 @@
+clid,CellLineName,Tissue,parental_identifier,subtype,ReferenceDivisionTime
+CL00100,CAMA-1,Breast,CAMA-1,Adenocarcinoma,53
+CL00101,EFM-19,Breast,EFM-19,Carcinoma,64
+CL00102,MCF-7,Breast,MCF-7,Adenocarcinoma,30
+CL00103,T-47D,Breast,T-47D,Adenocarcinoma Ductal,60

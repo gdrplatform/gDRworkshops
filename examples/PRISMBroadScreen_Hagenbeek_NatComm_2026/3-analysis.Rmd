@@ -1,0 +1,666 @@
+---
+title: "3. Results Analysis and Visualization"
+author: 
+- name: gDR team
+  url: https://github.com/gdrplatform
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    toc_float: yes
+    titlecaps: false
+    code_folding: hide
+    fig_height: 6
+    fig_width: 8
+    self_contained: TRUE
+  md_document:
+    preserve_yaml: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE,
+                      dev = "png", dev.args = list(type = "cairo-png"))
+
+```
+
+```{css gDR_style, echo=FALSE}
+:root {
+  --gdr-teal: #129bb3;   /* Matches the light blue/teal in the gDR logo */
+  --gdr-slate: #3b5460;  /* Matches the dark slate grey in the gDR logo */
+  --gdr-light: #f5f8fa;  /* Soft background for callout boxes */
+  --gdr-red-bg: #fdf2f2; /* Soft background for warning */
+  --gdr-red-border: #d9534f; /* Alert border */
+}
+
+/* Hide standard R Markdown/BiocStyle title text, but KEEP the Code Folding button */
+#header .title,
+#header .author,
+#header .date,
+#header h1,
+#header h2,
+#header h3,
+#header h4,
+#header p {
+  display: none !important;
+}
+
+#header {
+  margin-top: 10px; 
+  min-height: 40px; /* Secures dedicated vertical space for the code button */
+}
+
+body {
+  max-width: 100%;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333333;
+}
+
+div.main-container {
+  max-width: 1500px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--gdr-slate);
+  font-weight: 600;
+}
+
+h1 {
+  border-bottom: 2px solid var(--gdr-teal);
+  padding-bottom: 8px;
+  margin-top: 40px;
+}
+
+h2 {
+  color: var(--gdr-teal);
+  margin-top: 30px;
+}
+
+a {
+  color: var(--gdr-teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Custom Professional Header replaces default */
+.report-header {
+  clear: both; /* FIX: Forces the box to sit below the floated Code button */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--gdr-light);
+  padding: 30px 40px;
+  border-left: 8px solid var(--gdr-teal);
+  border-radius: 6px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Container for the logo to prevent shrinking */
+.header-logo-container {
+    flex-shrink: 0;
+    margin-right: 30px;
+}
+
+.header-logo-container img {
+  max-height: 90px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.header-title {
+  text-align: left; 
+  color: var(--gdr-slate);
+  line-height: 1.5;
+}
+
+/* Bypassing BiocStyle's h1 auto-numbering overlap AND preventing line breaks */
+.header-title .custom-title {
+  color: var(--gdr-teal);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  padding: 0;
+  white-space: nowrap; 
+}
+
+.header-title strong {
+  font-size: 18px;
+  color: var(--gdr-slate);
+}
+
+
+
+/* Support & Feedback Card */
+.feedback-panel {
+  background-color: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-top: 4px solid var(--gdr-teal);
+  border-radius: 8px;
+  padding: 30px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(18, 155, 179, 0.08);
+}
+
+.feedback-panel h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.btn-feedback {
+  display: inline-block;
+  background-color: var(--gdr-teal);
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 15px 0 20px 0;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-feedback:hover {
+  background-color: var(--gdr-slate);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+
+
+.fullwidth p {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.fullwidth p > img {
+  max-width: 100%;
+  display: block;
+  padding: 0px 0px 0px 0px;
+}
+
+.datatables {
+  margin-top: 5rem;
+}
+
+```
+
+<div class="report-header">
+<div class="header-logo-container">
+<img src="gdr_logo-01.png" alt="gDR Logo">
+</div>
+<div class="header-title">
+<div class="custom-title">3&#46; Results Analysis and Visualization</div>
+<strong>gDR Analysis Pipeline</strong>
+
+
+
+
+Date: `r Sys.Date()`
+
+
+
+
+Author: <a href="https://github.com/gdrplatform">gDR team</a>
+</div>
+</div>
+
+
+# Introduction
+
+This report concludes the gDR analysis pipeline by presenting the final results in user-friendly formats. Starting with the processed `MultiAssayExperiment` object from Step 2, this report first exports all data into Excel files. It then generates a series of visualizations designed for biological interpretation, including dose-response curves and summary heatmaps of the calculated drug sensitivity metrics.
+
+```{r libraries}
+library(qs2)
+library(purrr)
+library(SummarizedExperiment)
+library(data.table)
+library(writexl)
+library(gDRutils)
+library(gDRplots)
+library(ggplot2)
+```
+
+# Key Output Files
+
+This report generates the **`tables`** folder, which contains the final, user-friendly Excel files for all processed data and visualization data.
+
+## Main Assay Reports (in `tables/` folder)
+
+These files contain the full processed data in a "long" (tidy) format, with one Excel file per experiment type (e.g., `single-agent-assay-data.xlsx`, `combo-assay-data.xlsx`). Each file contains multiple sheets:
+
+* **`Averaged`:** The normalized dose-response data, averaged across technical replicates.
+* **Key columns:** `Concentration`, `x`, and `x_std`. The `x` column represents the mean normalized response, and `x_std` is its standard deviation. The meaning of these values (Relative Viability or GR value) is defined by the `normalization_type` column in the same row.
+
+
+* **`Metrics`:** The final calculated drug-response parameters. The meaning of all metrics prefixed with `x_` (e.g., `xc50`, `x_mean`) is dependent on the `normalization_type` column (e.g., "RV" or "GR") in the same row.
+* **Key columns:**
+* `x_mean`: The mean normalized response across all concentrations (excluding controls).
+* `x_AOC`: The Area Over the Curve, averaged over the full concentration range.
+* `x_AOC_range`: The Area Over the Curve, calculated only within the tested concentration range.
+* `xc50`: The concentration (e.g., IC50 or GR50) at which the response reaches 0.5.
+* `x_max`: The maximum effect of the drug (Emax).
+* `ec50`: The drug concentration at half-maximal effect.
+* `x_inf`: The asymptotic response as concentration goes to infinity (bottom asymptote).
+* `x_0`: The asymptotic response at zero concentration (top asymptote).
+* `h`: The Hill slope, reflecting the steepness of the curve.
+* `r2`: R-squared, indicating the goodness-of-fit.
+* `p_value`: The p-value associated with the model fit.
+* `rss`: Residual sum of squares, a measure of model error.
+* `x_sd_avg`: The average standard deviation of the normalized response values.
+* `fit_type`: The status of the curve fit (e.g., "DRC4pHillFitModel" for a successful 4-parameter fit, "DRCConstantFitResult" for a flat fit, or "DRCInvalidFitResult" for a failed fit).
+* `maxlog10Concentration`: The highest log10 concentration tested.
+* `N_conc`: The number of unique concentrations used in the fit.
+* `cotrt_value` (combo only): The concentration of the fixed co-drug in a dose-response series.
+* `ratio` (combo only): The concentration ratio between the two drugs in a series.
+* `dilution_drug` (combo only): Indicates which drug was diluted in the series (e.g., "drug_1", "drug_2", or "codilution").
+
+
+
+
+* **`excess` (combo only):** Contains the calculated "excess" response (synergy/antagonism) at *every* dose combination, which is the basis for the final summary scores.
+* **Key columns:** `smooth` (the model-smoothed normalized response value), `hsa_excess` (the calculated synergy/antagonism score using the HSA model), and `bliss_excess` (the synergy/antagonism score using the Bliss model). The `normalization_type` column indicates if these values are based on "RV" or "GR" data.
+
+
+* **`all_iso_points` (combo only):** The complete dataset of fitted points from the dose-response surface used to calculate the isobolograms.
+* **Key columns:**
+* `iso_level`: The effect level (e.g., 0.25, 0.5, 0.75).
+* `conc_1`, `conc_2`: The concentrations of drug 1 and drug 2 that produce the given effect level.
+* `pos_x`, `pos_y`: The x/y coordinates of this point on the (log-transformed) dose-response surface.
+* `fit_type`: The source of the fit (`by_row`, `by_col`, or `by_codil`).
+
+
+
+
+* `scores` (combo only): The single-value summary scores that quantify the overall synergistic or antagonistic effect for each drug combination.
+* **Key columns:**
+* `hsa_score`: Synergy score based on the Highest Single Agent (HSA) model. A positive score indicates the combination is more effective than its most active single drug.
+* `bliss_score`: Synergy score based on the Bliss Independence model. A positive score indicates the combination is more effective than expected if the drugs acted independently.
+* `CIScore_50`: Combination Index (CI) score at 50% effect. A value < 1 indicates synergy.
+* `CIScore_80`: Combination Index (CI) score at 80% effect. A value < 1 indicates synergy.
+* `normalization_type`: Indicates if these scores are based on "RV" or "GR" data.
+
+
+
+
+* **`isobolograms` (combo only):** The data points used to draw the final isobole lines (contours of equal effect) and the Combination Index plots.
+* **Key columns:**
+* `iso_level`: The effect level being plotted (e.g., 0.5 for 50% effect).
+* `pos_x`, `pos_y`: The coordinates for the *measured* isobole line (solid line on the heatmap).
+* `pos_x_ref`, `pos_y_ref`: The coordinates for the *theoretical additivity* line (dashed line on the heatmap).
+* `log10_ratio_conc`: The log10 of the concentration ratio, used as the x-axis for the CI plot.
+* `log2_CI`: The log2 of the Combination Index, used as the y-axis for the CI plot (where 0 = additivity).
+
+
+
+
+
+## Heatmap Data (in `tables/` folder)
+
+These files contain the specific data used to generate the summary heatmaps, pre-formatted for convenience. Each Excel file (e.g., `data__sa_fit_heat_RV__log10(IC50).xlsx` or `data__combo_fit_...xlsx`) contains three sheets:
+
+* **`matrix`:** The wide-format data matrix. The first column lists the rows (e.g., Drugs or Drug Combinations), the first row lists the columns (e.g., Cell Lines), and the cells contain the metric values.
+* **`annotation_col`:** A table of metadata for the columns of the `matrix` sheet (e.g., cell line tissue type).
+* **`annotation_row`:** A table of metadata for the rows of the `matrix` sheet (e.g., drug MOA).
+
+# Read the gDR MAE data
+
+This section loads the final `MultiAssayExperiment` (MAE) object, which contains all the processed data and results from the previous step.
+
+```{r load_mae}
+wd <- getwd()
+mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
+
+```
+
+# Split SE objects into list of assays and save as an XLSX file
+
+For convenience and for sharing with non-R users, all processed data assays (Averaged, Metrics, etc.) are extracted from the MAE object and saved as multi-sheet Excel files. One file is created for each experiment type (e.g., single-agent, combo).
+
+```{r split_assay}
+assay_list <- MAEpply(mae, function(x) {
+  lst <- lapply(setdiff(assayNames(x), c("RawTreated", "Controls", "Normalized")),
+                function(y) convert_se_assay_to_dt(x, y,
+                                                   unify_metadata = TRUE,
+                                                   merge_additional_variables = TRUE))
+  names(lst) <- setdiff(assayNames(x), c("RawTreated", "Controls", "Normalized"))
+  lst
+})
+
+```
+
+```{r save_xlsx}
+assay_list_to_save <- lapply(assay_list, split_big_table_for_xlsx)
+for (experiment in names(assay_list_to_save)) {
+  write_xlsx(assay_list_to_save[[experiment]], file.path(wd, "tables",
+                                                         paste0(experiment,
+                                                                "-assay-data.xlsx")))
+}
+
+```
+
+# Downstream data analysis
+
+This section prepares the final data for plotting and generates a series of visualizations for biological interpretation of the results.
+
+```{r prepare_data_sa}
+sa_name <- get_supported_experiments("sa")
+
+response_data_sa <- assay_list[[sa_name]][["Averaged"]]
+response_metrics_sa <- assay_list[[sa_name]][["Metrics"]]
+response_metrics_sa_capped <- 
+  cap_assay_infinities(conc_assay_dt = response_data_sa,
+                       assay_dt = response_metrics_sa,
+                       experiment_name = sa_name,
+                       col = "xc50",
+                       capping_fold = 5)
+
+```
+
+```{r verbose_mode_info, echo=FALSE}
+if (FALSE) {
+  verbose_mode_info <- verbose_mode_info_2 <- NULL
+} else {
+  verbose_mode_info <- sprintf("This section will be generated if `verbose_mode` is set to TRUE.")
+  verbose_mode_info_2 <- paste(verbose_mode_info, 
+                               "(Instead of dose-response curves for each drug, heatmaps with average values are prepared.)")
+}
+
+```
+
+
+
+
+## Data Analysis - Dose-response by Drugs - Single-Agent Data {.tabset .tabset-fade .tabset-pills}
+
+These heatmaps provide an overview of the averaged response data across all drugs and cell lines. One heatmap shows the mean response.
+
+**What to look for:** Look for expected patterns of sensitivity (e.g., some drugs being more effective than others).
+
+```{r fit_data_curv_cl_viz_RV, warning=FALSE, fig.show="hide"}
+drug_name_vec <- sort(unique(response_metrics_sa[["DrugName"]]))
+
+ls_heat_d_RV <- lapply(drug_name_vec, function(nm) {
+  pheatmap_qc(dt_average = response_data_sa[DrugName == nm],
+              normalization_type = "RV",
+              lbl_by_CellLineName = TRUE, 
+              lbl_by_DrugName = TRUE,
+              cluster_rows = TRUE)
+})
+names(ls_heat_d_RV) <- vapply(drug_name_vec, function(i) escape_special_characters(i), 
+                              FUN.VALUE = character(1), USE.NAMES = FALSE)
+
+```
+
+
+::: {.fullwidth}
+
+### Relative Viability {.tabset .tabset-dropdown}
+
+```{r fit_data_curv_cl_tab, warning=FALSE, echo=FALSE}
+ls_link_RV <- prep_filename_path(plt_list = ls_heat_d_RV,
+                                 prefix = "sa_heat_d_RV__",
+                                 path_file = file.path(".", "plots"),
+                                 file_format = "svg")
+plts_RV <- prep_plot_chunk(plt_list = ls_heat_d_RV, 
+                           link_list = ls_link_RV,
+                           chunk_name = "fit_pheat_d_tab_RV", 
+                           header_level = 4)
+ls_path_RV <- prep_filename_path(plt_list = ls_heat_d_RV,
+                                 prefix = "sa_heat_d_RV__",
+                                 path_file = file.path(wd, "plots"))
+walk(seq_along(ls_heat_d_RV), function(x) {
+  save_plot(plt = ls_heat_d_RV[[x]], 
+            path = ls_path_RV[[x]],
+            format = "svg")
+})
+
+```
+
+`r knitr::knit(text = unlist(plts_RV))`
+:::
+
+
+## Data Analysis - Dose-response Curves by Cell Lines - Single-Agent Data {.tabset .tabset-fade .tabset-pills}
+
+Here, each plot displays a single **cell line** tested against all **drugs**. This format is useful for understanding the sensitivity profile of a particular cell line and identifying its vulnerabilities.
+
+**What to look for:** Compare the different colored curves to see which drugs are most potent or effective against this specific cell line.
+
+`r verbose_mode_info`
+
+
+## Data Analysis of Fitted Metrics - Single-Agent Data
+
+The following plots summarize the key metrics calculated from the curve fits (e.g., IC50, GR_AOC). They provide a high-level, global overview of the drug response landscape.
+
+### Heatmaps {.tabset .tabset-fade .tabset-pills}
+
+The heatmaps display a selected metric for every drug (row) against every cell line (column). Rows and columns are clustered to group similar response profiles.
+
+**What to look for:** Look for 'hot' or 'cold' blocks, which indicate groups of cell lines that are particularly sensitive or resistant to a group of drugs. The annotations for tissue type or drug MOA can help in interpreting these clusters.
+
+```{r fit_data_heat_RV, warning=FALSE, fig.show="hide"}
+# metrics
+metrics <- data.table(
+  expand.grid(normalization_type = c("GR", "RV"),
+              metric = c("xc50", "x_max", "x_mean", "x_AOC", "x_AOC_range"),
+              stringsAsFactors = FALSE))
+metrics$hm_title <- pmap(metrics, get_hm_title)
+
+annotation_manual_col <-
+  unique(response_metrics_sa[,.SD, .SDcols = c("CellLineName", "Tissue")])
+annotation_manual_row <-
+  unique(response_metrics_sa[,.SD, .SDcols = c("DrugName", "drug_moa")])
+annotation_map <- get_ann_color_map(unique(response_metrics_sa[,.SD, .SDcols = c("Tissue", "drug_moa")]))
+
+ls_plt_RV <- pmap(metrics[normalization_type == "RV", ], 
+                  pheatmap_with_anno_sa,
+                  dt_metrics = response_metrics_sa,
+                  dt_metrics_capped = response_metrics_sa_capped,
+                  annotation_row = annotation_manual_row,
+                  annotation_col = annotation_manual_col,
+                  annotation_colors = annotation_map)
+names(ls_plt_RV) <- metrics[normalization_type == "RV", ]$hm_title
+
+```
+
+
+#### Relative Viability {.tabset}
+
+```{r fit_data_tab_heat_RV, warning=FALSE, echo=FALSE}
+ls_link_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
+                                 prefix = "sa_fit_heat_RV__",
+                                 path_file = file.path(".", "plots"),
+                                 file_format = "svg")
+ls_data_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
+                                 prefix = "data__sa_fit_heat_RV__",
+                                 path_file = file.path(".", "tables"),
+                                 file_format = "xlsx")
+# Since the data in the table for xc10 is not log10
+ls_data_RV[["log10(IC50)"]] <- gsub("log10\\(IC50\\)", "IC50", ls_data_RV[["log10(IC50)"]])
+plts_RV <- prep_plot_chunk(plt_list = map(ls_plt_RV, "heatmap"),
+                           link_list = ls_link_RV,
+                           dwn_list = ls_data_RV,
+                           chunk_name = "fit_sa_heat_RV",
+                           header_level = 5)
+ls_path_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
+                                 prefix = "sa_fit_heat_RV__",
+                                 path_file = file.path(wd, "plots"))
+ls_path_data_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
+                                      prefix = "data__sa_fit_heat_RV__",
+                                      path_file = file.path(wd, "tables"),
+                                      file_format = "xlsx")
+# Since the data in the table for xc10 is not log10
+ls_path_data_RV[["log10(IC50)"]] <- gsub("log10\\(IC50\\)", "IC50", ls_path_data_RV[["log10(IC50)"]])
+# Save plots
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
+  save_plot(
+    plt = item[["heatmap"]], 
+    path = ls_path_RV[[name]],
+    format = "svg"
+  )
+})
+# Write data to Excel
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
+  write_xlsx(
+    item[["data"]], 
+    path = ls_path_data_RV[[name]]
+  )
+})
+
+```
+
+::: {.fullwidth}
+`r knitr::knit(text = unlist(plts_RV))`
+:::
+
+
+
+### Boxplots by Drugs {.tabset .tabset-fade .tabset-pills}
+
+These boxplots show the distribution of a given metric, grouped by drug.
+
+**What to look for:** You can identify drugs that are, on average, more potent or effective across all cell lines.
+
+```{r fit_data_box_d_RV, warning=FALSE, fig.show="hide"}
+metrics <- data.table(
+  expand.grid(normalization_type = c("GR", "RV"),
+              metric = c("xc50", "x_max", "x_mean", "x_AOC", "x_AOC_range"),
+              stringsAsFactors = FALSE))
+
+ls_plt_RV <- pmap(metrics[normalization_type == "RV", ], 
+                  plot_boxplot_metric_sa_by_drugs,
+                  dt_metrics = response_metrics_sa_capped,
+                  colored_pts_flag = TRUE)
+names(ls_plt_RV) <- unlist(pmap(metrics[normalization_type == "RV", ], get_hm_title))
+
+```
+
+
+#### Relative Viability {.tabset}
+
+```{r fit_data_tab_box_d_RV, warning=FALSE, echo=FALSE}
+ls_link_RV <- prep_filename_path(plt_list = ls_plt_RV,
+                                 prefix = "sa_fit_box_d_RV__",
+                                 path_file = file.path(".", "plots"),
+                                 file_format = "svg")
+plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV, 
+                           link_list = ls_link_RV,
+                           chunk_name = "fit_sa_box_d_tab_RV", 
+                           header_level = 5)
+ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
+                                 prefix = "sa_fit_box_d_RV__",
+                                 path_file = file.path(wd, "plots"))
+walk(seq_along(ls_plt_RV), function(x) {
+  save_plot(plt = ls_plt_RV[[x]], 
+            path = ls_path_RV[[x]],
+            format = "svg")
+})
+
+```
+
+::: {.fullwidth}
+`r knitr::knit(text = unlist(plts_RV))`
+:::
+
+
+### Boxplots by Tissue {.tabset .tabset-fade .tabset-pills}
+
+The boxplots show the distribution of a given metric, grouped by tissue.
+
+**What to look for:** When grouped by tissue, you can identify tissues that are, on average, more sensitive or resistant to the entire panel of drugs.
+
+```{r fit_data_box_t_RV, warning=FALSE}
+drug_name_vec <- 
+  list(selection_name = sort(unique(response_metrics_sa_capped[["DrugName"]])))
+
+ls_names <- 
+  vapply(drug_name_vec$selection_name, function(i) escape_special_characters(i),
+         FUN.VALUE = character(1), USE.NAMES = FALSE)
+
+metrics <- data.table(
+  expand.grid(normalization_type = c("GR", "RV"),
+              metric = c("xc50", "x_max", "x_mean", "x_AOC", "x_AOC_range"),
+              stringsAsFactors = FALSE),
+  named_n_mode = rep(c("bottom", "bottom", "bottom", "top", "top"), each = 2))
+```
+```{r fit_data_box_t_RV_viz_PRISM, warning=FALSE, fig.show="hide"}
+# shorten CellLineName
+response_metrics_sa_capped_short <- 
+  copy(response_metrics_sa_capped)[, CellLineName := sub("_.*", "", CellLineName)]
+
+metrics_RV <- metrics[normalization_type == "RV", ]
+ls_plt_RV <- lapply(seq_len(NROW(metrics_RV)), function(i) {
+  ls_ <- pmap(drug_name_vec,
+              plot_boxplot_metric_sa_by_grp,
+              dt_metrics = response_metrics_sa_capped_short,
+              selection_var = "DrugName",
+              group_var = "Tissue",
+              normalization_type = "RV",
+              metric = metrics_RV[["metric"]][i],
+              grouped_flag = TRUE,
+              named_n = 15,
+              named_n_mode = metrics_RV[["named_n_mode"]][i])
+  names(ls_) <- ls_names
+  ls_
+})
+
+names(ls_plt_RV) <- 
+  unlist(pmap(metrics_RV[, .(metric, normalization_type)], get_hm_title))
+```
+
+
+
+#### Relative Viability {.tabset}
+
+```{r fit_data_tab_box_t_RV, warning=FALSE, echo=FALSE}
+ls_link_RV <- prep_filename_path(plt_list = ls_plt_RV,
+                                 prefix = "sa_fit_box_t_RV__",
+                                 path_file = file.path(".", "plots"),
+                                 file_format = "svg")
+plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV, 
+                           link_list = ls_link_RV,
+                           chunk_name = "fit_sa_box_t_tab_RV", 
+                           header_level = 5)
+ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
+                                 prefix = "sa_fit_box_t_RV__",
+                                 path_file = file.path(wd, "plots"))
+plot_plan <- list(
+  plt  = list_flatten(ls_plt_RV),
+  path = list_flatten(ls_path_RV)
+)
+pwalk(plot_plan, save_plot, format = "svg")
+```
+::: {.fullwidth}
+`r knitr::knit(text = unlist(plts_RV))`
+:::
+
+
+
+
+# Conclusion
+
+This report concludes the gDR data analysis workflow. The processed data has been exported to Excel files for external use, and the key results have been visualized through dose-response curves and summary plots of sensitivity metrics. These generated plots and tables form the basis for biological interpretation and further investigation.
+
+<div class="feedback-panel">
+<h3>We Value Your Feedback!</h3>
+<p>Thank you for using gDR! We are always looking to improve, and your feedback is incredibly valuable to us.</p>
+<a href="https://github.com/gdrplatform/gDRworkshops/issues" target="_blank" class="btn-feedback">Share feedback or request features on GitHub</a>
+</div>
+
+# gDR session info
+
+```{r, plot_packages}
+gdr_sdt <- get_gDR_session_info()
+generate_datatable(gdr_sdt)
+
+```

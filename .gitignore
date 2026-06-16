@@ -1,0 +1,17 @@
+# R session files
+.Rhistory
+.RData
+.Rproj.user/
+
+# knitr/rmarkdown cache
+*_cache/
+*_files/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# CCLE/DepMap data (downloaded via setup.R or download_ccle_data.R)
+examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/Model.csv
+examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/meta/
+examples/subsets/PRISMBroadScreen/raw_data/Model.csv
