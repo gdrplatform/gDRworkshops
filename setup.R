@@ -66,10 +66,11 @@ sub_ccle_names <- unique(prism_sub_data$ccle_name)
 
 required_files <- c(
   "Model.csv",
-  "OmicsCNGene.csv",
-  "OmicsExpressionProteinCodingGenesTPMLogp1.csv",
-  "OmicsSomaticMutationsMatrixDamaging.csv",
-  "OmicsSomaticMutationsMatrixHotspot.csv"
+  "OmicsExpressionProteinCodingGenesTPMLogp1.csv"
+  # Additional omics files (uncomment to download):
+  # "OmicsCNGene.csv",
+  # "OmicsSomaticMutationsMatrixDamaging.csv",
+  # "OmicsSomaticMutationsMatrixHotspot.csv"
 )
 
 available <- dmfiles()
