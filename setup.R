@@ -27,7 +27,8 @@ cran_pkgs <- c(
   "summarytools", "writexl"
 )
 
-options(Ncpus = 1)  # limit parallelism to reduce peak memory usage
+options(Ncpus = 1)
+Sys.setenv(R_COMPILE_PKGS = "0")  # disable byte-compilation to avoid OOM on low-RAM systems
 BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE)
 install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "https://cloud.r-project.org")
 
