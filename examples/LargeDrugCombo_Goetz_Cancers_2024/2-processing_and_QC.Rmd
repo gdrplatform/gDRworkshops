@@ -20,7 +20,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
-                      dev = "png", dev.args = list(type = "cairo-png"))
+                      dev = "png", dev.args = if (capabilities("cairo")) list(type = "cairo-png") else list())
 
 
 ```
