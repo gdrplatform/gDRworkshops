@@ -346,11 +346,12 @@ plate_viz_ls <- prep_plot_chunk(plt_list = plate_vis,
                                 chunk_name = "plate_viz_stack",
                                 header_level = 4)
                                 
+dir.create(file.path(wd, "plots"), showWarnings = FALSE)
 walk(seq_along(plate_vis), function(i) {
   barcode_name <- names(plate_vis)[[i]]
   plot_object <- plate_vis[[i]]
-  
-  save_plot(plt = plot_object, 
+
+  save_plot(plt = plot_object,
             path = file.path(wd, "plots", paste0("plate_stack_", barcode_name)),
             format = "png")
 })
