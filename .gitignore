@@ -15,3 +15,11 @@ Thumbs.db
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/Model.csv
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/meta/
 examples/subsets/PRISMBroadScreen/raw_data/Model.csv
+
+# Generated workshop outputs (produced by knitting Rmd files or run_analysis.R)
+examples/subsets/*/*.html
+examples/subsets/*/gDR_data/
+examples/subsets/*/plots/*.png
+examples/subsets/*/plots/*.svg
+examples/subsets/*/tables/
+examples/subsets/*/Rplots.pdf
