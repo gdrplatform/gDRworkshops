@@ -39,6 +39,8 @@ install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "ht
 
 # gDRplots is not yet on Bioconductor — install from GitHub
 remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
+# cdsrmodels: used by gDRplots for PRISM correlation analysis (not on CRAN)
+remotes::install_github("broadinstitute/cdsr_models", upgrade = "never")
 
 # --- 2. Download CCLE/DepMap data (subsetted to relevant cell lines) ---
 
