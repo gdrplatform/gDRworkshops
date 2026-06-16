@@ -55,7 +55,7 @@ assayNames(se_combo)
 
 # Synergy scores
 scores <- convert_mae_assay_to_dt(mae, "scores")
-synergy <- scores[, .(mean_Bliss = mean(Bliss_score, na.rm = TRUE)),
+synergy <- scores[, .(mean_Bliss = mean(bliss_score, na.rm = TRUE)),
                   by = .(CellLineName, DrugName, DrugName_2)]
 print(synergy[order(mean_Bliss)])
 

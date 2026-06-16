@@ -76,7 +76,7 @@ head(metrics_combo[, .(CellLineName, DrugName, DrugName_2, normalization_type, x
 
 # Synergy scores
 scores <- convert_mae_assay_to_dt(mae, "scores")
-head(scores[, .(CellLineName, DrugName, DrugName_2, Bliss_score, HSA_score)])
+head(scores[, .(CellLineName, DrugName, DrugName_2, bliss_score, hsa_score)])
 
 # Excess matrix (per dose combination)
 excess <- convert_mae_assay_to_dt(mae, "excess")
@@ -121,7 +121,7 @@ combo_panels[[1]]
 # --- Boxplots: synergy scores across cell lines ---
 bliss_by_cl <- plot_boxplot_metric_combo_by_CLs(
   dt_metrics = response_metrics_scores,
-  metric = "Bliss_score",
+  metric = "bliss_score",
   normalization_type = "RV"
 )
 bliss_by_cl
@@ -129,15 +129,15 @@ bliss_by_cl
 # --- Boxplots: synergy by drug combination ---
 bliss_by_drug <- plot_boxplot_metric_combo_by_drugs(
   dt_metrics = response_metrics_scores,
-  metric = "Bliss_score",
+  metric = "bliss_score",
   normalization_type = "RV"
 )
 bliss_by_drug
 
 # --- Summary: top synergistic cell lines ---
 synergy_ranking <- scores[, .(
-  mean_Bliss = mean(Bliss_score, na.rm = TRUE),
-  mean_HSA = mean(HSA_score, na.rm = TRUE)
+  mean_Bliss = mean(bliss_score, na.rm = TRUE),
+  mean_HSA = mean(hsa_score, na.rm = TRUE)
 ), by = .(CellLineName, DrugName, DrugName_2)][order(mean_Bliss)]
 
 message("\nTop 10 most synergistic (lowest Bliss score = strongest synergy):")
