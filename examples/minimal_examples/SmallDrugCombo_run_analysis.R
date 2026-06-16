@@ -13,7 +13,7 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(getwd(), "examples", "SmallDrugCombo_Zhou_CellChemBio_2026")
+wd <- normalizePath(file.path(dirname(sys.frame(1)$ofile), "..", "SmallDrugCombo_Zhou_CellChemBio_2026"))
 
 # ==============================================================================
 # Step 1: Import raw data
