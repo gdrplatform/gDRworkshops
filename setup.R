@@ -17,7 +17,7 @@ if (!requireNamespace("remotes", quietly = TRUE))
   install.packages("remotes")
 
 bioc_pkgs <- c(
-  "gDR", "gDRcore", "gDRimport", "gDRutils",
+  "gDR", "gDRcore", "gDRutils",
   "MultiAssayExperiment", "SummarizedExperiment",
   "depmap", "BiocStyle"
 )
@@ -29,15 +29,16 @@ cran_pkgs <- c(
 
 options(Ncpus = 1)
 Sys.setenv(R_COMPILE_PKGS = "0")  # disable byte-compilation to avoid OOM on low-RAM systems
+
+# gDRimport first, from branch with CoreGx/PharmacoGx as optional (Suggests)
+# to avoid >1GB compilation in memory-constrained environments
+remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional", upgrade = "never")
+
 BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE)
 install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "https://cloud.r-project.org")
 
 # gDRplots is not yet on Bioconductor — install from GitHub
 remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
-
-# gDRimport: use branch with CoreGx/PharmacoGx as optional (Suggests)
-# to avoid >1GB compilation in memory-constrained environments
-remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional", upgrade = "never", force = TRUE)
 
 # --- 2. Download CCLE/DepMap data (subsetted to relevant cell lines) ---
 
