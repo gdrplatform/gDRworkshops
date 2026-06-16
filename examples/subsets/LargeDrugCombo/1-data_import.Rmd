@@ -287,16 +287,10 @@ treatment <- c(
 )
 raw_data <- list.files("raw_data", pattern = "mtx17\\.csv$", full.names = TRUE)
 
-# load annotations
-drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
-cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
-
 data_imported <- import_data(manifest,
                              treatment,
                              raw_data,
-                             instrument = detect_file_format(raw_data[1]),
-                             cell_line_annotation = cell_line_annotation,
-                             drug_annotation = drug_annotation)
+                             instrument = detect_file_format(raw_data[1]))
 
 
 ```
