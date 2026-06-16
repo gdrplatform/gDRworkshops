@@ -22,10 +22,6 @@ wd <- local({
   normalizePath(d)
 })
 
-# Load annotations
-drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
-cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
-
 # Import data
 manifest <- file.path(wd, "raw_data", "9545combo_Manifest.xlsx")
 treatment <- file.path(wd, "raw_data", c(
@@ -43,10 +39,14 @@ raw_data <- file.path(wd, "raw_data", c(
 data_imported <- import_data(manifest, treatment, raw_data,
                              instrument = detect_file_format(raw_data[1]))
 
+# Annotate cell lines and drugs
+drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
+cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
+data_imported <- annotate_dt_with_drug(data_imported, drug_annotation)
+data_imported <- annotate_dt_with_cell_line(data_imported, cell_line_annotation)
+
 # Run pipeline
-mae <- runDrugResponseProcessingPipeline(data_imported,
-                                         cell_line_annotation = cell_line_annotation,
-                                         drug_annotation = drug_annotation)
+mae <- runDrugResponseProcessingPipeline(data_imported)
 
 # Explore
 names(mae)
