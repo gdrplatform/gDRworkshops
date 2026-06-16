@@ -24,7 +24,7 @@ bioc_pkgs <- c(
 
 cran_pkgs <- c(
   "data.table", "ggplot2", "purrr", "qs2",
-  "summarytools", "writexl", "testthat", "svglite"
+  "summarytools", "writexl", "testthat", "svglite", "ggpubr"
 )
 
 options(Ncpus = 1)
