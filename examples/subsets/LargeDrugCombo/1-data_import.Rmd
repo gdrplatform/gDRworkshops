@@ -349,8 +349,7 @@ plate_viz_ls <- prep_plot_chunk(plt_list = plate_vis,
                                 chunk_name = "plate_viz_stack",
                                 header_level = 4)
                                 
-dir.create(file.path(wd, "plots"), showWarnings = FALSE)
-walk(seq_along(plate_vis), function(i) {
+gDRutils::loop(seq_along(plate_vis), function(i) {
   barcode_name <- names(plate_vis)[[i]]
   plot_object <- plate_vis[[i]]
 
@@ -435,6 +434,8 @@ gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
 message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 
 cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
