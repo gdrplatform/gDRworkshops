@@ -421,14 +421,13 @@ if (TRUE) {
   names(ls_curv_RV) <- vapply(names(ls_curv_RV), function(i) escape_special_characters(i), 
                               FUN.VALUE = character(1), USE.NAMES = FALSE)
 } else {
-  sa_splits_RV <- split(response_data_sa, by = "DrugName")
-  ls_heat_d_RV <- gDRutils::loop(drug_name_vec, function(nm) {
-    pheatmap_qc(dt_average = sa_splits_RV[[nm]],
+  ls_heat_d_RV <- lapply(drug_name_vec, function(nm) {
+    pheatmap_qc(dt_average = response_data_sa[DrugName == nm],
                 normalization_type = "RV",
                 lbl_by_CellLineName = TRUE, 
                 lbl_by_DrugName = TRUE,
                 cluster_rows = TRUE)
-  }, parallelize = TRUE)
+  })
   names(ls_heat_d_RV) <- vapply(drug_name_vec, function(i) escape_special_characters(i), 
                                 FUN.VALUE = character(1), USE.NAMES = FALSE)
 }
@@ -446,13 +445,13 @@ if (TRUE) {
   names(ls_curv_GR) <- vapply(names(ls_curv_GR), function(i) escape_special_characters(i), 
                               FUN.VALUE = character(1), USE.NAMES = FALSE)
 } else {
-  ls_heat_d_GR <- gDRutils::loop(drug_name_vec, function(nm) {
-    pheatmap_qc(dt_average = sa_splits_RV[[nm]],
+  ls_heat_d_GR <- lapply(drug_name_vec, function(nm) {
+    pheatmap_qc(dt_average = response_data_sa[DrugName == nm],
                 normalization_type = "GR",
                 lbl_by_CellLineName = TRUE, 
                 lbl_by_DrugName = TRUE,
                 cluster_rows = TRUE)
-  }, parallelize = TRUE)
+  })
   names(ls_heat_d_GR) <- vapply(drug_name_vec, function(i) escape_special_characters(i), 
                                 FUN.VALUE = character(1), USE.NAMES = FALSE)
 }
@@ -485,11 +484,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plts,
 ls_path_RV <- prep_filename_path(plt_list = ls_plts,
                                  prefix = plt_prefix,
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plts), function(x) {
+walk(seq_along(ls_plts), function(x) {
   save_plot(plt = ls_plts[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -521,11 +520,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plts,
 ls_path_GR <- prep_filename_path(plt_list = ls_plts,
                                  prefix = plt_prefix,
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plts), function(x) {
+walk(seq_along(ls_plts), function(x) {
   save_plot(plt = ls_plts[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -585,11 +584,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_curv_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_curv_RV,
                                  prefix = "sa_fit_curv_d_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_curv_RV), function(x) {
+walk(seq_along(ls_curv_RV), function(x) {
   save_plot(plt = ls_curv_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -612,11 +611,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_curv_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_curv_GR,
                                  prefix = "sa_fit_curv_d_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_curv_GR), function(x) {
+walk(seq_along(ls_curv_GR), function(x) {
   save_plot(plt = ls_curv_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -700,20 +699,20 @@ ls_path_data_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
 # Since the data in the table for xc10 is not log10
 ls_path_data_RV[["log10(IC50)"]] <- gsub("log10\\(IC50\\)", "IC50", ls_path_data_RV[["log10(IC50)"]])
 # Save plots
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   save_plot(
     plt = item[["heatmap"]], 
     path = ls_path_RV[[name]],
     format = "svg"
   )
-}, parallelize = TRUE)
+})
 # Write data to Excel
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   write_xlsx(
     item[["data"]], 
     path = ls_path_data_RV[[name]]
   )
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -750,20 +749,20 @@ ls_path_data_GR <- prep_filename_path(plt_list = map(ls_plt_GR, "heatmap"),
 # Since the data in the table for xc10 is not log10
 ls_path_data_GR[["log10(GR50)"]] <- gsub("log10\\(GR50\\)", "GR50", ls_path_data_GR[["log10(GR50)"]])
 # Save plots
-gDRutils::loop(seq_along(ls_plt_GR), function(i) { item <- ls_plt_GR[[i]]; name <- names(ls_plt_GR)[[i]]
+walk2(ls_plt_GR, names(ls_plt_GR), function(item, name) {
   save_plot(
     plt = item[["heatmap"]], 
     path = ls_path_GR[[name]],
     format = "svg"
   )
-}, parallelize = TRUE)
+})
 # Write data to Excel
-gDRutils::loop(seq_along(ls_plt_GR), function(i) { item <- ls_plt_GR[[i]]; name <- names(ls_plt_GR)[[i]]
+walk2(ls_plt_GR, names(ls_plt_GR), function(item, name) {
   write_xlsx(
     item[["data"]], 
     path = ls_path_data_GR[[name]]
   )
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -819,11 +818,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_fit_box_cl_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -846,11 +845,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "sa_fit_box_cl_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+walk(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -903,11 +902,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_fit_box_d_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -930,11 +929,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "sa_fit_box_d_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+walk(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1024,7 +1023,7 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_RV),
   path = list_flatten(ls_path_RV)
 )
-gDRutils::loop(seq_len(nrow(plot_plan)), function(i) { do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg")) }, parallelize = TRUE)
+pwalk(plot_plan, save_plot, format = "svg")
 ```
 ::: {.fullwidth}
 `r knitr::knit(text = unlist(plts_RV))`
@@ -1048,7 +1047,7 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_GR),
   path = list_flatten(ls_path_GR)
 )
-gDRutils::loop(seq_len(nrow(plot_plan)), function(i) { do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg")) }, parallelize = TRUE)
+pwalk(plot_plan, save_plot, format = "svg")
 ```
 ::: {.fullwidth}
 `r knitr::knit(text = unlist(plts_GR))`
@@ -1166,11 +1165,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plts,
 ls_path_RV <- prep_filename_path(plt_list = ls_plts,
                                  prefix = plt_prefix,
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plts), function(x) {
+walk(seq_along(ls_plts), function(x) {
   save_plot(plt = ls_plts[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1202,11 +1201,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plts,
 ls_path_GR <- prep_filename_path(plt_list = ls_plts,
                                  prefix = plt_prefix,
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plts), function(x) {
+walk(seq_along(ls_plts), function(x) {
   save_plot(plt = ls_plts[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1278,11 +1277,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "combo_fit_heat_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1305,11 +1304,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "combo_fit_heat_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+walk(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1402,11 +1401,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV$smooth,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV$smooth,
                                  prefix = "combo_fit_isoref_RV_smooth__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV$smooth), function(x) {
+walk(seq_along(ls_plt_RV$smooth), function(x) {
   save_plot(plt = ls_plt_RV$smooth[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1429,11 +1428,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR$smooth,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR$smooth,
                                  prefix = "combo_fit_isoref_GR_smooth__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR$smooth), function(x) {
+walk(seq_along(ls_plt_GR$smooth), function(x) {
   save_plot(plt = ls_plt_GR$smooth[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1458,11 +1457,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV$hsa_excess,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV$hsa_excess,
                                  prefix = "combo_fit_isoref_RV_hsa_excess__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV$hsa_excess), function(x) {
+walk(seq_along(ls_plt_RV$hsa_excess), function(x) {
   save_plot(plt = ls_plt_RV$hsa_excess[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1485,11 +1484,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR$hsa_excess,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR$hsa_excess,
                                  prefix = "combo_fit_isoref_GR_hsa_excess__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR$hsa_excess), function(x) {
+walk(seq_along(ls_plt_GR$hsa_excess), function(x) {
   save_plot(plt = ls_plt_GR$hsa_excess[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1514,11 +1513,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV$bliss_excess,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV$bliss_excess,
                                  prefix = "combo_fit_isoref_RV_bliss_excess__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV$bliss_excess), function(x) {
+walk(seq_along(ls_plt_RV$bliss_excess), function(x) {
   save_plot(plt = ls_plt_RV$bliss_excess[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1541,11 +1540,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR$bliss_excess,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR$bliss_excess,
                                  prefix = "combo_fit_isoref_GR_bliss_excess__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR$bliss_excess), function(x) {
+walk(seq_along(ls_plt_GR$bliss_excess), function(x) {
   save_plot(plt = ls_plt_GR$bliss_excess[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1629,20 +1628,20 @@ ls_path_data_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
                                       path_file = file.path(wd, "tables"),
                                       file_format = "xlsx")
 # Save plots
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   save_plot(
     plt = item[["heatmap"]], 
     path = ls_path_RV[[name]],
     format = "svg"
   )
-}, parallelize = TRUE)
+})
 # Write data to Excel
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   write_xlsx(
     item[["data"]], 
     path = ls_path_data_RV[[name]]
   )
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1676,20 +1675,20 @@ ls_path_data_GR <- prep_filename_path(plt_list = map(ls_plt_GR, "heatmap"),
                                       path_file = file.path(wd, "tables"),
                                       file_format = "xlsx")
 # Save plots
-gDRutils::loop(seq_along(ls_plt_GR), function(i) { item <- ls_plt_GR[[i]]; name <- names(ls_plt_GR)[[i]]
+walk2(ls_plt_GR, names(ls_plt_GR), function(item, name) {
   save_plot(
     plt = item[["heatmap"]], 
     path = ls_path_GR[[name]],
     format = "svg"
   )
-}, parallelize = TRUE)
+})
 # Write data to Excel
-gDRutils::loop(seq_along(ls_plt_GR), function(i) { item <- ls_plt_GR[[i]]; name <- names(ls_plt_GR)[[i]]
+walk2(ls_plt_GR, names(ls_plt_GR), function(item, name) {
   write_xlsx(
     item[["data"]], 
     path = ls_path_data_GR[[name]]
   )
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1749,11 +1748,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "combo_fit_box_cl_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1776,11 +1775,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "combo_fit_box_cl_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+walk(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1840,11 +1839,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "combo_fit_box_d_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1867,11 +1866,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "combo_fit_box_d_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+walk(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -1962,7 +1961,7 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_RV),
   path = list_flatten(ls_path_RV)
 )
-gDRutils::loop(seq_len(nrow(plot_plan)), function(i) { do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg")) }, parallelize = TRUE)
+pwalk(plot_plan, save_plot, format = "svg")
 ```
 ::: {.fullwidth}
 `r knitr::knit(text = unlist(plts_RV))`
@@ -1986,7 +1985,7 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_GR),
   path = list_flatten(ls_path_GR)
 )
-gDRutils::loop(seq_len(nrow(plot_plan)), function(i) { do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg")) }, parallelize = TRUE)
+pwalk(plot_plan, save_plot, format = "svg")
 ```
 ::: {.fullwidth}
 `r knitr::knit(text = unlist(plts_GR))`
@@ -2010,6 +2009,6 @@ message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
-cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 ```
