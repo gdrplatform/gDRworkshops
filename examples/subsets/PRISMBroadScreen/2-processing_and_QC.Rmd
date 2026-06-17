@@ -426,11 +426,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_avg_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
     save_plot(plt = ls_plt_RV[[x]],
               path = ls_path_RV[[x]],
               format = "svg")
-}, parallelize = TRUE)
+})
 
 
 ```
@@ -512,8 +512,6 @@ gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
 message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
-
-cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 
 cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))

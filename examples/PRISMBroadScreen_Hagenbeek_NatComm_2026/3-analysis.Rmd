@@ -390,7 +390,7 @@ These heatmaps provide an overview of the averaged response data across all drug
 drug_name_vec <- sort(unique(response_metrics_sa[["DrugName"]]))
 
 ls_heat_d_RV <- lapply(drug_name_vec, function(nm) {
-  pheatmap_qc(dt_average = sa_splits_RV[[nm]],
+  pheatmap_qc(dt_average = response_data_sa[DrugName == nm],
               normalization_type = "RV",
               lbl_by_CellLineName = TRUE, 
               lbl_by_DrugName = TRUE,
@@ -418,11 +418,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_heat_d_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_heat_d_RV,
                                  prefix = "sa_heat_d_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_heat_d_RV), function(x) {
+walk(seq_along(ls_heat_d_RV), function(x) {
   save_plot(plt = ls_heat_d_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -503,20 +503,20 @@ ls_path_data_RV <- prep_filename_path(plt_list = map(ls_plt_RV, "heatmap"),
 # Since the data in the table for xc10 is not log10
 ls_path_data_RV[["log10(IC50)"]] <- gsub("log10\\(IC50\\)", "IC50", ls_path_data_RV[["log10(IC50)"]])
 # Save plots
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   save_plot(
     plt = item[["heatmap"]], 
     path = ls_path_RV[[name]],
     format = "svg"
   )
-}, parallelize = TRUE)
+})
 # Write data to Excel
-gDRutils::loop(seq_along(ls_plt_RV), function(i) { item <- ls_plt_RV[[i]]; name <- names(ls_plt_RV)[[i]]
+walk2(ls_plt_RV, names(ls_plt_RV), function(item, name) {
   write_xlsx(
     item[["data"]], 
     path = ls_path_data_RV[[name]]
   )
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -561,11 +561,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_fit_box_d_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+walk(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+})
 
 ```
 
@@ -639,7 +639,7 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_RV),
   path = list_flatten(ls_path_RV)
 )
-gDRutils::loop(seq_len(nrow(plot_plan)), function(i) { do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg")) }, parallelize = TRUE)
+pwalk(plot_plan, save_plot, format = "svg")
 ```
 ::: {.fullwidth}
 `r knitr::knit(text = unlist(plts_RV))`
@@ -666,6 +666,6 @@ message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
-cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 ```
