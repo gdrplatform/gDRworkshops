@@ -19,7 +19,7 @@ if (!requireNamespace("remotes", quietly = TRUE))
 bioc_pkgs <- c(
   "gDR", "gDRcore", "gDRutils", "gDRtestData",
   "MultiAssayExperiment", "SummarizedExperiment",
-  "depmap", "BiocStyle"
+  "depmap", "BiocStyle", "fgsea"
 )
 
 cran_pkgs <- c(
