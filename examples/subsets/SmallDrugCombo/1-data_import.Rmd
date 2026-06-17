@@ -19,6 +19,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
                       dev = "png", dev.args = list(type = "cairo-png"))
 
@@ -359,7 +360,7 @@ plate_viz_ls <- prep_plot_chunk(plt_list = plate_vis,
                                 chunk_name = "plate_viz_stack",
                                 header_level = 4)
                                 
-walk(seq_along(plate_vis), function(i) {
+gDRutils::loop(seq_along(plate_vis), function(i) {
   barcode_name <- names(plate_vis)[[i]]
   plot_object <- plate_vis[[i]]
   
@@ -440,8 +441,12 @@ The data import and quality control step is complete. The final dataset has been
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 
 ```

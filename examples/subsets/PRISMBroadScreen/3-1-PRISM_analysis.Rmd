@@ -19,6 +19,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
                       dev = "png", dev.args = list(type = "cairo-png"))
 
@@ -557,7 +558,7 @@ ls_path_data <- lapply(names(ls_sa_all), function(i) {
 })
 names(ls_path_data) <- names(ls_sa_all)
 
-walk(names(ls_sa_all), function(nm) {
+gDRutils::loop(names(ls_sa_all), function(nm) {
   for (i in seq_len(NROW(ls_sa_all[[nm]]))) {
     write_xlsx(
       ls_sa_all[[nm]][[i]], 
@@ -610,8 +611,12 @@ This report has identified potential associations between molecular features and
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 
 ```
