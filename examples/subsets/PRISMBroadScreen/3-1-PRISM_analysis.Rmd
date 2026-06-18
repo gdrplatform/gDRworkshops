@@ -19,8 +19,9 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
-                      dev = "png", dev.args = list(type = "cairo-png"))
+                      dev = "png", dev.args = if (capabilities("cairo")) list(type = "cairo-png") else list())
 
 
 ```
@@ -256,6 +257,9 @@ This section loads the final `MultiAssayExperiment` (MAE) object, which contains
 
 ```{r load_mae}
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "tables"), showWarnings = FALSE, recursive = TRUE)
 mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
 
 
@@ -326,7 +330,9 @@ These plots (usually 4) show the raw data for the top 4 most significant hits fr
 
 ```{r depmap}
 # omics feature set to be correlated
-feature_sets <- c('OmicsExpressionProteinCodingGenesTPMLogp1', 'OmicsSomaticMutationsMatrixHotspot', 'OmicsSomaticMutationsMatrixDamaging', 'OmicsCNGene')
+feature_sets <- c('OmicsExpressionProteinCodingGenesTPMLogp1')
+# Additional omics features (uncomment if downloaded via download_ccle_data.R):
+# feature_sets <- c(feature_sets, 'OmicsSomaticMutationsMatrixHotspot', 'OmicsSomaticMutationsMatrixDamaging', 'OmicsCNGene')
 if (all(nchar(feature_sets) == 0)) {
   feature_sets <- info_feature_sets <- NULL
 } else {
@@ -360,8 +366,8 @@ obj_plot <- create_PRISM_plot_list_sa(drug_name_vec = drug_name_vec,
                                       dt_average = response_data_sa,
                                       normalization_type_vec = normalization_type_vec,
                                       metric = c("x_mean", "xc50", "x_max"),
-                                      meta_data_path = "raw_data/Model.csv",
-                                      feat_data_path = "raw_data/meta",
+                                      meta_data_path = file.path(wd, "raw_data", "Model.csv"),
+                                      feat_data_path = file.path(wd, "raw_data", "meta"),
                                       feature_sets = feature_sets,
                                       metadata_columns = metadata_columns,
                                       with_decoding = TRUE)
@@ -610,8 +616,12 @@ This report has identified potential associations between molecular features and
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 ```

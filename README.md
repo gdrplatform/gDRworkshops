@@ -39,6 +39,14 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 ## Prerequisites
 
 - **R** (≥ 4.4) with **Bioconductor** (≥ 3.23)
+- **macOS only** — install `cmake` before running `setup.R`:
+  ```bash
+  brew install cmake
+  ```
+- **Windows only** — verify that Rtools is installed:
+  ```r
+  source("check_rtools.R")
+  ```
 - **Bioconductor** packages:
   ```r
   BiocManager::install(c("gDR", "gDRcore", "gDRimport", "gDRutils",
@@ -56,6 +64,24 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
   ```
 
 Alternatively, run `setup.R` from the repository root to install all dependencies and download required external data in one step.
+
+## Having trouble with local installation?
+
+If you run into issues installing packages locally, you can follow the workshop entirely in the cloud using [Posit Cloud](https://posit.cloud/):
+
+1. Go to [posit.cloud](https://posit.cloud/) and create a free account.
+2. Click **New Project → New RStudio Project** (the default blank project uses R 4.6 with Bioconductor 3.23 — do not use the R Markdown template as it defaults to an older R version).
+3. In the RStudio terminal, clone this repository:
+   ```bash
+   git clone https://github.com/gdrplatform/gDRworkshops.git
+   ```
+4. In the R console, set the working directory and run setup:
+   ```r
+   setwd("gDRworkshops")
+   source("setup.R")
+   ```
+
+Posit Cloud runs on Linux and provides pre-compiled binaries for most packages, so installation is faster and less error-prone than on a local machine.
 
 ## Repository structure
 

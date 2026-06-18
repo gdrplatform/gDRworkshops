@@ -19,8 +19,9 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
-                      dev = "png", dev.args = list(type = "cairo-png"))
+                      dev = "png", dev.args = if (capabilities("cairo")) list(type = "cairo-png") else list())
 
 ```
 
@@ -317,6 +318,9 @@ This section loads the final `MultiAssayExperiment` (MAE) object, which contains
 
 ```{r load_mae}
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "tables"), showWarnings = FALSE, recursive = TRUE)
 mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
 
 ```
@@ -2000,7 +2004,11 @@ This report concludes the gDR data analysis workflow. The processed data has bee
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 ```

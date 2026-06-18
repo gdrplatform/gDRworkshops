@@ -13,7 +13,18 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(getwd(), "examples", "LargeDrugCombo_Goetz_Cancers_2024")
+wd <- local({
+  d <- tryCatch(dirname(sys.frame(1)$ofile), error = function(e) NULL)
+  if (is.null(d)) {
+    f <- sub("--file=", "", commandArgs(FALSE)[grep("--file=", commandArgs(FALSE))])
+    if (length(f) > 0 && nzchar(f)) d <- dirname(f)
+  }
+  if (is.null(d) && requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable())
+    d <- dirname(rstudioapi::getSourceEditorContext()$path)
+  if (is.null(d) || !nzchar(d))
+    stop("Cannot determine script directory. Run via source(), Rscript, or Source button.")
+  normalizePath(file.path(d, "..", "LargeDrugCombo_Goetz_Cancers_2024"))
+})
 
 # ==============================================================================
 # Step 1: Import raw data
@@ -24,14 +35,14 @@ treatment <- file.path(wd, "raw_data/P41.Belva.mtx17.template.xlsx")
 raw_data <- file.path(wd, "raw_data",
                       list.files(file.path(wd, "raw_data"), pattern = "mtx17\\.csv$"))
 
-# Load annotations
+data_imported <- import_data(manifest, treatment, raw_data,
+                             instrument = detect_file_format(raw_data[1]))
+
+# Annotate cell lines and drugs
 drug_annotation <- fread(file.path(wd, "data_annotation/drug_annotation.csv"))
 cell_line_annotation <- fread(file.path(wd, "data_annotation/cell_line_annotation.csv"))
-
-data_imported <- import_data(manifest, treatment, raw_data,
-                             instrument = detect_file_format(raw_data[1]),
-                             cell_line_annotation = cell_line_annotation,
-                             drug_annotation = drug_annotation)
+data_imported <- annotate_dt_with_drug(data_imported, drug_annotation)
+data_imported <- annotate_dt_with_cell_line(data_imported, cell_line_annotation)
 
 # ==============================================================================
 # Step 2: Run gDR processing pipeline
@@ -44,7 +55,7 @@ mae <- runDrugResponseProcessingPipeline(data_imported)
 # ==============================================================================
 
 names(mae)
-se_combo <- mae[["combination matrix"]]
+se_combo <- mae[["combination"]]
 assayNames(se_combo)
 
 # Row metadata = drug combinations
@@ -68,8 +79,8 @@ metrics_combo <- metrics[!is.na(DrugName_2) & DrugName_2 != ""]
 head(metrics_combo[, .(CellLineName, DrugName, DrugName_2, normalization_type, xc50, x_mean)])
 
 # Synergy scores
-scores <- convert_mae_assay_to_dt(mae, "Scores")
-head(scores[, .(CellLineName, DrugName, DrugName_2, Bliss_score, HSA_score)])
+scores <- convert_mae_assay_to_dt(mae, "scores")
+head(scores[, .(CellLineName, DrugName, DrugName_2, bliss_score, hsa_score)])
 
 # Excess matrix (per dose combination)
 excess <- convert_mae_assay_to_dt(mae, "excess")
@@ -100,7 +111,7 @@ curves_RV[["Belvarafenib"]]
 
 # --- Combo dose-response panel ---
 response_metrics_excess <- convert_mae_assay_to_dt(mae, "excess")
-response_metrics_scores <- convert_mae_assay_to_dt(mae, "Scores")
+response_metrics_scores <- convert_mae_assay_to_dt(mae, "scores")
 
 combo_panels <- plot_dose_response_combo_panel(
   dt_average = averaged_combo,
@@ -114,7 +125,7 @@ combo_panels[[1]]
 # --- Boxplots: synergy scores across cell lines ---
 bliss_by_cl <- plot_boxplot_metric_combo_by_CLs(
   dt_metrics = response_metrics_scores,
-  metric = "Bliss_score",
+  metric = "bliss_score",
   normalization_type = "RV"
 )
 bliss_by_cl
@@ -122,15 +133,15 @@ bliss_by_cl
 # --- Boxplots: synergy by drug combination ---
 bliss_by_drug <- plot_boxplot_metric_combo_by_drugs(
   dt_metrics = response_metrics_scores,
-  metric = "Bliss_score",
+  metric = "bliss_score",
   normalization_type = "RV"
 )
 bliss_by_drug
 
 # --- Summary: top synergistic cell lines ---
 synergy_ranking <- scores[, .(
-  mean_Bliss = mean(Bliss_score, na.rm = TRUE),
-  mean_HSA = mean(HSA_score, na.rm = TRUE)
+  mean_Bliss = mean(bliss_score, na.rm = TRUE),
+  mean_HSA = mean(hsa_score, na.rm = TRUE)
 ), by = .(CellLineName, DrugName, DrugName_2)][order(mean_Bliss)]
 
 message("\nTop 10 most synergistic (lowest Bliss score = strongest synergy):")

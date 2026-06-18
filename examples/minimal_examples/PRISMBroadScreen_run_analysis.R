@@ -13,7 +13,18 @@ library(qs2)
 library(data.table)
 library(ggplot2)
 
-wd <- file.path(getwd(), "examples", "PRISMBroadScreen_Hagenbeek_NatComm_2026")
+wd <- local({
+  d <- tryCatch(dirname(sys.frame(1)$ofile), error = function(e) NULL)
+  if (is.null(d)) {
+    f <- sub("--file=", "", commandArgs(FALSE)[grep("--file=", commandArgs(FALSE))])
+    if (length(f) > 0 && nzchar(f)) d <- dirname(f)
+  }
+  if (is.null(d) && requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable())
+    d <- dirname(rstudioapi::getSourceEditorContext()$path)
+  if (is.null(d) || !nzchar(d))
+    stop("Cannot determine script directory. Run via source(), Rscript, or Source button.")
+  normalizePath(file.path(d, "..", "PRISMBroadScreen_Hagenbeek_NatComm_2026"))
+})
 
 # ==============================================================================
 # Step 1: Import PRISM data

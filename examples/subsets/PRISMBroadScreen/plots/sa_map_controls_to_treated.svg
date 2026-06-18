@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1224.00pt' height='468.00pt' viewBox='0 0 1224.00 468.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHwxMjI0LjAwfDAuMDB8NDY4LjAw'>
+    <rect x='0.00' y='0.00' width='1224.00' height='468.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwxMjI0LjAwfDAuMDB8NDY4LjAw)'>
+<text x='571.22' y='11.64' text-anchor='middle' style='font-size: 13.00px; font-weight: bold; font-family: "Arial";' textLength='168.98px' lengthAdjust='spacingAndGlyphs'>Counts of mapped controls</text>
+<rect x='5.00' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='85.89' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='166.78' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='247.67' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='328.56' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='409.45' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='490.34' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='571.22' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='652.11' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='733.00' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='813.89' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='894.78' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='975.67' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<rect x='1056.56' y='18.96' width='80.89' height='181.35' style='stroke-width: 0.75; stroke: #999999; fill: #76D364;' />
+<text transform='translate(49.03,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='116.94px' lengthAdjust='spacingAndGlyphs'>A253_SALIVARY_GLAND</text>
+<text transform='translate(129.92,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='52.27px' lengthAdjust='spacingAndGlyphs'>A375_SKIN</text>
+<text transform='translate(210.80,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='56.70px' lengthAdjust='spacingAndGlyphs'>A549_LUNG</text>
+<text transform='translate(291.69,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='133.77px' lengthAdjust='spacingAndGlyphs'>HCT116_LARGE_INTESTINE</text>
+<text transform='translate(372.58,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='68.38px' lengthAdjust='spacingAndGlyphs'>HEPG2_LIVER</text>
+<text transform='translate(453.47,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='257.69px' lengthAdjust='spacingAndGlyphs'>JURKAT_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE</text>
+<text transform='translate(534.36,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='242.89px' lengthAdjust='spacingAndGlyphs'>K562_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE</text>
+<text transform='translate(615.25,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='72.80px' lengthAdjust='spacingAndGlyphs'>MCF7_BREAST</text>
+<text transform='translate(696.14,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='109.69px' lengthAdjust='spacingAndGlyphs'>MIAPACA2_PANCREAS</text>
+<text transform='translate(777.03,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='74.47px' lengthAdjust='spacingAndGlyphs'>NCIH460_LUNG</text>
+<text transform='translate(857.92,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='73.02px' lengthAdjust='spacingAndGlyphs'>SKOV3_OVARY</text>
+<text transform='translate(938.81,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='130.06px' lengthAdjust='spacingAndGlyphs'>SW480_LARGE_INTESTINE</text>
+<text transform='translate(1019.70,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='193.77px' lengthAdjust='spacingAndGlyphs'>U251MG_CENTRAL_NERVOUS_SYSTEM</text>
+<text transform='translate(1100.59,203.31) rotate(-90)' text-anchor='end' style='font-size: 10.00px; font-family: "Arial";' textLength='61.14px' lengthAdjust='spacingAndGlyphs'>U2OS_BONE</text>
+<text x='1140.45' y='113.22' style='font-size: 10.00px; font-family: "Arial";' textLength='47.80px' lengthAdjust='spacingAndGlyphs'>GDC-8025</text>
+<rect x='1195.25' y='93.96' width='10.00' height='75.00' style='stroke-width: 0.75; stroke: none; fill: #CEEFC8;' />
+<rect x='1195.25' y='18.96' width='10.00' height='75.00' style='stroke-width: 0.75; stroke: none; fill: #76D364;' />
+<text x='1209.25' y='22.55' style='font-size: 10.00px; font-family: "Arial";' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>2</text>
+</g>
+</g>
+</svg>
