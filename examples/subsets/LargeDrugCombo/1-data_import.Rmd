@@ -19,8 +19,9 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
-                      dev = "png", dev.args = list(type = "cairo-png"))
+                      dev = "png", dev.args = if (capabilities("cairo")) list(type = "cairo-png") else list())
 
 ```
 
@@ -235,6 +236,8 @@ library(gDRplots)
 ```{r get_wd}
 # get working directory path
 wd <- getwd()
+dir.create(file.path(wd, "plots"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(wd, "gDR_data"), showWarnings = FALSE, recursive = TRUE)
 
 
 ```
@@ -283,20 +286,14 @@ manifest <- c(
   "raw_data/manifest.xlsx"
 )
 treatment <- c(
-  "raw_data/template.xlsx"
+  "raw_data/P41.Belva.mtx17.template.xlsx"
 )
 raw_data <- list.files("raw_data", pattern = "mtx17\\.csv$", full.names = TRUE)
-
-# load annotations
-drug_annotation <- fread(file.path(wd, "data_annotation", "drug_annotation.csv"))
-cell_line_annotation <- fread(file.path(wd, "data_annotation", "cell_line_annotation.csv"))
 
 data_imported <- import_data(manifest,
                              treatment,
                              raw_data,
-                             instrument = detect_file_format(raw_data[1]),
-                             cell_line_annotation = cell_line_annotation,
-                             drug_annotation = drug_annotation)
+                             instrument = detect_file_format(raw_data[1]))
 
 
 ```
@@ -352,11 +349,12 @@ plate_viz_ls <- prep_plot_chunk(plt_list = plate_vis,
                                 chunk_name = "plate_viz_stack",
                                 header_level = 4)
                                 
+dir.create(file.path(wd, "plots"), showWarnings = FALSE)
 walk(seq_along(plate_vis), function(i) {
   barcode_name <- names(plate_vis)[[i]]
   plot_object <- plate_vis[[i]]
-  
-  save_plot(plt = plot_object, 
+
+  save_plot(plt = plot_object,
             path = file.path(wd, "plots", paste0("plate_stack_", barcode_name)),
             format = "png")
 })
@@ -433,8 +431,12 @@ The data import and quality control step is complete. The final dataset has been
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 ```

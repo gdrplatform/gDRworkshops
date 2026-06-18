@@ -19,8 +19,9 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+gdr_start_time <- proc.time()
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,
-                      dev = "png", dev.args = list(type = "cairo-png"))
+                      dev = "png", dev.args = if (capabilities("cairo")) list(type = "cairo-png") else list())
 
 ```
 
@@ -361,8 +362,12 @@ The data import and quality control step is complete. The final dataset has been
 # gDR session info
 
 ```{r, plot_packages}
+gdr_elapsed <- (proc.time() - gdr_start_time)[["elapsed"]]
+message(sprintf("Report generated in %.1f seconds", gdr_elapsed))
 gdr_sdt <- get_gDR_session_info()
 generate_datatable(gdr_sdt)
 
+
+cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
 ```

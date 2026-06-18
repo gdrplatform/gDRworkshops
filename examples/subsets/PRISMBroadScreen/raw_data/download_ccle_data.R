@@ -13,20 +13,52 @@ if (!requireNamespace("data.table", quietly = TRUE))
 library(depmap)
 library(data.table)
 
-script_dir <- dirname(sys.frame(1)$ofile)
+script_dir <- local({
+  d <- tryCatch(dirname(sys.frame(1)$ofile), error = function(e) NULL)
+  if (is.null(d)) d <- getwd()
+  normalizePath(d)
+})
+
+dest_dir <- file.path(script_dir, "meta")
+dir.create(dest_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Get ccle_names from the subset PRISM data
 prism_data <- fread(file.path(script_dir, "CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025"))
 ccle_names <- unique(prism_data$ccle_name)
 
-required_files <- c("Model.csv")
+required_files <- c(
+  "Model.csv",
+  "OmicsExpressionProteinCodingGenesTPMLogp1.csv"
+  # Additional omics files (uncomment to download):
+  # "OmicsCNGene.csv",
+  # "OmicsSomaticMutationsMatrixDamaging.csv",
+  # "OmicsSomaticMutationsMatrixHotspot.csv"
+)
 
 available <- dmfiles()
 to_download <- available[available$name %in% required_files, ]
 
-cached_paths <- dmget(to_download)
+if (nrow(to_download) < length(required_files)) {
+  missing <- setdiff(required_files, to_download$name)
+  warning("Files not found in depmap: ", paste(missing, collapse = ", "))
+}
 
-model_full <- fread(cached_paths[1])
+cached_paths <- dmget(to_download)
+names(cached_paths) <- to_download$name
+
+# Process Model.csv first to get ModelID <-> CCLEName mapping
+model_full <- fread(cached_paths[["Model.csv"]])
 model_sub <- model_full[CCLEName %in% ccle_names]
+model_ids <- model_sub$ModelID
 fwrite(model_sub, file.path(script_dir, "Model.csv"))
 message("Saved Model.csv (", nrow(model_sub), " cell lines)")
+
+# Subset omics files by ModelID
+omics_files <- setdiff(required_files, "Model.csv")
+for (fname in omics_files) {
+  dt <- fread(cached_paths[[fname]])
+  id_col <- names(dt)[1]
+  dt <- dt[get(id_col) %in% model_ids]
+  fwrite(dt, file.path(dest_dir, fname))
+  message("Saved ", fname, " (", nrow(dt), " cell lines)")
+}

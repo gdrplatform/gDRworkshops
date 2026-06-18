@@ -23,14 +23,16 @@ ccle_names <- unique(prism_data$ccle_name)
 
 required_files <- c(
   "Model.csv",
-  "OmicsCNGene.csv",
-  "OmicsExpressionProteinCodingGenesTPMLogp1.csv",
-  "OmicsSomaticMutationsMatrixDamaging.csv",
-  "OmicsSomaticMutationsMatrixHotspot.csv"
+  "OmicsExpressionProteinCodingGenesTPMLogp1.csv"
+  # Additional omics files (uncomment to download):
+  # "OmicsCNGene.csv",
+  # "OmicsSomaticMutationsMatrixDamaging.csv",
+  # "OmicsSomaticMutationsMatrixHotspot.csv"
 )
 
 available <- dmfiles()
-to_download <- available[available$name %in% required_files, ]
+latest_dataset_id <- max(available$dataset_id)
+to_download <- available[available$dataset_id == latest_dataset_id & available$name %in% required_files, ]
 
 if (nrow(to_download) < length(required_files)) {
   missing <- setdiff(required_files, to_download$name)
