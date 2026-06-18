@@ -14,21 +14,36 @@
 
 This repository contains reproducible analyses demonstrating the gDR workflow on real-world published datasets. Each example walks through the full pipeline: data import, processing & QC, and downstream analysis.
 
+## Getting started
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/gdrplatform/gDRworkshops.git
+   ```
+
+2. Install dependencies and download external data:
+   ```r
+   source("setup.R")
+   ```
+
+3. Open any `.html` report in a browser to view the rendered analysis, or open the `.Rmd` files in RStudio to follow along interactively.
+
 ## Datasets
 
 | Dataset | Publication | Type |
 |---------|-------------|------|
 | **SmallDrugCombo** | [Zhou et al., *Cell Chem Bio* 2026](https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(26)00143-1) | Drug combination (small) |
 | **LargeDrugCombo** | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
-| **PRISMBroadScreen** | Hagenbeek et al., *Nat Commun* 2026 (accepted) | Single-agent broad screen |
+| **PRISMBroadScreen** | Hagenbeek et al., *Nat Commun* 2026 (accepted; link TBD) | Single-agent broad screen |
 
 ## Prerequisites
 
-- **R** (≥ 4.4)
+- **R** (≥ 4.4) with **Bioconductor** (≥ 3.23)
 - **Bioconductor** packages:
   ```r
   BiocManager::install(c("gDR", "gDRcore", "gDRimport", "gDRutils",
-                          "MultiAssayExperiment", "SummarizedExperiment", "depmap"))
+                          "MultiAssayExperiment", "SummarizedExperiment",
+                          "depmap", "BiocStyle"))
   ```
 - **GitHub** packages (not yet on Bioconductor):
   ```r
@@ -37,7 +52,7 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 - **CRAN** packages:
   ```r
   install.packages(c("data.table", "ggplot2", "purrr", "qs2",
-                      "summarytools", "writexl", "BiocStyle", "remotes"))
+                      "summarytools", "writexl", "remotes"))
   ```
 
 Alternatively, run `setup.R` from the repository root to install all dependencies and download required external data in one step.
@@ -68,27 +83,15 @@ Each example directory contains its own `README.md` with a detailed description.
 | `plots/` | Generated figures |
 | `tables/` | Result tables |
 
-## Getting started
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/gdrplatform/gDRworkshops.git
-   ```
-
-2. Install dependencies and download external data:
-   ```r
-   source("setup.R")
-   ```
-
-3. Open any `.html` report in a browser to view the rendered analysis, or open the `.Rmd` files in RStudio to follow along interactively.
-
 ## Related packages
 
+- [gDR](https://github.com/gdrplatform/gDR) — meta-package installing the full gDR suite
 - [gDRcore](https://github.com/gdrplatform/gDRcore) — core processing engine
 - [gDRutils](https://github.com/gdrplatform/gDRutils) — utility functions
 - [gDRimport](https://github.com/gdrplatform/gDRimport) — data import
 - [gDRplots](https://github.com/gdrplatform/gDRplots) — static visualizations
 - [gDRviz](https://github.com/gdrplatform/gDRviz) — interactive Shiny application
+
 
 ## Contact
 
