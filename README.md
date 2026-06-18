@@ -43,6 +43,10 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
   ```bash
   brew install cmake
   ```
+- **Windows only** — verify that Rtools is installed:
+  ```r
+  source("check_rtools.R")
+  ```
 - **Bioconductor** packages:
   ```r
   BiocManager::install(c("gDR", "gDRcore", "gDRimport", "gDRutils",
