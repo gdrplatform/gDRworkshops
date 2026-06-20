@@ -2,7 +2,7 @@ name: Test workshop reports
 
 on:
   push:
-    branches: [main]
+    branches: [main, GDR-*]
   pull_request:
     branches: [main]
 
