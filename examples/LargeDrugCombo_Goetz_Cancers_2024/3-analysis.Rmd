@@ -1241,8 +1241,7 @@ ls_plt_RV <- pmap(tab_grid,
                   dt_excess = response_metrics_excess,
                   dt_isobolograms = response_metrics_isobolograms,
                   iso_levels = "0.5",
-                  normalization_type = "RV",
-                  )
+                  normalization_type = "RV")
 names(ls_plt_RV) <- ls_names
 
 ```
@@ -1254,8 +1253,7 @@ ls_plt_GR <- pmap(tab_grid,
                   dt_excess = response_metrics_excess,
                   dt_isobolograms = response_metrics_isobolograms,
                   iso_levels = "0.5",
-                  normalization_type = "GR",
-                  )
+                  normalization_type = "GR")
 names(ls_plt_GR) <- ls_names
 
 ```
