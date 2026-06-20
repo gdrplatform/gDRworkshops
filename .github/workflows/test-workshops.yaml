@@ -1,0 +1,114 @@
+name: Test workshop reports
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-workshops:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        r: ['release']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.r }}
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install cmake
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev \
+            libfontconfig1-dev libfreetype6-dev libpng-dev libtiff5-dev \
+            libjpeg-dev libharfbuzz-dev libfribidi-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ matrix.r }}-${{ hashFiles('setup.R') }}
+          restore-keys: |
+            ${{ runner.os }}-r-${{ matrix.r }}-
+
+      - name: Install R dependencies
+        shell: Rscript {0}
+        run: |
+          options(Ncpus = 2L, repos = c(CRAN = "https://cloud.r-project.org"))
+
+          if (!requireNamespace("BiocManager", quietly = TRUE))
+            install.packages("BiocManager")
+          if (!requireNamespace("remotes", quietly = TRUE))
+            install.packages("remotes")
+
+          # gDRimport from branch with CoreGx/PharmacoGx as optional
+          remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional",
+                                  upgrade = "never")
+
+          BiocManager::install(c(
+            "gDR", "gDRcore", "gDRutils", "gDRtestData",
+            "MultiAssayExperiment", "SummarizedExperiment",
+            "BiocStyle", "fgsea"
+          ), ask = FALSE, update = FALSE)
+
+          install.packages(c(
+            "data.table", "ggplot2", "purrr", "qs2",
+            "summarytools", "svglite", "writexl",
+            "rmarkdown", "knitr", "testthat"
+          ))
+
+          remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
+          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never")
+
+      - name: Generate PRISM subset Model.csv
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("depmap", quietly = TRUE))
+            BiocManager::install("depmap", ask = FALSE, update = FALSE)
+
+          library(depmap)
+          library(data.table)
+
+          prism_data <- fread("examples/subsets/PRISMBroadScreen/raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025")
+          ccle_names <- unique(prism_data$ccle_name)
+
+          available <- dmfiles()
+          latest_id <- max(available$dataset_id)
+          model_row <- available[available$dataset_id == latest_id & available$name == "Model.csv", ]
+          model_path <- dmget(model_row)
+
+          model_full <- fread(model_path)
+          model_sub <- model_full[CCLEName %in% ccle_names]
+          fwrite(model_sub, "examples/subsets/PRISMBroadScreen/raw_data/Model.csv")
+          message("Model.csv: ", nrow(model_sub), " cell lines")
+
+      - name: Render SmallDrugCombo reports
+        shell: Rscript {0}
+        run: |
+          setwd("examples/subsets/SmallDrugCombo")
+          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
+          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
+          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+
+      - name: Render PRISMBroadScreen reports
+        shell: Rscript {0}
+        run: |
+          setwd("examples/subsets/PRISMBroadScreen")
+          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
+          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
+          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+          rmarkdown::render("3-1-PRISM_analysis.Rmd", quiet = TRUE)
