@@ -61,7 +61,18 @@ jobs:
           lib <- Sys.getenv("R_LIBS_USER")
           dir.create(lib, recursive = TRUE, showWarnings = FALSE)
           .libPaths(c(lib, .libPaths()))
-          options(Ncpus = parallel::detectCores(), repos = c(CRAN = "https://cloud.r-project.org"))
+          options(Ncpus = parallel::detectCores())
+
+          # Use binary repos: PPM for CRAN, r-universe for Bioc (Linux gets binaries!)
+          if (.Platform$OS.type == "unix" && Sys.info()[["sysname"]] == "Linux") {
+            options(repos = c(
+              CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest",
+              BiocManager = "https://bioc.r-universe.dev/bin/linux/noble/4.6",
+              gDR = "https://gdrplatform.r-universe.dev/bin/linux/noble/4.6"
+            ))
+          } else {
+            options(repos = c(CRAN = "https://cloud.r-project.org"))
+          }
 
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager", lib = lib)
@@ -85,6 +96,7 @@ jobs:
           ), lib = lib)
 
           remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
+          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
 
           # Verify critical packages
           required <- c("rmarkdown", "gDRcore", "gDRutils", "gDRimport", "gDRplots", "qs2")
