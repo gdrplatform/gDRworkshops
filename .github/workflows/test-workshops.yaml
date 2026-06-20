@@ -41,7 +41,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev \
             libfontconfig1-dev libfreetype6-dev libpng-dev libtiff5-dev \
-            libjpeg-dev libharfbuzz-dev libfribidi-dev
+            libjpeg-dev libharfbuzz-dev libfribidi-dev libuv1-dev
 
       - name: Cache R packages
         uses: actions/cache@v4
@@ -85,10 +85,9 @@ jobs:
           ), lib = lib)
 
           remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
-          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
 
           # Verify critical packages
-          required <- c("rmarkdown", "gDR", "gDRplots", "qs2")
+          required <- c("rmarkdown", "gDRcore", "gDRutils", "gDRimport", "gDRplots", "qs2")
           missing <- required[!sapply(required, requireNamespace, quietly = TRUE)]
           if (length(missing) > 0) stop("Missing packages: ", paste(missing, collapse = ", "))
 
