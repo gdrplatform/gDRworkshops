@@ -9,6 +9,7 @@ on:
 jobs:
   test-workshops:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -53,7 +54,7 @@ jobs:
       - name: Install R dependencies
         shell: Rscript {0}
         run: |
-          options(Ncpus = 2L, repos = c(CRAN = "https://cloud.r-project.org"))
+          options(Ncpus = parallel::detectCores(), repos = c(CRAN = "https://cloud.r-project.org"))
 
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
