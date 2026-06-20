@@ -487,7 +487,7 @@ gDRutils::loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -515,7 +515,7 @@ gDRutils::loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -579,7 +579,7 @@ gDRutils::loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -607,7 +607,7 @@ gDRutils::loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -695,7 +695,7 @@ gDRutils::loop(seq_along(ls_plt_RV), function(x) {
     save_plot(plt = ls_plt_RV[[x]],
               path = ls_path_RV[[x]],
               format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -723,7 +723,7 @@ gDRutils::loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -784,7 +784,7 @@ gDRutils::loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -812,7 +812,7 @@ gDRutils::loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -903,7 +903,7 @@ gDRutils::loop(seq_along(ls_panel_RV), function(x) {
   save_plot(plt = ls_panel_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -931,7 +931,7 @@ gDRutils::loop(seq_along(ls_panel_GR), function(x) {
   save_plot(plt = ls_panel_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -997,7 +997,7 @@ gDRutils::loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
@@ -1025,7 +1025,7 @@ gDRutils::loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = TRUE)
+}, parallelize = FALSE)
 
 
 ```
