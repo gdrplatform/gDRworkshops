@@ -30,7 +30,9 @@ jobs:
 
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
-        run: brew install cmake
+        run: |
+          brew install cmake
+          brew install --cask xquartz
 
       - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
@@ -69,7 +71,7 @@ jobs:
           ), ask = FALSE, update = FALSE)
 
           install.packages(c(
-            "data.table", "ggplot2", "purrr", "qs2",
+            "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
             "summarytools", "svglite", "writexl",
             "rmarkdown", "knitr", "testthat"
           ))
