@@ -11,6 +11,27 @@
 
 # --- 1. Install packages ---
 
+on_linux <- Sys.info()[["sysname"]] == "Linux"
+
+if (on_linux) {
+  os_release <- tryCatch(
+    utils::read.table("/etc/os-release", sep = "=", row.names = 1,
+                       col.names = c("key", "value"))["VERSION_CODENAME", 1],
+    error = function(e) "noble"
+  )
+  r_ver <- paste0(R.version$major, ".", sub("\\..*", "", R.version$minor))
+  options(repos = c(
+    CRAN = sprintf("https://packagemanager.posit.co/cran/__linux__/%s/latest", os_release),
+    BiocManager = sprintf("https://bioc.r-universe.dev/bin/linux/%s/%s", os_release, r_ver),
+    gDR = sprintf("https://gdrplatform.r-universe.dev/bin/linux/%s/%s", os_release, r_ver)
+  ))
+  message("Using binary repos for Linux (", os_release, "/R ", r_ver, ")")
+  options(Ncpus = parallel::detectCores())
+} else {
+  options(Ncpus = 1)
+}
+Sys.setenv(R_COMPILE_PKGS = "0")  # disable byte-compilation to avoid OOM on low-RAM systems
+
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 if (!requireNamespace("remotes", quietly = TRUE))
@@ -27,15 +48,12 @@ cran_pkgs <- c(
   "summarytools", "writexl", "testthat", "svglite", "ggpubr"
 )
 
-options(Ncpus = 1)
-Sys.setenv(R_COMPILE_PKGS = "0")  # disable byte-compilation to avoid OOM on low-RAM systems
-
 # gDRimport first, from branch with CoreGx/PharmacoGx as optional (Suggests)
 # to avoid >1GB compilation in memory-constrained environments
 remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional", upgrade = "never")
 
 BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE)
-install.packages(setdiff(cran_pkgs, rownames(installed.packages())), repos = "https://cloud.r-project.org")
+install.packages(setdiff(cran_pkgs, rownames(installed.packages())))
 
 # gDRplots is not yet on Bioconductor — install from GitHub
 remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
