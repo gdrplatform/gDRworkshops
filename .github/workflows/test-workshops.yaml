@@ -51,34 +51,46 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-r-${{ matrix.r }}-
 
+      - name: Create R library directory
+        run: mkdir -p ${{ env.R_LIBS_USER }}
+        shell: bash
+
       - name: Install R dependencies
         shell: Rscript {0}
         run: |
+          lib <- Sys.getenv("R_LIBS_USER")
+          dir.create(lib, recursive = TRUE, showWarnings = FALSE)
+          .libPaths(c(lib, .libPaths()))
           options(Ncpus = parallel::detectCores(), repos = c(CRAN = "https://cloud.r-project.org"))
 
           if (!requireNamespace("BiocManager", quietly = TRUE))
-            install.packages("BiocManager")
+            install.packages("BiocManager", lib = lib)
           if (!requireNamespace("remotes", quietly = TRUE))
-            install.packages("remotes")
+            install.packages("remotes", lib = lib)
 
           # gDRimport from branch with CoreGx/PharmacoGx as optional
           remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional",
-                                  upgrade = "never")
+                                  upgrade = "never", lib = lib)
 
           BiocManager::install(c(
             "gDR", "gDRcore", "gDRutils", "gDRtestData",
             "MultiAssayExperiment", "SummarizedExperiment",
             "BiocStyle", "fgsea"
-          ), ask = FALSE, update = FALSE)
+          ), ask = FALSE, update = FALSE, lib = lib)
 
           install.packages(c(
             "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
             "summarytools", "svglite", "writexl",
             "rmarkdown", "knitr", "testthat"
-          ))
+          ), lib = lib)
 
-          remotes::install_github("gdrplatform/gDRplots", upgrade = "never")
-          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never")
+          remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
+          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
+
+          # Verify critical packages
+          required <- c("rmarkdown", "gDR", "gDRplots", "qs2")
+          missing <- required[!sapply(required, requireNamespace, quietly = TRUE)]
+          if (length(missing) > 0) stop("Missing packages: ", paste(missing, collapse = ", "))
 
       - name: Generate PRISM subset Model.csv
         shell: Rscript {0}
