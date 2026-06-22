@@ -248,7 +248,6 @@
     <span class="pkg">gDRcore</span>
     <span class="pkg">gDRutils</span>
     <span class="pkg">gDRplots</span>
-    <span class="pkg">gDRviz</span>
   </div>
   <div class="card-row" style="margin-top:0.5em;">
     <div class="card">
@@ -262,6 +261,42 @@
     <div class="card green">
       <h3>Reproducibility</h3>
       <p>Fully scriptable pipeline from raw Excel / CSV to publication-ready figures and tables</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE — Getting Started (moved early)
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Getting Started</h2>
+  <div class="card-row">
+    <div class="card blue">
+      <h3>Prerequisites</h3>
+      <ul>
+        <li><a href="https://cran.r-project.org/">Install R</a> (≥ 4.4)</li>
+        <li><a href="https://posit.co/download/rstudio-desktop/">Install RStudio</a></li>
+        <li>Clone <code>gDRworkshops</code> from <a href="https://github.com/gdrplatform/gDRworkshops">GitHub</a></li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>Setup &amp; Install</h3>
+      <ul>
+        <li>Run <code>source("setup.R")</code> — installs all required gDR packages automatically</li>
+        <li>Open any example folder and knit the reports step by step</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-row" style="margin-top:0.5em;">
+    <div class="card green">
+      <h3>Resources</h3>
+      <ul>
+        <li>GitHub: <a href="https://github.com/gdrplatform">github.com/gdrplatform</a></li>
+        <li>Bioconductor landing page</li>
+        <li>Zhou et al. 2026 — <em>Cell Chemical Biology</em></li>
+        <li>Goetz et al. 2024 — <em>Cancers</em> (PMID 39199684)</li>
+        <li>Hagenbeek et al. 2026 — <em>Nature Communications</em></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -788,43 +823,6 @@ ls_plt_RV <- pmap(tab_grid,
       <tr><td>Key output</td><td>Synergy heatmaps</td><td>Panel-level clustering</td><td>Biomarker association table</td></tr>
     </tbody>
   </table>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     SLIDE 22 — Getting started / resources
-══════════════════════════════════════════════════════ -->
-<section>
-  <h2>Getting Started</h2>
-  <div class="card-row">
-    <div class="card blue">
-      <h3>Install gDR</h3>
-      <p style="font-family:'Courier New',monospace;font-size:0.85em;word-break:break-all;">
-        BiocManager::install("gDRcore")<br/>
-        BiocManager::install("gDRutils")<br/>
-        BiocManager::install("gDRplots")
-      </p>
-    </div>
-    <div class="card orange">
-      <h3>Run an example</h3>
-      <ul>
-        <li>Clone <code>gDRworkshops</code> from GitHub</li>
-        <li>Open any <code>1-data_import.Rmd</code></li>
-        <li>Knit step by step through the pipeline</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card-row" style="margin-top:0.5em;">
-    <div class="card green">
-      <h3>Resources</h3>
-      <ul>
-        <li>GitHub: <a href="https://github.com/gdrplatform">github.com/gdrplatform</a></li>
-        <li>Bioconductor landing page</li>
-        <li>Zhou et al. 2026 — <em>Cell Chemical Biology</em></li>
-        <li>Goetz et al. 2024 — <em>Cancers</em> (PMID 39199684)</li>
-        <li>Hagenbeek et al. 2026 — <em>Nature Communications</em></li>
-      </ul>
-    </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
