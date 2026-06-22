@@ -1,0 +1,149 @@
+name: Test workshop reports
+
+on:
+  push:
+    branches: [main, GDR-*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-workshops:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        r: ['release']
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.r }}
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install cmake
+          brew install --cask xquartz
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev \
+            libfontconfig1-dev libfreetype6-dev libpng-dev libtiff5-dev \
+            libjpeg-dev libharfbuzz-dev libfribidi-dev libuv1-dev \
+            libmagick++-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ matrix.r }}-${{ hashFiles('setup.R') }}
+          restore-keys: |
+            ${{ runner.os }}-r-${{ matrix.r }}-
+
+      - name: Create R library directory
+        run: mkdir -p ${{ env.R_LIBS_USER }}
+        shell: bash
+
+      - name: Install R dependencies
+        shell: Rscript {0}
+        run: |
+          lib <- Sys.getenv("R_LIBS_USER")
+          dir.create(lib, recursive = TRUE, showWarnings = FALSE)
+          .libPaths(c(lib, .libPaths()))
+          options(Ncpus = parallel::detectCores())
+
+          # Use binary repos: PPM for CRAN, r-universe for Bioc (Linux gets binaries!)
+          if (.Platform$OS.type == "unix" && Sys.info()[["sysname"]] == "Linux") {
+            options(repos = c(
+              CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest",
+              BiocManager = "https://bioc.r-universe.dev/bin/linux/noble/4.6",
+              gDR = "https://gdrplatform.r-universe.dev/bin/linux/noble/4.6"
+            ))
+          } else {
+            options(repos = c(CRAN = "https://cloud.r-project.org"))
+          }
+
+          if (!requireNamespace("BiocManager", quietly = TRUE))
+            install.packages("BiocManager", lib = lib)
+          if (!requireNamespace("remotes", quietly = TRUE))
+            install.packages("remotes", lib = lib)
+
+          # gDRimport from branch with CoreGx/PharmacoGx as optional
+          remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional",
+                                  upgrade = "never", lib = lib)
+
+          BiocManager::install(c(
+            "MultiAssayExperiment", "SummarizedExperiment",
+            "BiocStyle", "fgsea"
+          ), ask = FALSE, update = FALSE, lib = lib)
+
+          # gDR packages from GitHub (latest dev, ahead of BioC release)
+          remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
+
+          install.packages(c(
+            "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
+            "summarytools", "svglite", "writexl",
+            "rmarkdown", "knitr", "testthat"
+          ), lib = lib)
+
+          remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
+          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
+
+          # Verify critical packages
+          required <- c("rmarkdown", "gDRcore", "gDRutils", "gDRimport", "gDRplots", "qs2")
+          missing <- required[!sapply(required, requireNamespace, quietly = TRUE)]
+          if (length(missing) > 0) stop("Missing packages: ", paste(missing, collapse = ", "))
+
+      - name: Generate PRISM subset Model.csv
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("depmap", quietly = TRUE))
+            BiocManager::install("depmap", ask = FALSE, update = FALSE)
+
+          library(depmap)
+          library(data.table)
+
+          prism_data <- fread("examples/subsets/PRISMBroadScreen/raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025")
+          ccle_names <- unique(prism_data$ccle_name)
+
+          available <- dmfiles()
+          latest_id <- max(available$dataset_id)
+          model_row <- available[available$dataset_id == latest_id & available$name == "Model.csv", ]
+          model_path <- dmget(model_row)
+
+          model_full <- fread(model_path)
+          model_sub <- model_full[CCLEName %in% ccle_names]
+          fwrite(model_sub, "examples/subsets/PRISMBroadScreen/raw_data/Model.csv")
+          message("Model.csv: ", nrow(model_sub), " cell lines")
+
+      - name: Render SmallDrugCombo reports
+        shell: Rscript {0}
+        run: |
+          setwd("examples/subsets/SmallDrugCombo")
+          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
+          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
+          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+
+      - name: Render PRISMBroadScreen reports
+        shell: Rscript {0}
+        run: |
+          setwd("examples/subsets/PRISMBroadScreen")
+          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
+          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
+          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+          rmarkdown::render("3-1-PRISM_analysis.Rmd", quiet = TRUE)
