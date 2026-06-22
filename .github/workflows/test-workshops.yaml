@@ -85,10 +85,15 @@ jobs:
                                   upgrade = "never", lib = lib)
 
           BiocManager::install(c(
-            "gDR", "gDRcore", "gDRutils", "gDRtestData",
             "MultiAssayExperiment", "SummarizedExperiment",
             "BiocStyle", "fgsea"
           ), ask = FALSE, update = FALSE, lib = lib)
+
+          # gDR packages from GitHub (latest dev, ahead of BioC release)
+          remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
 
           install.packages(c(
             "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
