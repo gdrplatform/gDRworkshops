@@ -116,7 +116,6 @@ Each example directory contains its own `README.md` with a detailed description.
 - [gDRutils](https://github.com/gdrplatform/gDRutils) — utility functions
 - [gDRimport](https://github.com/gdrplatform/gDRimport) — data import
 - [gDRplots](https://github.com/gdrplatform/gDRplots) — static visualizations
-- [gDRviz](https://github.com/gdrplatform/gDRviz) — interactive Shiny application
 
 
 ## Contact
