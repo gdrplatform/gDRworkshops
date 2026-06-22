@@ -1072,7 +1072,4 @@ generate_datatable(gdr_sdt)
 
 cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
 
-
-cat(sprintf("**Report generation time: %.1f seconds**", gdr_elapsed))
-
 ```
