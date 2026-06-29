@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gDR Workshop — Dose-Response Analysis in Oncology</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" />
+  <!-- highlight.js for code syntax -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <style>
+    :root {
+      --gdr-blue: #1a4d8f;
+      --gdr-teal: #0a8fa0;
+      --gdr-orange: #e07b2e;
+      --gdr-light: #f5f8fc;
+      --gdr-dark: #1c2b3a;
+      --gdr-green: #2a8a5a;
+    }
+
+    .reveal {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 24px;
+      color: var(--gdr-dark);
+    }
+
+    /* ── Title slide ── */
+    .slide-title {
+      background: linear-gradient(135deg, var(--gdr-blue) 0%, var(--gdr-teal) 100%);
+      color: #fff !important;
+    }
+    .slide-title h1, .slide-title h2, .slide-title p { color: #fff !important; }
+    .slide-title h1 { font-size: 1.7em; margin-bottom: 0.2em; }
+    .slide-title .subtitle { font-size: 0.65em; opacity: 0.88; margin-bottom: 1em; }
+    .slide-title .authors { font-size: 0.5em; opacity: 0.75; }
+    .title-logo { width: 90px; margin-bottom: 0.8em; filter: brightness(0) invert(1); }
+
+    /* ── Section dividers ── */
+    .slide-section {
+      background: linear-gradient(135deg, var(--gdr-dark) 0%, var(--gdr-blue) 100%);
+      color: #fff !important;
+    }
+    .slide-section h2 { color: #fff !important; font-size: 1.4em; }
+    .slide-section .section-subtitle { color: rgba(255,255,255,0.75); font-size: 0.6em; margin-top: 0.4em; }
+    .section-number {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 1.6em; height: 1.6em;
+      line-height: 1.6em;
+      font-size: 1.2em;
+      margin-bottom: 0.4em;
+    }
+
+    /* ── Content slides ── */
+    .reveal h2 { color: var(--gdr-blue); font-size: 1.05em; border-bottom: 3px solid var(--gdr-teal); padding-bottom: 0.15em; margin-bottom: 0.4em; }
+    .reveal h3 { color: var(--gdr-teal); font-size: 0.85em; margin-bottom: 0.2em; }
+    .reveal ul { list-style: none; padding: 0; margin: 0; }
+    .reveal ul li { padding: 0.2em 0 0.2em 1.4em; position: relative; font-size: 0.72em; line-height: 1.45; }
+    .reveal ul li::before { content: "▸"; position: absolute; left: 0; color: var(--gdr-teal); }
+    .reveal ul ul li::before { content: "–"; color: var(--gdr-orange); }
+    .reveal ul ul li { font-size: 0.9em; }
+
+    /* ── Cards / grids ── */
+    .card-row { display: flex; gap: 0.6em; margin-top: 0.4em; }
+    .card {
+      flex: 1;
+      background: var(--gdr-light);
+      border-radius: 8px;
+      padding: 0.7em 0.8em;
+      border-top: 4px solid var(--gdr-teal);
+    }
+    .card.orange { border-top-color: var(--gdr-orange); }
+    .card.green  { border-top-color: var(--gdr-green); }
+    .card.blue   { border-top-color: var(--gdr-blue); }
+    .card h3 { font-size: 0.72em; margin: 0 0 0.3em; color: var(--gdr-blue); }
+    .card p, .card ul { font-size: 0.62em; margin: 0; }
+    .card ul li { font-size: 1em; padding: 0.1em 0 0.1em 1.2em; }
+
+    /* ── Pipeline steps ── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 0.6em;
+    }
+    .step {
+      background: var(--gdr-light);
+      border: 2px solid var(--gdr-teal);
+      border-radius: 8px;
+      padding: 0.55em 0.7em;
+      text-align: center;
+      flex: 1;
+      font-size: 0.62em;
+    }
+    .step strong { display: block; color: var(--gdr-blue); font-size: 1.1em; margin-bottom: 0.2em; }
+    .arrow { color: var(--gdr-teal); font-size: 1.3em; padding: 0 0.3em; }
+
+    /* ── Stat badges ── */
+    .badge-row { display: flex; gap: 0.5em; justify-content: center; margin: 0.6em 0; flex-wrap: wrap; }
+    .badge {
+      background: var(--gdr-blue);
+      color: #fff;
+      border-radius: 20px;
+      padding: 0.25em 0.8em;
+      font-size: 0.58em;
+      white-space: nowrap;
+    }
+    .badge.teal   { background: var(--gdr-teal); }
+    .badge.orange { background: var(--gdr-orange); }
+    .badge.green  { background: var(--gdr-green); }
+
+    /* ── Two-column layout ── */
+    .two-col { display: flex; gap: 1em; align-items: flex-start; }
+    .two-col .col { flex: 1; }
+
+    /* ── Package chips ── */
+    .pkg-row { display: flex; gap: 0.4em; flex-wrap: wrap; justify-content: center; margin: 0.5em 0; }
+    .pkg {
+      background: #fff;
+      border: 2px solid var(--gdr-blue);
+      border-radius: 6px;
+      padding: 0.25em 0.65em;
+      font-size: 0.6em;
+      font-family: 'Courier New', monospace;
+      color: var(--gdr-blue);
+      font-weight: bold;
+    }
+
+    /* ── Metric table ── */
+    .metric-table { width: 100%; border-collapse: collapse; font-size: 0.6em; margin-top: 0.5em; }
+    .metric-table th { background: var(--gdr-blue); color: #fff; padding: 0.4em 0.6em; text-align: left; }
+    .metric-table td { padding: 0.35em 0.6em; border-bottom: 1px solid #dde; }
+    .metric-table tr:nth-child(even) td { background: var(--gdr-light); }
+
+    /* ── Callout box ── */
+    .callout {
+      background: #fff7ed;
+      border-left: 5px solid var(--gdr-orange);
+      border-radius: 6px;
+      padding: 0.5em 0.8em;
+      font-size: 0.65em;
+      margin-top: 0.6em;
+      text-align: left;
+    }
+    .callout.teal {
+      background: #edf8fa;
+      border-left-color: var(--gdr-teal);
+    }
+
+    /* ── Footer ── */
+    .slide-footer {
+      position: fixed;
+      bottom: 12px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.38em;
+      color: #aaa;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Link styling ── */
+    .reveal a { color: var(--gdr-teal); }
+
+    /* ── Highlight ── */
+    .hl { color: var(--gdr-orange); font-weight: bold; }
+    .hl-green { color: var(--gdr-green); font-weight: bold; }
+
+    /* ── Code slide styling ── */
+    .slide-code { background: #0f1923 !important; }
+    .slide-code h2 { color: #7dd3e8 !important; border-bottom-color: #7dd3e8 !important; font-size: 0.95em; }
+    .slide-code .code-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.3em;
+    }
+    .slide-code .code-step {
+      background: var(--gdr-teal);
+      color: #fff;
+      border-radius: 4px;
+      padding: 0.1em 0.5em;
+      font-size: 0.5em;
+      font-weight: bold;
+    }
+    .slide-code .code-link {
+      font-size: 0.42em;
+      color: #7dd3e8 !important;
+    }
+    .reveal .slide-code pre {
+      background: #1e2d3d;
+      border-radius: 8px;
+      padding: 0.7em 1em;
+      margin: 0;
+      box-shadow: none;
+      font-size: 0.58em;
+      line-height: 1.55;
+      max-height: 340px;
+      overflow-y: auto;
+      width: 100%;
+    }
+    .reveal .slide-code pre code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      background: transparent;
+      color: #cdd9e5;
+    }
+    .reveal .slide-code .code-note {
+      background: rgba(125, 211, 232, 0.12);
+      border-left: 4px solid #7dd3e8;
+      border-radius: 4px;
+      color: #7dd3e8;
+      font-size: 0.5em;
+      padding: 0.35em 0.7em;
+      margin-top: 0.4em;
+      text-align: left;
+    }
+    .reveal .slide-code ul li { color: #cdd9e5; font-size: 0.58em; }
+    .reveal .slide-code ul li::before { color: #7dd3e8; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 1 — Title
+══════════════════════════════════════════════════════ -->
+<section class="slide-title" data-background-gradient="linear-gradient(135deg,#1a4d8f 0%,#0a8fa0 100%)">
+  <img src="../gdr_logo.png" class="title-logo" alt="gDR logo" onerror="this.style.display='none'" />
+  <h1>gDR Workshop</h1>
+  <p class="subtitle">Dose-Response Analysis in Oncology<br/>Three Real-World Examples</p>
+  <p class="authors">gDRplatform team · 2026</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 2 — What is gDR?
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>What is gDR?</h2>
+  <p style="font-size:0.68em;margin-bottom:0.5em;">
+    <strong>gDR</strong> is an open-source R platform for end-to-end
+    <span class="hl">dose-response analysis</span> of drug perturbation experiments.
+    It standardizes how raw plate-reader data is imported, normalized, modeled, and visualized.
+  </p>
+  <div class="pkg-row">
+    <span class="pkg">gDRimport</span>
+    <span class="pkg">gDRcore</span>
+    <span class="pkg">gDRutils</span>
+    <span class="pkg">gDRplots</span>
+  </div>
+  <div class="card-row" style="margin-top:0.5em;">
+    <div class="card">
+      <h3>Standardized data</h3>
+      <p>Bioconductor <em>MultiAssayExperiment</em> &amp; <em>SummarizedExperiment</em> objects as the backbone</p>
+    </div>
+    <div class="card orange">
+      <h3>Two normalizations</h3>
+      <p>Relative Viability (RV) and Growth Rate (GR) — both reported for every experiment</p>
+    </div>
+    <div class="card green">
+      <h3>Reproducibility</h3>
+      <p>Fully scriptable pipeline from raw Excel / CSV to publication-ready figures and tables</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE — Getting Started (moved early)
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Getting Started</h2>
+  <div class="card-row">
+    <div class="card blue">
+      <h3>Prerequisites</h3>
+      <ul>
+        <li><a href="https://cran.r-project.org/">Install R</a> (≥ 4.4)</li>
+        <li><a href="https://posit.co/download/rstudio-desktop/">Install RStudio</a></li>
+        <li>Clone <code>gDRworkshops</code> from <a href="https://github.com/gdrplatform/gDRworkshops">GitHub</a></li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>Setup &amp; Install</h3>
+      <ul>
+        <li>Run <code>source("setup.R")</code> — installs all required gDR packages automatically</li>
+        <li>Open any example folder and knit the reports step by step</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-row" style="margin-top:0.5em;">
+    <div class="card green">
+      <h3>Resources</h3>
+      <ul>
+        <li>GitHub: <a href="https://github.com/gdrplatform">github.com/gdrplatform</a></li>
+        <li>Bioconductor landing page</li>
+        <li>Zhou et al. 2026 — <em>Cell Chemical Biology</em></li>
+        <li>Goetz et al. 2024 — <em>Cancers</em> (PMID 39199684)</li>
+        <li>Hagenbeek et al. 2026 — <em>Nature Communications</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 3 — The Analysis Pipeline
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Shared Analysis Pipeline</h2>
+  <p style="font-size:0.65em;margin-bottom:0.5em;">Every example follows the same three-step workflow:</p>
+  <div class="pipeline">
+    <div class="step">
+      <strong>Step 1</strong>
+      Data Import
+      <ul style="text-align:left;margin-top:0.3em;">
+        <li>Read Excel / CSV plate files</li>
+        <li>Attach cell line &amp; drug annotations</li>
+        <li>Raw-plate QC heatmaps</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <strong>Step 2</strong>
+      Processing &amp; QC
+      <ul style="text-align:left;margin-top:0.3em;">
+        <li>Normalize to RV &amp; GR</li>
+        <li>Average replicates</li>
+        <li>Fit 4-parameter Hill curve</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <strong>Step 3</strong>
+      Analysis
+      <ul style="text-align:left;margin-top:0.3em;">
+        <li>Metrics &amp; curve export</li>
+        <li>Dose-response &amp; heatmap plots</li>
+        <li>Synergy / biomarker analysis</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">
+    Output: standardized Excel tables + publication-ready SVG/PNG figures, organized per assay type
+    (<em>averaged · metrics · excess · scores</em>)
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 4 — Metrics computed
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Key Metrics Computed</h2>
+  <div class="two-col">
+    <div class="col">
+      <h3>Single-agent</h3>
+      <table class="metric-table">
+        <thead><tr><th>Metric</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>IC50 / GR50</td><td>Half-maximal inhibitory concentration</td></tr>
+          <tr><td>Emax / GRmax</td><td>Maximum effect at highest dose</td></tr>
+          <tr><td>Hill slope</td><td>Curve steepness</td></tr>
+          <tr><td>AOC / GRAOC</td><td>Area over the curve (potency summary)</td></tr>
+          <tr><td>R²</td><td>Curve-fit quality</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <h3>Combination</h3>
+      <table class="metric-table">
+        <thead><tr><th>Metric</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Bliss excess</td><td>Deviation from statistical independence</td></tr>
+          <tr><td>HSA excess</td><td>Deviation from highest single agent</td></tr>
+          <tr><td>CI / CI50 / CI80</td><td>Combination index (Chou-Talalay)</td></tr>
+          <tr><td>Isobologram</td><td>Graphical synergy assessment</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 5 — Examples overview map
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Three Examples at a Glance</h2>
+  <div class="card-row">
+    <div class="card blue">
+      <h3>1 · Zhou et al. 2026</h3>
+      <p><em>Cell Chemical Biology</em></p>
+      <ul>
+        <li>ER+ breast cancer</li>
+        <li>4 cell lines</li>
+        <li>Small drug-combo screen</li>
+        <li>PIK3CA &amp; ESR1 inhibitors</li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>2 · Goetz et al. 2024</h3>
+      <p><em>Cancers</em></p>
+      <ul>
+        <li>Melanoma &amp; SCC</li>
+        <li>43 cell lines</li>
+        <li>Large drug-combo screen</li>
+        <li>RAF &amp; MEK inhibitors</li>
+      </ul>
+    </div>
+    <div class="card green">
+      <h3>3 · Hagenbeek et al. 2026</h3>
+      <p><em>Nature Communications</em></p>
+      <ul>
+        <li>Pan-cancer (PRISM)</li>
+        <li>774 cell lines</li>
+        <li>Single-agent + biomarkers</li>
+        <li>TEAD inhibitor GDC-8025</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 6 — Section divider: Example 1
+══════════════════════════════════════════════════════ -->
+<section class="slide-section" data-background-gradient="linear-gradient(135deg,#1c2b3a 0%,#1a4d8f 100%)">
+  <div class="section-number">1</div>
+  <h2>Small Drug Combination Screen</h2>
+  <p class="section-subtitle">Zhou et al. · <em>Cell Chemical Biology</em> · 2026</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 7 — Example 1 biology
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 1 — Study Design</h2>
+  <div class="badge-row">
+    <span class="badge">ER+ Breast Cancer</span>
+    <span class="badge teal">4 Cell Lines</span>
+    <span class="badge orange">2 Drug Combinations</span>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <h3>Cell lines</h3>
+      <ul>
+        <li>CAMA-1</li>
+        <li>EFM-19</li>
+        <li>MCF-7</li>
+        <li>T-47D</li>
+      </ul>
+    </div>
+    <div class="card blue">
+      <h3>Drug combinations</h3>
+      <ul>
+        <li><strong>Inavolisib</strong> (PIK3CA inhibitor)<br/>&nbsp;× <strong>Giredestrant</strong> (ESR1 antagonist)</li>
+        <li style="margin-top:0.4em;"><strong>Everolimus</strong> (MTOR inhibitor)<br/>&nbsp;× <strong>Giredestrant</strong> (ESR1 antagonist)</li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>Scientific question</h3>
+      <p>Do PI3K-pathway and estrogen-receptor inhibitors <span class="hl">synergize</span> in ER+ breast cancer cell lines?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 8 — Example 1 what it demonstrates
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 1 — What It Demonstrates</h2>
+  <ul>
+    <li>Reading <strong>Excel-based plate data</strong> (manifest + treatment + raw measurements)</li>
+    <li>Mapping controls to treatments and flagging QC outliers</li>
+    <li>Computing <strong>RV and GR dose-response curves</strong> for each drug alone and in combination</li>
+    <li>Calculating <span class="hl">Bliss</span> and <span class="hl">HSA</span> excess synergy scores at each dose matrix point</li>
+    <li>Generating per-cell-line synergy heatmaps and isobologram plots</li>
+    <li>Exporting a fully annotated Excel workbook of metrics and synergy scores</li>
+  </ul>
+  <div class="callout">
+    Ideal entry point — small dataset, focused biology, complete pipeline in &lt;300 MB of raw files
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 1 — Step 1: Libraries & import_data
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 1 — Load Libraries &amp; Import Raw Data</h2>
+  <div class="code-meta">
+    <span class="code-step">1-data_import.Rmd · lines 221 – 312</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/1-data_import.Rmd#L221" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── Libraries ────────────────────────────────────────────
+library(gDRimport)   # data ingestion from plate-reader files
+library(gDRcore)     # core pipeline functions
+library(gDRutils)    # annotation helpers
+library(gDR)         # meta-package (loads the full ecosystem)
+library(gDRplots)    # visualization
+
+# ── Point to raw files ────────────────────────────────────
+manifest  <- "raw_data/9545combo_Manifest.xlsx"
+treatment <- c("raw_data/0077_9545 combo_Treatment.xlsx",
+               "raw_data/Evero_9545 combo_Treatment.xlsx", ...)
+raw_data  <- c("raw_data/9545combo_rawdata.xlsx",
+               "raw_data/Day0.rawdata.xlsx")
+
+# ── Load annotations ─────────────────────────────────────
+drug_annotation     <- fread("data_annotation/drug_annotation.csv")
+cell_line_annotation <- fread("data_annotation/cell_line_annotation.csv")
+
+# ── Single call merges manifest + treatment + plate reads ─
+data_imported <- import_data(
+  manifest, treatment, raw_data,
+  instrument           = detect_file_format(raw_data[1]),
+  cell_line_annotation = cell_line_annotation,
+  drug_annotation      = drug_annotation
+)</code></pre>
+  <div class="code-note">
+    <strong>import_data()</strong> auto-detects the plate-reader format and merges the three file types into a single annotated <code>data.table</code>, ready for processing.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 2 — Step 1: Plate QC visualization
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 1 — Plate QC Visualization</h2>
+  <div class="code-meta">
+    <span class="code-step">1-data_import.Rmd · lines 345 – 378</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/1-data_import.Rmd#L345" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── Generate one heatmap per plate barcode ────────────────
+# Each plot overlays: raw signal (background color),
+# dose rank (number inside well symbol), and QC flags (borders)
+plate_vis <- plot_plate_stack_info(data_imported)
+
+# ── Save plots to disk ────────────────────────────────────
+walk(seq_along(plate_vis), function(i) {
+  barcode_name <- names(plate_vis)[[i]]
+  save_plot(plt    = plate_vis[[i]],
+            path   = file.path(wd, "plots",
+                               paste0("plate_stack_", barcode_name)),
+            format = "png")
+})</code></pre>
+  <ul style="margin-top:0.45em;">
+    <li><span style="color:#f97316;font-weight:bold;">Red border</span> — control signal below plate average (edge effect / pipetting error)</li>
+    <li><span style="color:#fb923c;font-weight:bold;">Orange border</span> — treated signal above ceiling (precipitation / contamination)</li>
+    <li>Numbers inside wells = dose rank (1 = lowest, N = highest); expect signal to fall as rank rises</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 3 — Step 2: Identify types & create SE
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 2 — Identify Experiment Types &amp; Build SummarizedExperiments</h2>
+  <div class="code-meta">
+    <span class="code-step">2-processing_and_QC.Rmd · lines 249 – 310</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/2-processing_and_QC.Rmd#L249" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── Load the data saved at the end of Step 1 ─────────────
+data_imported <- qs_read(file.path(wd, "gDR_data", "gDR_input.qs2"))
+
+# ── Auto-classify each row as single-agent or combination ─
+dt_     <- identify_data_type(data_imported)
+dt_list <- split_raw_data(dt_)
+# → names(dt_list) prints: "single-agent"  "combination"
+
+# ── Extract each type ─────────────────────────────────────
+sa_name    <- get_supported_experiments("sa")    # "single-agent"
+combo_name <- get_supported_experiments("combo") # "combination"
+
+dt_sa    <- dt_list[[sa_name]]
+dt_combo <- dt_list[[combo_name]]
+
+# ── Structure into SummarizedExperiment (Bioconductor) ───
+# Maps control (DMSO) wells to drug-treated wells
+se_sa    <- create_SE(dt_sa,    data_type = sa_name)
+se_combo <- create_SE(dt_combo, data_type = combo_name)</code></pre>
+  <div class="code-note">
+    <strong>create_SE()</strong> stores raw treated values and mapped controls in separate assay slots (<code>RawTreated</code> / <code>Controls</code>). The control mapping QC heatmap flags missing DMSO wells in red.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 4 — Step 2: Normalize, average, fit
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 2 — Normalize, Average &amp; Fit Curves</h2>
+  <div class="code-meta">
+    <span class="code-step">2-processing_and_QC.Rmd · lines 406 – 838</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/2-processing_and_QC.Rmd#L406" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── 1. Normalize: raw signal → RV (0–1) and GR (−1 to 1) ─
+se_sa    <- normalize_SE(se_sa,    data_type = sa_name)
+se_combo <- normalize_SE(se_combo, data_type = combo_name)
+# Adds "Normalized" assay slot to each SE
+
+# ── 2. Average technical replicates ───────────────────────
+se_sa    <- average_SE(se_sa,    data_type = sa_name)
+se_combo <- average_SE(se_combo, data_type = combo_name)
+# Adds "Averaged" assay slot (mean + std per condition)
+
+# ── 3. Fit dose-response models ───────────────────────────
+# Single-agent: 4-parameter Hill → IC50, GR50, Emax, h, R²
+se_sa    <- fit_SE(se_sa,                 data_type = sa_name)
+
+# Combination: per-drug metrics + synergy assays
+#   excess (Bliss/HSA at every dose point)
+#   isobolograms · scores (summary CI, Bliss, HSA)
+se_combo <- fit_SE.combinations(se_combo, data_type = combo_name)</code></pre>
+  <div class="code-note">
+    Each function appends a new assay slot — the SE grows through the pipeline while always keeping all intermediate layers accessible.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 5 — Step 2: Assemble & save MAE
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 2 — Assemble the MultiAssayExperiment</h2>
+  <div class="code-meta">
+    <span class="code-step">2-processing_and_QC.Rmd · lines 1039 – 1046</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/2-processing_and_QC.Rmd#L1039" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── Bundle both SummarizedExperiments into one MAE object ─
+mae <- MultiAssayExperiment(
+  experiments = setNames(
+    list(se_sa, se_combo),
+    c(sa_name, combo_name)   # "single-agent", "combination"
+  )
+)
+
+# ── Apply gDR standard metadata conventions ───────────────
+mae <- standardize_mae(mae)
+
+# ── Save to disk (compressed, fast I/O) ───────────────────
+qs_save(mae, file.path(wd, "gDR_data", "gDR_mae.qs2"))</code></pre>
+  <ul style="margin-top:0.45em;">
+    <li>The <code>gDR_mae.qs2</code> file is the single hand-off between Step 2 and Step 3</li>
+    <li>The MAE holds <em>all layers</em>: raw → normalized → averaged → metrics → excess → scores</li>
+    <li>Alternative shortcut: <code>runDrugResponseProcessingPipeline()</code> executes steps 1–5 in one call</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     CODE SLIDE 6 — Step 3: Synergy panel
+══════════════════════════════════════════════════════ -->
+<section class="slide-code" data-background="#0f1923">
+  <h2>Code · Step 3 — Synergy Scoring &amp; Visualization</h2>
+  <div class="code-meta">
+    <span class="code-step">3-analysis.Rmd · lines 319 – 1243</span>
+    <a class="code-link" href="https://github.com/gdrplatform/gDRworkshops/blob/main/examples/SmallDrugCombo_Zhou_CellChemBio_2026/3-analysis.Rmd#L319" target="_blank">↗ View on GitHub</a>
+  </div>
+  <pre><code class="language-r"># ── Load the MAE and extract assay data ──────────────────
+mae <- qs_read(file.path(wd, "gDR_data", "gDR_mae.qs2"))
+
+assay_list <- MAEpply(mae, function(x) {
+  lapply(setdiff(assayNames(x), c("RawTreated","Controls","Normalized")),
+         function(y) convert_se_assay_to_dt(x, y,
+                       unify_metadata = TRUE,
+                       merge_additional_variables = TRUE))
+})
+
+response_metrics_excess      <- assay_list[["combination"]][["excess"]]
+response_metrics_isobolograms <- assay_list[["combination"]][["isobolograms"]]
+
+# ── Generate 2×2 synergy panel per cell line × drug pair ─
+# Top-left: smoothed response · Top-right: CI plot
+# Bottom: Bliss excess heatmap · HSA excess heatmap + isobologram
+ls_plt_RV <- pmap(tab_grid,
+  heatmap_combo_metrics_panel,
+  dt_excess          = response_metrics_excess,
+  dt_isobolograms    = response_metrics_isobolograms,
+  iso_levels         = "0.5",           # draw IC50 isobologram line
+  normalization_type = "RV")</code></pre>
+  <div class="code-note">
+    Solid isobole line bowing <em>inward</em> = synergy (less drug needed). Warm colors in Bliss/HSA panels = combination benefit.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 15 — Section divider: Example 2
+══════════════════════════════════════════════════════ -->
+<section class="slide-section" data-background-gradient="linear-gradient(135deg,#1c2b3a 0%,#e07b2e 100%)">
+  <div class="section-number">2</div>
+  <h2>Large Drug Combination Screen</h2>
+  <p class="section-subtitle">Goetz et al. · <em>Cancers</em> · 2024</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 16 — Example 2 biology
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 2 — Study Design</h2>
+  <div class="badge-row">
+    <span class="badge">Melanoma &amp; Squamous Cell Carcinoma</span>
+    <span class="badge teal">43 Cell Lines</span>
+    <span class="badge orange">43 Plate Files</span>
+  </div>
+  <div class="card-row">
+    <div class="card blue">
+      <h3>Drug combinations</h3>
+      <ul>
+        <li><strong>Belvarafenib</strong> (pan-RAF inhibitor)<br/>&nbsp;× <strong>Cobimetinib</strong> (MEK1/2 inhibitor)</li>
+        <li style="margin-top:0.4em;"><strong>Vemurafenib</strong> (BRAF inhibitor)<br/>&nbsp;× <strong>Cobimetinib</strong> (MEK1/2 inhibitor)</li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>Scientific question</h3>
+      <p>Can RAF/MEK inhibitor combinations overcome resistance in <span class="hl">MAPK-driven</span> skin cancers, and does response vary across a large cell-line panel?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 17 — Example 2 what it demonstrates
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 2 — What It Demonstrates</h2>
+  <ul>
+    <li>Ingesting <strong>43 individual CSV plate files</strong> — one per cell line — alongside a manifest and template</li>
+    <li>Scaling the gDR pipeline to a <span class="hl">large cell-line panel</span> without changing the workflow</li>
+    <li>Plate-by-plate QC validation and control mapping across dozens of experiments</li>
+    <li>Population-level metric heatmaps revealing <strong>differential sensitivity</strong> across cell lines</li>
+    <li>Synergy scoring (Bliss + HSA) for both drug pairs across all 43 lines</li>
+    <li>Hierarchical clustering of response metrics to identify cell-line subgroups</li>
+  </ul>
+  <div class="callout">
+    Key lesson: the same three-step pipeline scales seamlessly from 4 to 43 cell lines with no code changes
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 18 — Section divider: Example 3
+══════════════════════════════════════════════════════ -->
+<section class="slide-section" data-background-gradient="linear-gradient(135deg,#1c2b3a 0%,#2a8a5a 100%)">
+  <div class="section-number">3</div>
+  <h2>Pan-Cancer PRISM Screen &amp; Biomarker Discovery</h2>
+  <p class="section-subtitle">Hagenbeek et al. · <em>Nature Communications</em> · 2026</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 19 — Example 3 biology
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 3 — Study Design</h2>
+  <div class="badge-row">
+    <span class="badge green">Pan-Cancer (PRISM)</span>
+    <span class="badge teal">774 Cell Lines</span>
+    <span class="badge orange">Single Agent + Multi-Omics</span>
+  </div>
+  <div class="card-row">
+    <div class="card green">
+      <h3>Drug</h3>
+      <p><strong>GDC-8025</strong> — a potent inhibitor of <em>TEAD1/2/3/4</em> transcriptional co-regulators (Hippo pathway)</p>
+    </div>
+    <div class="card blue">
+      <h3>DepMap omics layers</h3>
+      <ul>
+        <li>Gene expression (~20,000 genes)</li>
+        <li>Copy number variation</li>
+        <li>Somatic mutations</li>
+      </ul>
+    </div>
+    <div class="card orange">
+      <h3>Scientific question</h3>
+      <p>Which molecular features <span class="hl">predict sensitivity</span> or resistance to TEAD inhibition across cancer types?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 20 — Example 3 biomarker step
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Example 3 — Biomarker Discovery (Step 3-1)</h2>
+  <p style="font-size:0.65em;margin-bottom:0.4em;">
+    This example adds a unique fourth step that integrates gDR metrics with external DepMap omics data:
+  </p>
+  <div class="pipeline">
+    <div class="step">
+      <strong>Dose-Response Metrics</strong>
+      IC50, GR50, AOC per cell line
+    </div>
+    <div class="arrow">×</div>
+    <div class="step">
+      <strong>DepMap Omics</strong>
+      Expression · CNV · Mutations
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <strong>Correlation Analysis</strong>
+      q-value ranked association table
+    </div>
+  </div>
+  <ul style="margin-top:0.6em;">
+    <li>Identifies genes / alterations associated with drug <span class="hl">sensitivity or resistance</span></li>
+    <li>Statistical significance via FDR-corrected q-values (threshold q &lt; 0.05)</li>
+    <li>Outputs: full association tables + summary of top hits per omics layer</li>
+    <li>Demonstrates how gDR connects phenotypic screening to <span class="hl-green">molecular biomarker discovery</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 21 — Comparison table
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Comparing the Three Examples</h2>
+  <table class="metric-table" style="font-size:0.58em;">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Zhou 2026<br/><em>Cell Chem Bio</em></th>
+        <th>Goetz 2024<br/><em>Cancers</em></th>
+        <th>Hagenbeek 2026<br/><em>Nat Commun</em></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Cancer type</td><td>ER+ Breast</td><td>Melanoma / SCC</td><td>Pan-cancer</td></tr>
+      <tr><td>Cell lines</td><td>4</td><td>43</td><td>774</td></tr>
+      <tr><td>Drug setup</td><td>Combination (2×2)</td><td>Combination (2×2)</td><td>Single agent</td></tr>
+      <tr><td>Data format</td><td>Excel (.xlsx)</td><td>CSV per plate</td><td>PRISM flat file</td></tr>
+      <tr><td>Synergy analysis</td><td>✓ Bliss + HSA</td><td>✓ Bliss + HSA</td><td>—</td></tr>
+      <tr><td>Biomarker analysis</td><td>—</td><td>—</td><td>✓ DepMap omics</td></tr>
+      <tr><td>Key output</td><td>Synergy heatmaps</td><td>Panel-level clustering</td><td>Biomarker association table</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 23 — Summary
+══════════════════════════════════════════════════════ -->
+<section class="slide-title" data-background-gradient="linear-gradient(135deg,#1a4d8f 0%,#0a8fa0 100%)">
+  <h2 style="color:#fff;border:none;font-size:1.1em;">Summary</h2>
+  <ul style="text-align:left;max-width:650px;margin:0.5em auto;">
+    <li style="color:rgba(255,255,255,0.9);font-size:0.68em;">gDR provides a <strong>reproducible, standardized pipeline</strong> from raw plate data to publication-ready dose-response metrics</li>
+    <li style="color:rgba(255,255,255,0.9);font-size:0.68em;margin-top:0.4em;"><strong>Example 1</strong> (Zhou): focused combination screen in ER+ breast cancer — perfect starting point</li>
+    <li style="color:rgba(255,255,255,0.9);font-size:0.68em;margin-top:0.4em;"><strong>Example 2</strong> (Goetz): same pipeline scales to 43 cell lines — RAF/MEK synergy in skin cancers</li>
+    <li style="color:rgba(255,255,255,0.9);font-size:0.68em;margin-top:0.4em;"><strong>Example 3</strong> (Hagenbeek): 774-line PRISM screen + DepMap biomarker discovery for a TEAD inhibitor</li>
+    <li style="color:rgba(255,255,255,0.9);font-size:0.68em;margin-top:0.4em;">All examples are fully <strong>self-contained and reproducible</strong> — clone, knit, explore</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 24 — Optional exercise divider
+══════════════════════════════════════════════════════ -->
+<section class="slide-section" data-background-gradient="linear-gradient(135deg,#2a1a4d 0%,#6b21a8 100%)">
+  <div class="section-number" style="background:rgba(255,255,255,0.15);">✎</div>
+  <h2>Optional Exercise</h2>
+  <p class="section-subtitle">Sensitive vs. Resistant — Find the Extremes</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SLIDE 25 — Exercise task
+══════════════════════════════════════════════════════ -->
+<section>
+  <h2>Exercise — Sensitive vs. Resistant Cell Lines</h2>
+  <p style="font-size:0.62em;margin-bottom:0.4em;">Using the pre-computed MAE object (<code>gDR_data/gDR_mae.qs2</code>), answer: <span class="hl">which cell lines respond most and least to treatment?</span></p>
+  <div class="two-col">
+    <div class="col">
+      <h3>Steps</h3>
+      <ul>
+        <li><strong>1. Load</strong> — <code>qs_read("gDR_data/gDR_mae.qs2")</code></li>
+        <li><strong>2. Extract</strong> — <code>convert_se_assay_to_dt(mae[["single-agent"]], "Metrics")</code></li>
+        <li><strong>3. Filter</strong> — keep one drug, <code>normalization_type == "RV"</code></li>
+        <li><strong>4. Rank</strong> — sort cell lines by <code>x_mean</code> (mean response, ~ AUC)</li>
+        <li><strong>5. Select</strong> — top 3 most sensitive &amp; bottom 3 most resistant</li>
+        <li><strong>6. Plot</strong> — overlay their dose-response curves, colored by group</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>What to expect</h3>
+      <div class="card blue" style="margin-bottom:0.4em;padding:0.5em 0.7em;">
+        <p><strong>Zhou</strong> — subtle spread within ER+ breast; subtype may explain differences</p>
+      </div>
+      <div class="card orange" style="margin-bottom:0.4em;padding:0.5em 0.7em;">
+        <p><strong>Goetz</strong> — BRAF-mutant lines likely cluster in the sensitive tail for Vemurafenib</p>
+      </div>
+      <div class="card green" style="padding:0.5em 0.7em;">
+        <p><strong>Hagenbeek</strong> — mesothelioma &amp; uveal melanoma (YAP-driven) enriched among top responders to GDC-8025</p>
+      </div>
+    </div>
+  </div>
+  <div class="callout teal" style="margin-top:0.4em;">
+    The same 6-line code skeleton runs on all three examples — only the drug name changes.
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<div class="slide-footer">gDR Workshop · gDRplatform · 2026</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'fast',
+    controls: true,
+    progress: true,
+    center: true,
+    width: 960,
+    height: 620,
+    margin: 0.04,
+    plugins: []
+  });
+  // Syntax highlight all code blocks
+  document.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+</script>
+</body>
+</html>
