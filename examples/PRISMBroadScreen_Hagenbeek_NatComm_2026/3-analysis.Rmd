@@ -643,8 +643,12 @@ plot_plan <- list(
   plt  = list_flatten(ls_plt_RV),
   path = list_flatten(ls_path_RV)
 )
-loop(seq_len(nrow(plot_plan)), function(i) {
-  do.call(save_plot, c(as.list(plot_plan[i, ]), format = "svg"))
+loop(seq_along(plot_plan$plt), function(i) {
+  save_plot(
+    plt = plot_plan$plt[[i]],
+    path = plot_plan$path[[i]],
+    format = "svg"
+  )
 })
 ```
 ::: {.fullwidth}
