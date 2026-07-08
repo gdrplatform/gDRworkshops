@@ -560,7 +560,7 @@ ls_path_data <- lapply(names(ls_sa_all), function(i) {
 })
 names(ls_path_data) <- names(ls_sa_all)
 
-gDRutils::loop(names(ls_sa_all), function(nm) {
+loop(names(ls_sa_all), function(nm) {
   for (i in seq_len(NROW(ls_sa_all[[nm]]))) {
     write_xlsx(
       ls_sa_all[[nm]][[i]], 
