@@ -356,7 +356,7 @@ plate_viz_ls <- prep_plot_chunk(plt_list = plate_vis,
                                 chunk_name = "plate_viz_stack",
                                 header_level = 4)
                                 
-gDRutils::loop(seq_along(plate_vis), function(i) {
+loop(seq_along(plate_vis), function(i) {
   barcode_name <- names(plate_vis)[[i]]
   plot_object <- plate_vis[[i]]
 

@@ -483,11 +483,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_norm_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -511,11 +511,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "sa_norm_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -575,11 +575,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "combo_norm_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -603,11 +603,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "combo_norm_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -691,11 +691,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_avg_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+loop(seq_along(ls_plt_RV), function(x) {
     save_plot(plt = ls_plt_RV[[x]],
               path = ls_path_RV[[x]],
               format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -719,11 +719,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "sa_avg_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -780,11 +780,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "combo_avg_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]],
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -808,11 +808,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "combo_avg_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]],
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -899,11 +899,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_panel_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_panel_RV,
                                  prefix = "sa_fit_curve_panel_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_panel_RV), function(x) {
+loop(seq_along(ls_panel_RV), function(x) {
   save_plot(plt = ls_panel_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -927,11 +927,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_panel_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_panel_GR,
                                  prefix = "sa_fit_curve_panel_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_panel_GR), function(x) {
+loop(seq_along(ls_panel_GR), function(x) {
   save_plot(plt = ls_panel_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -993,11 +993,11 @@ plts_RV <- prep_plot_chunk(plt_list = ls_plt_RV,
 ls_path_RV <- prep_filename_path(plt_list = ls_plt_RV,
                                  prefix = "sa_fit_prec_RV__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_RV), function(x) {
+loop(seq_along(ls_plt_RV), function(x) {
   save_plot(plt = ls_plt_RV[[x]], 
             path = ls_path_RV[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
@@ -1021,11 +1021,11 @@ plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR,
 ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
                                  prefix = "sa_fit_prec_GR__",
                                  path_file = file.path(wd, "plots"))
-gDRutils::loop(seq_along(ls_plt_GR), function(x) {
+loop(seq_along(ls_plt_GR), function(x) {
   save_plot(plt = ls_plt_GR[[x]], 
             path = ls_path_GR[[x]],
             format = "svg")
-}, parallelize = FALSE)
+})
 
 
 ```
