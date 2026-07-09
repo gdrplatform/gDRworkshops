@@ -38,7 +38,7 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 |---------|-------------|------|
 | **SmallDrugCombo** | [Zhou et al., *Cell Chem Bio* 2026](https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(26)00143-1) | Drug combination (small) |
 | **LargeDrugCombo** | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
-| **PRISMBroadScreen** | Hagenbeek et al., *Nat Commun* 2026 (accepted; link TBD) | Single-agent broad screen |
+| **PRISMBroadScreen** | [Hagenbeek et al., *Nat Commun* 2026](https://www.nature.com/articles/s41467-026-74722-5) | Single-agent broad screen |
 
 ## Prerequisites
 
