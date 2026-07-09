@@ -2,7 +2,7 @@
 
 Broad single-agent dose-response screen (PRISM) with integrated multi-omics biomarker analysis across a large panel of cancer cell lines.
 
-**Publication:** Hagenbeek et al., *Nature Communications* 2026 (accepted, link to be updated)
+**Publication:** [Hagenbeek et al., *Nat Commun* 2026](https://www.nature.com/articles/s41467-026-74722-5)
 
 ## At a glance
 
