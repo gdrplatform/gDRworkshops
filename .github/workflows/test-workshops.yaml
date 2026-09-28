@@ -142,10 +142,11 @@ jobs:
       - name: Render Timecourse_HMSLINCS_MCF10A_2016 reports
         shell: Rscript {0}
         run: |
+          # runs gDR's own Incucyte templates, so this also covers run_report()
           setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
-          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
-          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
-          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+          source("run_analysis.R")
+          pdf <- "report/v1/plots/cell_count_curves_20160421_MCF10A.pdf"
+          if (!file.exists(pdf)) stop("the per-cell-line PDF was not produced: ", pdf)
 
       - name: Render PRISMBroadScreen reports
         shell: Rscript {0}
