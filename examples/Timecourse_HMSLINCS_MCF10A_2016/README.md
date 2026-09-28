@@ -52,7 +52,7 @@ so you can see the output without running anything.
 
 | File | Contents |
 |------|----------|
-| `raw_data/` | Incucyte exports, published plate map, plate table and GR metrics — all unedited |
+| `raw_data/` | Incucyte exports, published plate map and plate table — all unedited |
 | `raw_data/time_course_plot_params.yml` | the analysis config: phases, normalization, treatment comparisons |
 | `prepare_inputs.R` | derives the gDR manifest and template from the published plate table, and rebases the clock |
 | `run_analysis.R` | calls `gDR::run_report()` with the shipped Incucyte templates |
