@@ -4,13 +4,20 @@
 # needs and writes it to prepared/, leaving the originals untouched. Three things
 # have to happen before the pipeline can read the experiment:
 #
-#  1. The Incucyte exports need a `Barcode` row, and their metadata preamble has
-#     to be padded to the width of the data block or `fread` skips it.
+#  1. The exports need a `Barcode` row. This release labels each plate with
+#     `Label: <plate>` instead, and the loader takes the plate identifier from
+#     the cell next to a `Barcode` key.
 #  2. The plate map is published as a long table; gDR reads plate maps as
 #     positional grids.
 #  3. `Elapsed` counts from plating, not from treatment - and treatment starts
 #     24 h later on three plates and 48 h later on the other three. The clock is
 #     rebased here so that time zero is the first image after dosing.
+#
+# The prepared exports are written as .xlsx rather than text. A worksheet has
+# explicit cells, so the metadata preamble and the much wider data block coexist
+# without the field-count mismatch that makes `fread` skip the preamble in the
+# published .txt files. It is also the format every current instrument export
+# arrives in.
 
 library(data.table)
 library(writexl)
@@ -22,13 +29,9 @@ dir.create(out, showWarnings = FALSE)
 
 # --- 1 + 3. instrument exports ------------------------------------------------
 
-# strsplit() drops a trailing empty field, so count separators instead
-n_fields <- function(l) nchar(l) - nchar(gsub("\t", "", l, fixed = TRUE)) + 1L
-
 prepare_export <- function(path, t0_nominal) {
   txt <- readLines(path, warn = FALSE)
   hdr <- grep("^Date Time", txt)[1]
-  ncol <- n_fields(txt[hdr])
   label <- trimws(sub("^[^:]*:", "", txt[1]))
 
   body <- data.table::fread(text = paste(txt[hdr:length(txt)], collapse = "\n"))
@@ -39,15 +42,28 @@ prepare_export <- function(path, t0_nominal) {
   body <- body[Elapsed >= t0]
   body[, Elapsed := round(Elapsed - t0, 4)]
 
-  # keep the original preamble as provenance, add the barcode row gDR looks for.
-  # It cannot be line 1: fread(header = TRUE) reads that as column names.
-  pre <- append(txt[seq_len(hdr - 1L)], paste0("Barcode\t", label), after = 1L)
-  pre <- vapply(pre, function(l) paste0(l, strrep("\t", max(0L, ncol - n_fields(l)))),
-                character(1), USE.NAMES = FALSE)
+  # One unnamed sheet: the original preamble kept as provenance, a `Barcode` row
+  # added, then the data block. The loader scans the first column for its two
+  # markers, so the sheet must carry no column names of its own - hence
+  # everything as character and col_names = FALSE below.
+  ncol <- ncol(body)
+  as_row <- function(...) {
+    cells <- c(...)
+    c(cells, rep(NA_character_, ncol - length(cells)))
+  }
 
-  dest <- file.path(out, basename(path))
-  writeLines(pre, dest)
-  data.table::fwrite(body, dest, sep = "\t", append = TRUE, col.names = TRUE)
+  preamble <- lapply(txt[seq_len(hdr - 1L)], function(l) as_row(l))
+  preamble <- append(preamble, list(as_row("Barcode", label)), after = 1L)
+
+  sheet <- rbind(
+    do.call(rbind, preamble),
+    as_row(names(body)[1], names(body)[-1]),
+    as.matrix(body[, lapply(.SD, as.character)])
+  )
+
+  dest <- file.path(out, sub("\\.txt$", ".xlsx", basename(path)))
+  writexl::write_xlsx(as.data.frame(sheet, stringsAsFactors = FALSE), dest,
+                      col_names = FALSE)
   dest
 }
 

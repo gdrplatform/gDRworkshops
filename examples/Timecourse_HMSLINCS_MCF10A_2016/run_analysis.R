@@ -19,7 +19,7 @@ stopifnot(nzchar(templates))
 run_report(
   manifest = file.path(prepared, "manifest_20160421.xlsx"),
   treatment = file.path(prepared, "Template_20160421_308.xlsx"),
-  raw_data = paste(list.files(prepared, pattern = "total\\.txt$", full.names = TRUE),
+  raw_data = paste(list.files(prepared, pattern = "total\\.xlsx$", full.names = TRUE),
                    collapse = ","),
   configuration_file_path = file.path(wd, "raw_data", "time_course_plot_params.yml"),
   # the incucyte directory comes first so its steps win over the shared set
