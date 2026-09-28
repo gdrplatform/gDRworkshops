@@ -15,3 +15,7 @@ Thumbs.db
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/Model.csv
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/meta/
 examples/subsets/PRISMBroadScreen/raw_data/Model.csv
+
+# Timecourse example: derived inputs and generated reports
+examples/Timecourse_HMSLINCS_MCF10A_2016/prepared/
+examples/Timecourse_HMSLINCS_MCF10A_2016/report/
