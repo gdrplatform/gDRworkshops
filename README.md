@@ -39,6 +39,7 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 | **SmallDrugCombo** | [Zhou et al., *Cell Chem Bio* 2026](https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(26)00143-1) | Drug combination (small) |
 | **LargeDrugCombo** | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
 | **PRISMBroadScreen** | [Hagenbeek et al., *Nat Commun* 2026](https://www.nature.com/articles/s41467-026-74722-5) | Single-agent broad screen |
+| **Timecourse_HMSLINCS_MCF10A** | [HMS LINCS Center](https://lincs.hms.harvard.edu/), MCF10A common project 2016 | Time-course (live imaging) |
 
 ## Prerequisites
 
@@ -94,6 +95,7 @@ examples/
 ├── SmallDrugCombo_Zhou_CellChemBio_2026/
 ├── LargeDrugCombo_Goetz_Cancers_2024/
 ├── PRISMBroadScreen_Hagenbeek_NatComm_2026/
+├── Timecourse_HMSLINCS_MCF10A_2016/   # Small enough to run as-is; no subset needed
 └── subsets/                          # Reduced datasets for quick workshop runs
     ├── SmallDrugCombo/
     ├── LargeDrugCombo/
