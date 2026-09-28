@@ -139,6 +139,14 @@ jobs:
           rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
           rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
 
+      - name: Render Timecourse_HMSLINCS_MCF10A_2016 reports
+        shell: Rscript {0}
+        run: |
+          setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
+          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
+          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
+          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
+
       - name: Render PRISMBroadScreen reports
         shell: Rscript {0}
         run: |
