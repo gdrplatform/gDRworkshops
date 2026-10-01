@@ -1,0 +1,106 @@
+plot_date: "261001"
+
+x_axis_text_show: TRUE
+x_axis_text_size: 8
+
+cell_lines:
+- "MCF10A"
+
+early_period:
+- 24
+- 48
+
+late_period:
+- 120
+- 144
+
+normalization_map:
+  early: "early"
+  late: "late"
+
+y_axis_scaling: "free_y"
+
+treatment_comparisons:
+  # Below are auto-generated example groupings. Modify them as needed.
+  # The full dictionary of available treatments is commented out at the bottom.
+  # Example Plot 1
+  - ["DMSO", "Alpelisib 0.0033uM", "Alpelisib 0.01uM", "Alpelisib 0.0317uM", "Alpelisib 0.1uM"]
+  # Example Plot 2
+  - ["DMSO", "Alpelisib 0.3162uM", "Alpelisib 10uM", "Alpelisib 1uM", "Alpelisib 3.1623uM"]
+
+all_colors: [
+  'black', 'darkviolet', '#990000', '#55aa00', '#000066', 'blue', 'red', 'green', 'gray', '#FF8C00', '#00CED1', '#FF1493'
+]
+
+# ==========================================================
+# DICTIONARY OF ALL AVAILABLE TREATMENTS
+# Copy-paste these exact strings into your groupings above:
+# ==========================================================
+# "DMSO"
+# "Alpelisib 0.0033uM"
+# "Alpelisib 0.01uM"
+# "Alpelisib 0.0317uM"
+# "Alpelisib 0.1uM"
+# "Alpelisib 0.3162uM"
+# "Alpelisib 10uM"
+# "Alpelisib 1uM"
+# "Alpelisib 3.1623uM"
+# "Dasatinib 0.0011uM"
+# "Dasatinib 0.0033uM"
+# "Dasatinib 0.01uM"
+# "Dasatinib 0.0317uM"
+# "Dasatinib 0.1uM"
+# "Dasatinib 0.3162uM"
+# "Dasatinib 10uM"
+# "Dasatinib 1uM"
+# "Dasatinib 3.1623uM"
+# "Etoposide 0.0033uM"
+# "Etoposide 0.01uM"
+# "Etoposide 0.0317uM"
+# "Etoposide 0.1uM"
+# "Etoposide 0.3162uM"
+# "Etoposide 10uM"
+# "Etoposide 1uM"
+# "Etoposide 3.1623uM"
+# "Neratinib 0.0004uM"
+# "Neratinib 0.0013uM"
+# "Neratinib 0.0033uM"
+# "Neratinib 0.01uM"
+# "Neratinib 0.0316uM"
+# "Neratinib 0.1uM"
+# "Neratinib 0.3162uM"
+# "Neratinib 1uM"
+# "Neratinib 3.1623uM"
+# "Paclitaxel 0.0001uM"
+# "Paclitaxel 0.0003uM"
+# "Paclitaxel 0.001uM"
+# "Paclitaxel 0.0032uM"
+# "Paclitaxel 0.01uM"
+# "Paclitaxel 0.0316uM"
+# "Paclitaxel 0.1uM"
+# "Paclitaxel 0.3162uM"
+# "Paclitaxel 0uM"
+# "Palbociclib 0.0011uM"
+# "Palbociclib 0.0033uM"
+# "Palbociclib 0.01uM"
+# "Palbociclib 0.0317uM"
+# "Palbociclib 0.1uM"
+# "Palbociclib 0.3162uM"
+# "Palbociclib 10uM"
+# "Palbociclib 1uM"
+# "Palbociclib 3.1623uM"
+# "Trametinib 0.0002uM"
+# "Trametinib 0.0003uM"
+# "Trametinib 0.001uM"
+# "Trametinib 0.003uM"
+# "Trametinib 0.01uM"
+# "Trametinib 0.0316uM"
+# "Trametinib 0.1uM"
+# "Trametinib 0.3162uM"
+# "Vorinostat 0.01uM"
+# "Vorinostat 0.0317uM"
+# "Vorinostat 0.1uM"
+# "Vorinostat 0.3162uM"
+# "Vorinostat 10uM"
+# "Vorinostat 1uM"
+# "Vorinostat 3.1623uM"
