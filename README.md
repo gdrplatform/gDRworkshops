@@ -96,7 +96,7 @@ examples/
 ├── LargeDrugCombo_Goetz_Cancers_2024/
 ├── PRISMBroadScreen_Hagenbeek_NatComm_2026/
 ├── Timecourse_HMSLINCS_MCF10A_2016/   # Small enough to run as-is; no subset needed
-└── subsets/                          # Reduced datasets for quick workshop runs
+└── subsets/                           # Reduced datasets for quick workshop runs
     ├── SmallDrugCombo/
     ├── LargeDrugCombo/
     └── PRISMBroadScreen/
