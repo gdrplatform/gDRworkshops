@@ -40,13 +40,28 @@ experiment `MN20160421`. Raw exports, plate map and plate table are included exa
 
 ```r
 setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
-source("run_analysis.R")
+source("render_report.R")
 ```
 
-That derives the gDR inputs, then renders the three Incucyte reports into `report/v1/`. The
-result worth looking at is `report/v1/plots/cell_count_curves_20160421_MCF10A.pdf`; a copy of it
-is committed here as [`cell_count_curves_20160421_MCF10A.pdf`](cell_count_curves_20160421_MCF10A.pdf)
-so you can see the output without running anything.
+That derives the gDR inputs and then calls `gDR::run_report()`, which writes everything it
+produces into `report/v1/`.
+
+**One such run is committed, whole, as [`report/v1/`](report/v1).** You do not have to run
+anything to read the example, and nothing in that directory was placed there by hand — it is
+what `run_report()` leaves behind:
+
+| In `report/v1/` | What it is |
+|---|---|
+| [`3-analysis.html`](report/v1/3-analysis.html) and the two steps before it | the rendered reports |
+| `1-data_import.Rmd`, `2-processing_and_QC.Rmd`, `3-analysis.Rmd` | the templates the run used, copied in by `run_report()` — gDR's own, not maintained here |
+| [`plots/cell_count_curves_20160421_MCF10A.pdf`](report/v1/plots/cell_count_curves_20160421_MCF10A.pdf) | the growth curves, one page per treatment comparison |
+| `tables/grow_rates.csv` | the growth rates themselves, long and wide |
+| `gDR_data/*.qs2` | the imported table and the MAE — step 2 writes them, step 3 reads them |
+| `raw_data/` | the inputs as staged for the run, plus the draft config step 1 generates |
+| `logs/` | the run log |
+
+Because the templates come from the installed gDR, this directory is also the answer to "what
+does the Incucyte report look like" — there is no copy of it in this repository to drift.
 
 ## Files
 
@@ -55,9 +70,11 @@ so you can see the output without running anything.
 | `raw_data/` | Incucyte exports, published plate map and plate table — all unedited |
 | `raw_data/time_course_plot_params.yml` | the analysis config: phases, normalization, treatment comparisons |
 | `prepare_inputs.R` | derives the gDR manifest and template from the published plate table, and rebases the clock |
-| `run_analysis.R` | calls `gDR::run_report()` with the shipped Incucyte templates |
+| `render_report.R` | calls `gDR::run_report()` with the shipped Incucyte templates |
+| `report/v1/` | one complete run, committed — see above |
 
-`prepared/` and `report/` are generated and git-ignored.
+`prepared/` is generated and git-ignored, as is every run after the first: a local re-run
+lands in `report/v2/` and stays out of the repository.
 
 ## The config is the part you edit
 
