@@ -139,6 +139,25 @@ jobs:
           rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
           rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
 
+      - name: Render Timecourse_HMSLINCS_MCF10A_2016 reports
+        shell: Rscript {0}
+        run: |
+          # runs gDR's own Incucyte templates, so this also covers run_report()
+          setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
+          source("render_report.R")
+          pdf <- "report/v1/plots/cell_count_curves_20160421_MCF10A.pdf"
+          if (!file.exists(pdf)) stop("the per-cell-line PDF was not produced: ", pdf)
+
+      # The committed copy of report/v1/ is refreshed from this artefact, never from a developer
+      # machine: an internal checkout has the whole gDR stack installed, and the reports, the
+      # run log and args.qs2 all record the environment they were produced in.
+      - name: Upload Timecourse report directory
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: timecourse-report-v1
+          path: examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/
+
       - name: Render PRISMBroadScreen reports
         shell: Rscript {0}
         run: |

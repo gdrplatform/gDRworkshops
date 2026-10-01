@@ -15,3 +15,10 @@ Thumbs.db
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/Model.csv
 examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/meta/
 examples/subsets/PRISMBroadScreen/raw_data/Model.csv
+
+# Timecourse example: derived inputs are generated, and so is every run after the first.
+# report/v1/ is committed - it is the output of one run, kept so the example can be read
+# without being run. A local re-run lands in v2, v3, ... and stays out of the repository.
+examples/Timecourse_HMSLINCS_MCF10A_2016/prepared/
+examples/Timecourse_HMSLINCS_MCF10A_2016/report/*
+!examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/
