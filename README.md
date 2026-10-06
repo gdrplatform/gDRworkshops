@@ -39,6 +39,7 @@ This repository contains reproducible analyses demonstrating the gDR workflow on
 | **SmallDrugCombo** | [Zhou et al., *Cell Chem Bio* 2026](https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(26)00143-1) | Drug combination (small) |
 | **LargeDrugCombo** | [Goetz et al., *Cancers* 2024](https://pubmed.ncbi.nlm.nih.gov/39199684/) | Drug combination (large) |
 | **PRISMBroadScreen** | [Hagenbeek et al., *Nat Commun* 2026](https://www.nature.com/articles/s41467-026-74722-5) | Single-agent broad screen |
+| **ChemicalGenomics** | [Hagenbeek et al., *Nat Cancer* 2023](https://www.nature.com/articles/s43018-023-00577-0) | Anchored combination (chemical genomics) |
 
 ## Prerequisites
 
@@ -94,6 +95,7 @@ examples/
 ├── SmallDrugCombo_Zhou_CellChemBio_2026/
 ├── LargeDrugCombo_Goetz_Cancers_2024/
 ├── PRISMBroadScreen_Hagenbeek_NatComm_2026/
+├── ChemicalGenomics_Hagenbeek_NatCancer_2023/
 └── subsets/                          # Reduced datasets for quick workshop runs
     ├── SmallDrugCombo/
     ├── LargeDrugCombo/
