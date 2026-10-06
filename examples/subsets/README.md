@@ -1,14 +1,17 @@
 # Subsets — Quick Workshop Data
 
-Reduced datasets for running the gDR pipeline locally during workshops. Each subset contains the same raw data structure as the full examples but with fewer cell lines, enabling fast execution (~2-5 minutes vs 30+ minutes for full data).
+Reduced datasets for running the gDR pipeline locally during workshops. Each subset mirrors the full example structure but with less data — fewer cell lines, or fewer compounds — enabling fast processing.
 
 ## Datasets
 
-| Subset | Cell lines | Source |
+| Subset | Reduced to | Source |
 |--------|-----------|--------|
-| **SmallDrugCombo** | 4 (full dataset) | Same as full example |
-| **LargeDrugCombo** | 10 (melanoma + SCC) | 43 in full dataset |
-| **PRISMBroadScreen** | 15 (diverse tissues) | 774 in full dataset |
+| **SmallDrugCombo** | 4 cell lines (full dataset) | Same as full example |
+| **LargeDrugCombo** | 10 cell lines (melanoma + SCC) | 43 in full dataset |
+| **PRISMBroadScreen** | 15 cell lines (diverse tissues) | 774 in full dataset |
+| **ChemicalGenomics** | 20 library compounds (both cell lines) | 747 compounds in full dataset |
+
+The ChemicalGenomics screen has only two cell lines, so its subset trims the compound library (the heavy dimension) instead: `1-data_import.Rmd` imports the full plates and keeps 20 library compounds before processing.
 
 ## How to use
 
