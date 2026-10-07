@@ -521,6 +521,21 @@ data_imported <- merge_data(manifest = loaded_data$manifest,
                             cell_line_annotation = cell_line_annotation,
                             drug_annotation = drug_annotation)
 
+# --- SUBSET: keep eight dosing templates (both arms, both cell lines) for a fast demo ---
+# Trims the full screen (140 plates, 747 compounds) to 32 plates / ~170 compounds. Applied
+# right after import, so plate visualisation and every later step already use the subset.
+subset_templates <- c(
+  "Project22.Dosing1.template.xlsx", "Project22.Dosing1combo.template.xlsx",
+  "Project22.Dosing2.template.xlsx", "Project22.Dosing2combo.template.xlsx",
+  "Project22.Dosing3.template.xlsx", "Project22.Dosing3combo.template.xlsx",
+  "Project22.Dosing4.template.xlsx", "Project22.Dosing4combo.template.xlsx",
+  "Project22.Dosing5.template.xlsx", "Project22.Dosing5combo.template.xlsx",
+  "Project22.Dosing6.template.xlsx", "Project22.Dosing6combo.template.xlsx",
+  "Project22.Dosing7.template.xlsx", "Project22.Dosing7combo.template.xlsx",
+  "Project22.Dosing8.template.xlsx", "Project22.Dosing8combo.template.xlsx"
+)
+data_imported <- data_imported[Template %in% subset_templates]
+
 
 ```
 
@@ -616,10 +631,6 @@ cell_line_annotation <- if (file.exists(cell_line_annotation_path)) {
 data_imported <- annotate_dt_with_cell_line(data_imported, cell_line_annotation)
 fwrite(cell_line_annotation, cell_line_annotation_path)
 generate_datatable(cell_line_annotation)
-
-# --- SUBSET: keep 20 library compounds (+ vehicle controls) for a fast demo ---
-subset_gnumbers <- c("G00137", "G00226", "G00231", "G00232", "G00246", "G00353", "G00374", "G00448", "G00475", "G00496", "G00516", "G00588", "G00632", "G00713", "G00729", "G00734", "G00786", "G00808", "G00815", "G00826")
-data_imported <- data_imported[Gnumber %in% c(subset_gnumbers, "vehicle")]
 
 qs_save(data_imported, file.path(wd, "gDR_data", "gDR_input.qs2"))
 
