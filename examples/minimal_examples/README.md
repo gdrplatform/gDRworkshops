@@ -9,6 +9,7 @@ Self-contained R scripts that demonstrate the full gDR pipeline for each dataset
 | `SmallDrugCombo_run_analysis.R` | SmallDrugCombo (Zhou et al.) | Drug combination |
 | `LargeDrugCombo_run_analysis.R` | LargeDrugCombo (Goetz et al.) | Drug combination |
 | `PRISMBroadScreen_run_analysis.R` | PRISMBroadScreen (Hagenbeek et al.) | Single-agent |
+| `ChemicalGenomics_run_analysis.R` | ChemicalGenomics (Hagenbeek et al.) | Anchored combination |
 | `Timecourse_run_analysis.R` | Timecourse (HMS LINCS MCF10A) | Time-course (live imaging) |
 
 ## How to use
