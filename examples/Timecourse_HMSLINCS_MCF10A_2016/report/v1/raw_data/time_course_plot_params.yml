@@ -1,0 +1,55 @@
+# Analysis parameters for the HMS LINCS MCF10A time-course example.
+# Read by step 3 of the gDR Incucyte report.
+
+plot_date: "20160421"
+
+cell_lines: ["MCF10A"]
+
+# Hours since treatment. prepare_inputs.R rebases the instrument clock, which
+# counts from plating, onto the first image after dosing - 24 h later on plates
+# X01-X03 and 48 h later on X04-X06. The series runs to 100 h.
+early_period:
+- 0
+- 24
+
+# (OPTIONAL) delete or comment out mid_period to get two phases instead of three
+mid_period:
+- 36
+- 60
+
+late_period:
+- 72
+- 100
+
+# --- PER-PHASE NORMALIZATION MAP ---
+# "None"  = raw growth rate (log2/day)
+# "early" = normalize by the "early" phase DMSO rate
+# "mid"   = normalize by the "mid" phase DMSO rate
+# "late"  = normalize by the "late" phase DMSO rate
+normalization_map:
+  early: "early"
+  mid: "mid"
+  late: "late"
+# -----------------------------------
+
+# "free_y" = each phase gets its own y-axis; "fixed" = one shared scale
+y_axis_scaling: "free_y"
+
+# --- TREATMENT COMPARISONS ---
+# One page of the output PDF per entry. Labels must match the `treatment` column
+# built by add_treatment_column(): "<DrugName> <concentration>uM", with the
+# concentration rounded to four decimals. Combinations join the arms with " + ",
+# e.g. ["DMSO", "DrugA 1uM", "DrugB 0.5uM", "DrugA 1uM + DrugB 0.5uM"] - this
+# dataset is single-agent only, so none appear below.
+#
+# Eight drugs split into two panels by mechanism, four each. The dose shown for
+# every drug is the tested concentration whose early-window growth rate comes
+# closest to half the untreated rate; where a drug never halves growth over the
+# range tested, the top concentration is used instead (Alpelisib, Paclitaxel).
+treatment_comparisons:
+# growth signalling - the axis MCF10A depends on for proliferation
+- ["DMSO", "Neratinib 0.3162uM", "Alpelisib 10uM", "Trametinib 0.3162uM", "Dasatinib 1uM"]
+# cell cycle, DNA and chromatin
+- ["DMSO", "Palbociclib 0.3162uM", "Paclitaxel 0.01uM", "Etoposide 1uM", "Vorinostat 3.1623uM"]
+
+all_colors: ['black', 'darkviolet', '#990000', '#55aa00', '#000066', 'blue', 'red', 'green', 'gray']
