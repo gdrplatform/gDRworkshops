@@ -19,7 +19,7 @@ experiment `MN20160421`. Raw exports, plate map and plate table are included exa
 | **Tissue** | Breast, non-tumorigenic |
 | **Plates** | 6 × 384-well, 308 wells used per plate |
 | **Drugs** | 8, at 7–9 concentrations each |
-| **Timepoints** | every ~4 h, 0–100 h after treatment |
+| **Timepoints** | every 4 h from treatment: to 96–100 h on plates X01–X03, 76 h on X04, 72 h on X05–X06 |
 | **Analysis type** | Time-course (growth rate per phase) |
 | **Output** | one multi-page PDF per cell line, a page per treatment comparison |
 
