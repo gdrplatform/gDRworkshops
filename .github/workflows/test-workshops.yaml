@@ -23,6 +23,7 @@ on:
 # Fields of an example:
 #   reports:  rendered in order, separated by single spaces
 #   script:   sourced instead of rendering reports
+#   clean:    removed before rendering
 #   expect:   a file the render must have produced
 #   outputs:  uploaded as the artefact, one path per line
 #   timeout:  job limit in minutes
@@ -78,6 +79,7 @@ jobs:
           - name: Timecourse_HMSLINCS_MCF10A_2016
             dir: examples/Timecourse_HMSLINCS_MCF10A_2016
             script: render_report.R
+            clean: report
             expect: report/v1/plots/cell_count_curves_20160421_MCF10A.pdf
             artifact: timecourse-report-v1
             timeout: 60
