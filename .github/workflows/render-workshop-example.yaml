@@ -86,9 +86,7 @@ jobs:
           if (!requireNamespace("remotes", quietly = TRUE))
             install.packages("remotes", lib = lib)
 
-          # gDRimport from branch with CoreGx/PharmacoGx as optional
-          remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional",
-                                  upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRimport", upgrade = "never", lib = lib)
 
           BiocManager::install(c(
             "MultiAssayExperiment", "SummarizedExperiment",
@@ -173,7 +171,7 @@ jobs:
       # internal checkout has the whole gDR stack installed, and the reports, the run log and
       # args.qs2 all record the environment they were produced in.
       - name: Upload ${{ fromJSON(inputs.example).name }} reports
-        if: runner.os == 'Linux'
+        if: ${{ !cancelled() && runner.os == 'Linux' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ fromJSON(inputs.example).artifact }}
