@@ -7,7 +7,9 @@ cell_lines: ["MCF10A"]
 
 # Hours since treatment. prepare_inputs.R rebases the instrument clock, which
 # counts from plating, onto the first image after dosing - 24 h later on plates
-# X01-X03 and 48 h later on X04-X06. The series runs to 100 h.
+# X01-X03 and 48 h later on X04-X06. X01-X03 then run to 96-100 h, X04 to 76 h
+# and X05-X06 to 72 h. Rates are fitted per well, so a window needs at least two
+# time points on every plate; a plate with fewer drops out of the averages.
 early_period:
 - 0
 - 24
@@ -17,9 +19,10 @@ mid_period:
 - 36
 - 60
 
+# ends at 76 h so that every plate contributes the same four time points, 60-72 h
 late_period:
-- 72
-- 100
+- 60
+- 76
 
 # --- PER-PHASE NORMALIZATION MAP ---
 # "None"  = raw growth rate (log2/day)

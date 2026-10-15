@@ -85,25 +85,27 @@ $remove_on_failure
 $resume
 [1] FALSE
 
-1/18                
-2/18 [setup]        
-3/18                
-4/18 [gDR_style]    
-5/18                
-6/18 [libraries]    
-7/18                
-8/18 [get_wd]       
-9/18                
-10/18 [load_data]    
-11/18                
-12/18 [plate_vis]    
-13/18                
-14/18 [cleanup_data] 
-15/18                
-16/18 [summary]      
-17/18                
-18/18 [plot_packages]
-/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 1-data_import.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/1-data_import.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvZZ8IZ/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvZZ8IZ/rmarkdown-str1dc17e13aa32.html --variable code_folding=hide --variable code_menu=1 
+1/20                     
+2/20 [setup]             
+3/20                     
+4/20 [gDR_style]         
+5/20                     
+6/20 [libraries]         
+7/20                     
+8/20 [get_wd]            
+9/20                     
+10/20 [load_data]         
+11/20                     
+12/20 [plate_vis]         
+13/20                     
+14/20 [cleanup_data]      
+15/20                     
+16/20 [report_config_used]
+17/20                     
+18/20 [summary]           
+19/20                     
+20/20 [plot_packages]     
+/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 1-data_import.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/1-data_import.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvsuE8s/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvsuE8s/rmarkdown-str1e4a52a2842c.html --variable code_folding=hide --variable code_menu=1 
 1/26                    
 2/26 [setup]            
 3/26                    
@@ -131,7 +133,7 @@ $resume
 24/26 [create_mae]       
 25/26                    
 26/26 [plot_packages]    
-/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 2-processing_and_QC.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/2-processing_and_QC.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvZZ8IZ/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvZZ8IZ/rmarkdown-str1dc11582319a.html --variable code_folding=hide --variable code_menu=1 
+/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 2-processing_and_QC.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/2-processing_and_QC.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvsuE8s/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvsuE8s/rmarkdown-str1e4a4a44385a.html --variable code_folding=hide --variable code_menu=1 
 1/31                              
 2/31 [setup]                      
 3/31                              
@@ -163,7 +165,7 @@ $resume
 29/31                              
 30/31 [plot_packages]              
 31/31                              
-/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 3-analysis.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/3-analysis.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvZZ8IZ/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvZZ8IZ/rmarkdown-str1dc131f58237.html --variable code_folding=hide --variable code_menu=1 
+/opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc +RTS -K512m -RTS 3-analysis.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/3-analysis.html --lua-filter /home/runner/work/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpvsuE8s/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /home/runner/work/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpvsuE8s/rmarkdown-str1e4a74b74b7b.html --variable code_folding=hide --variable code_menu=1 
 
 Session Info:
 R version 4.6.1 (2026-06-24)
@@ -196,11 +198,11 @@ other attached packages:
 [11] IRanges_2.47.5              S4Vectors_0.51.10          
 [13] BiocGenerics_0.59.12        generics_0.1.4             
 [15] MatrixGenerics_1.25.0       matrixStats_1.5.0          
-[17] gDRplots_0.99.3             summarytools_1.1.5         
+[17] gDRplots_0.99.4             summarytools_1.1.5         
 [19] qs2_0.3.1                   BiocStyle_2.41.0           
 [21] writexl_2.0.1               data.table_1.18.6.1        
-[23] gDR_1.11.8                  gDRutils_1.11.14           
-[25] gDRimport_1.11.4            gDRcore_1.11.16            
+[23] gDR_1.11.11                 gDRutils_1.11.17           
+[25] gDRimport_1.11.4            gDRcore_1.11.18            
 
 loaded via a namespace (and not attached):
  [1] formatR_1.14         tcltk_4.6.1          readxl_1.5.0.1      
