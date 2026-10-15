@@ -2,7 +2,7 @@ name: Test workshop reports
 
 on:
   push:
-    branches: [main, GDR-*]
+    branches: [main]
   pull_request:
     branches: [main]
   # A template change in gDR does not trigger this workflow, so without a schedule the copies
