@@ -144,6 +144,9 @@ jobs:
         run: |
           # runs gDR's own Incucyte templates, so this also covers run_report()
           setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
+          # with the committed report/v1 in place run_report() writes v2, and the
+          # check and the artefact below would see the old copy
+          unlink("report", recursive = TRUE)
           source("render_report.R")
           pdf <- "report/v1/plots/cell_count_curves_20160421_MCF10A.pdf"
           if (!file.exists(pdf)) stop("the per-cell-line PDF was not produced: ", pdf)
