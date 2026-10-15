@@ -23,6 +23,7 @@ jobs:
       EXAMPLE_REPORTS: ${{ fromJSON(inputs.example).reports }}
       EXAMPLE_SCRIPT: ${{ fromJSON(inputs.example).script }}
       EXAMPLE_EXPECT: ${{ fromJSON(inputs.example).expect }}
+      EXAMPLE_CLEAN: ${{ fromJSON(inputs.example).clean }}
 
     steps:
       - uses: actions/checkout@v4
@@ -149,6 +150,12 @@ jobs:
         shell: Rscript {0}
         run: |
           setwd(Sys.getenv("EXAMPLE_DIR"))
+          # a committed output directory would otherwise be left alone: run_report() writes the
+          # next version beside it, and the check and the artefact would read the old copy
+          clean <- Sys.getenv("EXAMPLE_CLEAN")
+          if (nzchar(clean)) {
+            unlink(clean, recursive = TRUE)
+          }
           script <- Sys.getenv("EXAMPLE_SCRIPT")
           if (nzchar(script)) {
             source(script)
