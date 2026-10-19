@@ -2,170 +2,169 @@ name: Test workshop reports
 
 on:
   push:
-    branches: [main, GDR-*]
+    branches: [main]
   pull_request:
     branches: [main]
+  # A template change in gDR does not trigger this workflow, so without a schedule the copies
+  # here drift unnoticed until somebody next pushes.
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      full_datasets:
+        description: Also render the four full datasets (ubuntu only, up to 360 minutes each)
+        type: boolean
+        default: false
 
+# Each example renders in a job of its own, so it gets a runner of its own: its own memory, its
+# own time limit, and its own pass/fail in the checks list. The steps live in
+# render-workshop-example.yaml; the lists below say what each job renders.
+#
+# Fields of an example:
+#   reports:  rendered in order, separated by single spaces
+#   script:   sourced instead of rendering reports
+#   clean:    removed before rendering
+#   expect:   a file the render must have produced
+#   outputs:  uploaded as the artefact, one path per line
+#   timeout:  job limit in minutes
 jobs:
   test-workshops:
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 60
+    name: ${{ matrix.example.name }} (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        r: ['release']
-
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: ${{ matrix.r }}
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-pandoc@v2
-
-      - name: Install system dependencies (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          brew install cmake
-          brew install --cask xquartz
-
-      - name: Install system dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev \
-            libfontconfig1-dev libfreetype6-dev libpng-dev libtiff5-dev \
-            libjpeg-dev libharfbuzz-dev libfribidi-dev libuv1-dev \
-            libmagick++-dev
-
-      - name: Cache R packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.r }}-${{ hashFiles('setup.R') }}
-          restore-keys: |
-            ${{ runner.os }}-r-${{ matrix.r }}-
-
-      - name: Create R library directory
-        run: mkdir -p ${{ env.R_LIBS_USER }}
-        shell: bash
-
-      - name: Install R dependencies
-        shell: Rscript {0}
-        run: |
-          lib <- Sys.getenv("R_LIBS_USER")
-          dir.create(lib, recursive = TRUE, showWarnings = FALSE)
-          .libPaths(c(lib, .libPaths()))
-          options(Ncpus = parallel::detectCores())
-
-          # Use binary repos: PPM for CRAN, r-universe for Bioc (Linux gets binaries!)
-          if (.Platform$OS.type == "unix" && Sys.info()[["sysname"]] == "Linux") {
-            options(repos = c(
-              CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest",
-              BiocManager = "https://bioc.r-universe.dev/bin/linux/noble/4.6",
-              gDR = "https://gdrplatform.r-universe.dev/bin/linux/noble/4.6"
-            ))
-          } else {
-            options(repos = c(CRAN = "https://cloud.r-project.org"))
-          }
-
-          if (!requireNamespace("BiocManager", quietly = TRUE))
-            install.packages("BiocManager", lib = lib)
-          if (!requireNamespace("remotes", quietly = TRUE))
-            install.packages("remotes", lib = lib)
-
-          # gDRimport from branch with CoreGx/PharmacoGx as optional
-          remotes::install_github("gdrplatform/gDRimport@fix/coregx-optional",
-                                  upgrade = "never", lib = lib)
-
-          BiocManager::install(c(
-            "MultiAssayExperiment", "SummarizedExperiment",
-            "BiocStyle", "fgsea"
-          ), ask = FALSE, update = FALSE, lib = lib)
-
-          # gDR packages from GitHub (latest dev, ahead of BioC release)
-          remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
-          remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
-          remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
-          remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
-
-          install.packages(c(
-            "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
-            "summarytools", "svglite", "writexl",
-            "rmarkdown", "knitr", "testthat"
-          ), lib = lib)
-
-          remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
-          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
-
-          # Verify critical packages
-          required <- c("rmarkdown", "gDRcore", "gDRutils", "gDRimport", "gDRplots", "qs2")
-          missing <- required[!sapply(required, requireNamespace, quietly = TRUE)]
-          if (length(missing) > 0) stop("Missing packages: ", paste(missing, collapse = ", "))
-
-      - name: Generate PRISM subset Model.csv
-        shell: Rscript {0}
-        run: |
-          if (!requireNamespace("depmap", quietly = TRUE))
-            BiocManager::install("depmap", ask = FALSE, update = FALSE)
-
-          library(depmap)
-          library(data.table)
-
-          prism_data <- fread("examples/subsets/PRISMBroadScreen/raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025")
-          ccle_names <- unique(prism_data$ccle_name)
-
-          available <- dmfiles()
-          latest_id <- max(available$dataset_id)
-          model_row <- available[available$dataset_id == latest_id & available$name == "Model.csv", ]
-          model_path <- dmget(model_row)
-
-          model_full <- fread(model_path)
-          model_sub <- model_full[CCLEName %in% ccle_names]
-          fwrite(model_sub, "examples/subsets/PRISMBroadScreen/raw_data/Model.csv")
-          message("Model.csv: ", nrow(model_sub), " cell lines")
-
-      - name: Render SmallDrugCombo reports
-        shell: Rscript {0}
-        run: |
-          setwd("examples/subsets/SmallDrugCombo")
-          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
-          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
-          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
-
-      - name: Render TimeCourse_Niepel_CellSyst_2019 reports
-        shell: Rscript {0}
-        run: |
+        example:
+          - name: SmallDrugCombo subset
+            dir: examples/subsets/SmallDrugCombo
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            artifact: subset-smalldrugcombo-reports
+            timeout: 60
+            outputs: |
+              examples/subsets/SmallDrugCombo/*.html
+              examples/subsets/SmallDrugCombo/gDR_data/
+              examples/subsets/SmallDrugCombo/plots/
+              examples/subsets/SmallDrugCombo/tables/
+          - name: PRISMBroadScreen subset
+            dir: examples/subsets/PRISMBroadScreen
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd 3-1-PRISM_analysis.Rmd
+            artifact: subset-prismbroadscreen-reports
+            timeout: 60
+            outputs: |
+              examples/subsets/PRISMBroadScreen/*.html
+              examples/subsets/PRISMBroadScreen/gDR_data/
+              examples/subsets/PRISMBroadScreen/plots/
+              examples/subsets/PRISMBroadScreen/tables/
+          - name: LargeDrugCombo subset
+            dir: examples/subsets/LargeDrugCombo
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            artifact: subset-largedrugcombo-reports
+            timeout: 60
+            outputs: |
+              examples/subsets/LargeDrugCombo/*.html
+              examples/subsets/LargeDrugCombo/gDR_data/
+              examples/subsets/LargeDrugCombo/plots/
+              examples/subsets/LargeDrugCombo/tables/
+          - name: ChemicalGenomics subset
+            dir: examples/subsets/ChemicalGenomics
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            artifact: subset-chemicalgenomics-reports
+            timeout: 60
+            outputs: |
+              examples/subsets/ChemicalGenomics/*.html
+              examples/subsets/ChemicalGenomics/gDR_data/
+              examples/subsets/ChemicalGenomics/plots/
+              examples/subsets/ChemicalGenomics/tables/
           # runs gDR's own Incucyte templates, so this also covers run_report()
-          setwd("examples/TimeCourse_Niepel_CellSyst_2019")
-          # with the committed report/v1 in place run_report() writes v2, and the
-          # check and the artefact below would see the old copy
-          unlink("report", recursive = TRUE)
-          source("render_report.R")
-          pdf <- "report/v1/plots/cell_count_curves_20160421_MCF10A.pdf"
-          if (!file.exists(pdf)) stop("the per-cell-line PDF was not produced: ", pdf)
+          - name: TimeCourse_Niepel_CellSyst_2019
+            dir: examples/TimeCourse_Niepel_CellSyst_2019
+            script: render_report.R
+            clean: report
+            expect: report/v1/plots/cell_count_curves_20160421_MCF10A.pdf
+            artifact: timecourse-report-v1
+            timeout: 60
+            outputs: examples/TimeCourse_Niepel_CellSyst_2019/report/v1/
+    uses: ./.github/workflows/render-workshop-example.yaml
+    with:
+      os: ${{ matrix.os }}
+      example: ${{ toJSON(matrix.example) }}
 
-      # The committed copy of report/v1/ is refreshed from this artefact, never from a developer
-      # machine: an internal checkout has the whole gDR stack installed, and the reports, the
-      # run log and args.qs2 all record the environment they were produced in.
-      - name: Upload Timecourse report directory
-        if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v4
-        with:
-          name: timecourse-report-v1
-          path: examples/TimeCourse_Niepel_CellSyst_2019/report/v1/
+  # The full datasets have never run on a hosted runner and may not fit, so they stay out of the
+  # PR and weekly runs and are rendered on request only. They get the 360-minute ceiling of
+  # GitHub-hosted runners rather than a guess of ours, so a timeout means they do not fit at all.
+  test-full-datasets:
+    name: ${{ matrix.example.name }} (ubuntu-latest)
+    if: github.event_name == 'workflow_dispatch' && inputs.full_datasets
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - name: SmallDrugCombo_Zhou_CellChemBio_2026
+            dir: examples/SmallDrugCombo_Zhou_CellChemBio_2026
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            artifact: smalldrugcombo-zhou-reports
+            timeout: 360
+            outputs: |
+              examples/SmallDrugCombo_Zhou_CellChemBio_2026/*.html
+              examples/SmallDrugCombo_Zhou_CellChemBio_2026/gDR_data/
+              examples/SmallDrugCombo_Zhou_CellChemBio_2026/plots/
+              examples/SmallDrugCombo_Zhou_CellChemBio_2026/tables/
+          - name: PRISMBroadScreen_Hagenbeek_NatComm_2026
+            dir: examples/PRISMBroadScreen_Hagenbeek_NatComm_2026
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd 3-1-PRISM_analysis.Rmd
+            artifact: prismbroadscreen-hagenbeek-reports
+            timeout: 360
+            outputs: |
+              examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/*.html
+              examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/gDR_data/
+              examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/plots/
+              examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/tables/
+          - name: ChemicalGenomics_Hagenbeek_NatCancer_2023
+            dir: examples/ChemicalGenomics_Hagenbeek_NatCancer_2023
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd 3-1-chemical_genomics_analysis.Rmd
+            artifact: chemicalgenomics-hagenbeek-reports
+            timeout: 360
+            outputs: |
+              examples/ChemicalGenomics_Hagenbeek_NatCancer_2023/*.html
+              examples/ChemicalGenomics_Hagenbeek_NatCancer_2023/gDR_data/
+              examples/ChemicalGenomics_Hagenbeek_NatCancer_2023/plots/
+              examples/ChemicalGenomics_Hagenbeek_NatCancer_2023/tables/
+          - name: LargeDrugCombo_Goetz_Cancers_2024
+            dir: examples/LargeDrugCombo_Goetz_Cancers_2024
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            artifact: largedrugcombo-goetz-reports
+            timeout: 360
+            outputs: |
+              examples/LargeDrugCombo_Goetz_Cancers_2024/*.html
+              examples/LargeDrugCombo_Goetz_Cancers_2024/gDR_data/
+              examples/LargeDrugCombo_Goetz_Cancers_2024/plots/
+              examples/LargeDrugCombo_Goetz_Cancers_2024/tables/
+    uses: ./.github/workflows/render-workshop-example.yaml
+    with:
+      os: ubuntu-latest
+      example: ${{ toJSON(matrix.example) }}
 
-      - name: Render PRISMBroadScreen reports
-        shell: Rscript {0}
+  # GitHub emails a failed scheduled run only to the last person who edited this workflow, so a
+  # weekly failure would otherwise reach nobody. It opens an issue assigned to the maintainer
+  # instead, or comments on the one still open, so a failure that persists is one issue, not many.
+  report-weekly-failure:
+    needs: test-workshops
+    if: failure() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the weekly-failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          setwd("examples/subsets/PRISMBroadScreen")
-          rmarkdown::render("1-data_import.Rmd", quiet = TRUE)
-          rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
-          rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
-          rmarkdown::render("3-1-PRISM_analysis.Rmd", quiet = TRUE)
+          title="Weekly workshop render failed"
+          body="The weekly run of test-workshops.yaml failed: $RUN_URL"
+          number=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body" --assignee gladkia
+          fi

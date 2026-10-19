@@ -1,0 +1,178 @@
+name: Render a workshop example
+
+# Called by test-workshops.yaml once per example and OS. The example is passed as one JSON object
+# (see the example lists there) so that both callers share these steps without repeating them.
+on:
+  workflow_call:
+    inputs:
+      os:
+        type: string
+        required: true
+      example:
+        type: string
+        required: true
+
+jobs:
+  render:
+    runs-on: ${{ inputs.os }}
+    timeout-minutes: ${{ fromJSON(inputs.example).timeout }}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      EXAMPLE_DIR: ${{ fromJSON(inputs.example).dir }}
+      EXAMPLE_REPORTS: ${{ fromJSON(inputs.example).reports }}
+      EXAMPLE_SCRIPT: ${{ fromJSON(inputs.example).script }}
+      EXAMPLE_EXPECT: ${{ fromJSON(inputs.example).expect }}
+      EXAMPLE_CLEAN: ${{ fromJSON(inputs.example).clean }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install cmake
+          brew install --cask xquartz
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev \
+            libfontconfig1-dev libfreetype6-dev libpng-dev libtiff5-dev \
+            libjpeg-dev libharfbuzz-dev libfribidi-dev libuv1-dev \
+            libmagick++-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-release-${{ hashFiles('setup.R') }}
+          restore-keys: |
+            ${{ runner.os }}-r-release-
+
+      - name: Create R library directory
+        run: mkdir -p ${{ env.R_LIBS_USER }}
+        shell: bash
+
+      - name: Install R dependencies
+        shell: Rscript {0}
+        run: |
+          lib <- Sys.getenv("R_LIBS_USER")
+          dir.create(lib, recursive = TRUE, showWarnings = FALSE)
+          .libPaths(c(lib, .libPaths()))
+          options(Ncpus = parallel::detectCores())
+
+          # Use binary repos: PPM for CRAN, r-universe for Bioc (Linux gets binaries!)
+          if (.Platform$OS.type == "unix" && Sys.info()[["sysname"]] == "Linux") {
+            options(repos = c(
+              CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest",
+              BiocManager = "https://bioc.r-universe.dev/bin/linux/noble/4.6",
+              gDR = "https://gdrplatform.r-universe.dev/bin/linux/noble/4.6"
+            ))
+          } else {
+            options(repos = c(CRAN = "https://cloud.r-project.org"))
+          }
+
+          if (!requireNamespace("BiocManager", quietly = TRUE))
+            install.packages("BiocManager", lib = lib)
+          if (!requireNamespace("remotes", quietly = TRUE))
+            install.packages("remotes", lib = lib)
+
+          remotes::install_github("gdrplatform/gDRimport", upgrade = "never", lib = lib)
+
+          BiocManager::install(c(
+            "MultiAssayExperiment", "SummarizedExperiment",
+            "BiocStyle", "fgsea"
+          ), ask = FALSE, update = FALSE, lib = lib)
+
+          # gDR packages from GitHub (latest dev, ahead of BioC release)
+          remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
+
+          install.packages(c(
+            "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
+            "summarytools", "svglite", "writexl",
+            "rmarkdown", "knitr", "testthat"
+          ), lib = lib)
+
+          remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
+          remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
+
+          # Verify critical packages
+          required <- c("rmarkdown", "gDRcore", "gDRutils", "gDRimport", "gDRplots", "qs2")
+          missing <- required[!sapply(required, requireNamespace, quietly = TRUE)]
+          if (length(missing) > 0) stop("Missing packages: ", paste(missing, collapse = ", "))
+
+      - name: Generate PRISM subset Model.csv
+        if: env.EXAMPLE_DIR == 'examples/subsets/PRISMBroadScreen'
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("depmap", quietly = TRUE))
+            BiocManager::install("depmap", ask = FALSE, update = FALSE)
+
+          library(depmap)
+          library(data.table)
+
+          prism_data <- fread("examples/subsets/PRISMBroadScreen/raw_data/CPS008_DMC_GENENTECH_LEVEL5_LFC_COMBAT_GDC8025")
+          ccle_names <- unique(prism_data$ccle_name)
+
+          available <- dmfiles()
+          latest_id <- max(available$dataset_id)
+          model_row <- available[available$dataset_id == latest_id & available$name == "Model.csv", ]
+          model_path <- dmget(model_row)
+
+          model_full <- fread(model_path)
+          model_sub <- model_full[CCLEName %in% ccle_names]
+          fwrite(model_sub, "examples/subsets/PRISMBroadScreen/raw_data/Model.csv")
+          message("Model.csv: ", nrow(model_sub), " cell lines")
+
+      # Model.csv and raw_data/meta/ are not redistributed; the example ships the script that
+      # fetches them, so CI runs that script rather than a copy of it.
+      - name: Download PRISMBroadScreen_Hagenbeek_NatComm_2026 DepMap data
+        if: env.EXAMPLE_DIR == 'examples/PRISMBroadScreen_Hagenbeek_NatComm_2026'
+        shell: Rscript {0}
+        run: |
+          source("examples/PRISMBroadScreen_Hagenbeek_NatComm_2026/raw_data/download_ccle_data.R")
+
+      - name: Render ${{ fromJSON(inputs.example).name }} reports
+        shell: Rscript {0}
+        run: |
+          setwd(Sys.getenv("EXAMPLE_DIR"))
+          # a committed output directory would otherwise be left alone: run_report() writes the
+          # next version beside it, and the check and the artefact would read the old copy
+          clean <- Sys.getenv("EXAMPLE_CLEAN")
+          if (nzchar(clean)) {
+            unlink(clean, recursive = TRUE)
+          }
+          script <- Sys.getenv("EXAMPLE_SCRIPT")
+          if (nzchar(script)) {
+            source(script)
+          } else {
+            for (report in strsplit(Sys.getenv("EXAMPLE_REPORTS"), " ")[[1]]) {
+              rmarkdown::render(report, quiet = TRUE)
+            }
+          }
+          expected <- Sys.getenv("EXAMPLE_EXPECT")
+          if (nzchar(expected) && !file.exists(expected)) {
+            stop("the report did not produce ", expected)
+          }
+
+      # Committed reports are refreshed from these artefacts, never from a developer machine: an
+      # internal checkout has the whole gDR stack installed, and the reports, the run log and
+      # args.qs2 all record the environment they were produced in.
+      - name: Upload ${{ fromJSON(inputs.example).name }} reports
+        if: ${{ !cancelled() && runner.os == 'Linux' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ fromJSON(inputs.example).artifact }}
+          path: ${{ fromJSON(inputs.example).outputs }}
