@@ -224,7 +224,7 @@ library(gDRplots)
 
 ```{r get_wd}
 # get working directory path
-wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1"
+wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1"
 
 ```
 
@@ -273,18 +273,18 @@ The process for annotating the data adheres to the guidelines specified in the g
 ```{r load_data}
 #import data
 manifest <- c(
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/manifest_20160421.xlsx"
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/manifest_20160421.xlsx"
 )
 treatment <- c(
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/Template_20160421_308.xlsx"
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/Template_20160421_308.xlsx"
 )
 raw_data <- c(
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X01 total.xlsx",
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X02 total.xlsx",
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X03 total.xlsx",
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X04 total.xlsx",
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X05 total.xlsx",
-  "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/MN20160421_X06 total.xlsx"
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X01 total.xlsx",
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X02 total.xlsx",
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X03 total.xlsx",
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X04 total.xlsx",
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X05 total.xlsx",
+  "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/MN20160421_X06 total.xlsx"
 )
 
 
@@ -379,7 +379,7 @@ generate_incucyte_yaml_draft(
   out_file = draft_yaml_path
 )
 
-config_arg <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/time_course_plot_params.yml"
+config_arg <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/time_course_plot_params.yml"
 
 # Promote the draft only when the run carried no configuration of its own: doing it on top of a
 # supplied one would leave report step 3 with two candidates and silently prefer the generated one.

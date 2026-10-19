@@ -246,8 +246,8 @@ All parameters for this analysis report are controlled by the YAML configuration
 This file defines the time periods, normalization strategy, and plots to be generated. Below is a description of each key parameter, using the file from this run as an example.
 
 ```{r read_config}
-wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1"
-config_arg <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/raw_data/time_course_plot_params.yml"
+wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1"
+config_arg <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1/raw_data/time_course_plot_params.yml"
 config_path <- resolve_incucyte_config_path(config_arg, wd)
 config <- read_yaml(config_path)
 

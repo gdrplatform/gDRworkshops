@@ -236,7 +236,7 @@ library(gDRplots)
 This section loads the cleaned and annotated `data.table` from report step 1 (`gDR_input.qs`), which contains all the merged information from the manifest, template, and raw Incucyte data files.
 
 ```{r drug_dose_layout}
-wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1"
+wd <- "/home/runner/work/gDRworkshops/gDRworkshops/examples/TimeCourse_Niepel_CellSyst_2019/report/v1"
 data_imported <- qs_read(file.path(wd, "gDR_data", "gDR_input.qs2"))
 # Ensure it is explicitly a data.table
 setDT(data_imported)
