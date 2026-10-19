@@ -1,9 +1,9 @@
-# Minimal working example: Timecourse (HMS LINCS MCF10A common project, 2016)
+# Minimal working example: TimeCourse (Niepel et al., Cell Systems 2019)
 # Live-imaging time course: MCF10A-H2B-mCherry, 8 drugs, cell count every ~4 h for five days
 # Run this script from the repository root or set wd below to the dataset path
 #
 # The full example renders gDR's own Incucyte reports (see
-# ../Timecourse_HMSLINCS_MCF10A_2016/render_report.R). This script does the same pipeline by
+# ../TimeCourse_Niepel_CellSyst_2019/render_report.R). This script does the same pipeline by
 # hand, so each step is visible: import -> SE -> LogFoldChange -> growth rates per window.
 
 library(gDR)
@@ -24,7 +24,7 @@ wd <- local({
     d <- dirname(rstudioapi::getSourceEditorContext()$path)
   if (is.null(d) || !nzchar(d))
     stop("Cannot determine script directory. Run via source(), Rscript, or Source button.")
-  normalizePath(file.path(d, "..", "Timecourse_HMSLINCS_MCF10A_2016"))
+  normalizePath(file.path(d, "..", "TimeCourse_Niepel_CellSyst_2019"))
 })
 
 # ==============================================================================
@@ -129,4 +129,4 @@ ggplot(growth_dt[DrugName != "vehicle" & !is.na(NormalizedGrowthRate)],
   theme_bw()
 
 message("\nDone! The same analysis as gDR's Incucyte reports - see ",
-        "../Timecourse_HMSLINCS_MCF10A_2016/render_report.R for the report route.")
+        "../TimeCourse_Niepel_CellSyst_2019/render_report.R for the report route.")

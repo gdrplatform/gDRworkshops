@@ -1,7 +1,9 @@
-# Timecourse — HMS LINCS MCF10A common project, 2016
+# TimeCourse — Niepel et al., Cell Systems 2019
 
 Live-imaging drug response in non-tumorigenic mammary epithelial cells. Six 384-well plates of
 MCF10A-H2B-mCherry imaged in an Incucyte every four hours for five days under eight drugs.
+
+**Publication:** [Niepel et al., *Cell Systems* 2019](https://pubmed.ncbi.nlm.nih.gov/31302153/)
 
 This is the time-course example: the readout is a cell count per well over time rather than a
 single endpoint, so it runs through gDR's **Incucyte report** — the same templates the platform
@@ -39,7 +41,7 @@ experiment `MN20160421`. Raw exports, plate map and plate table are included exa
 ## Quick start
 
 ```r
-setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
+setwd("examples/TimeCourse_Niepel_CellSyst_2019")
 source("render_report.R")
 ```
 

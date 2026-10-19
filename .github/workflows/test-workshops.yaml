@@ -139,11 +139,11 @@ jobs:
           rmarkdown::render("2-processing_and_QC.Rmd", quiet = TRUE)
           rmarkdown::render("3-analysis.Rmd", quiet = TRUE)
 
-      - name: Render Timecourse_HMSLINCS_MCF10A_2016 reports
+      - name: Render TimeCourse_Niepel_CellSyst_2019 reports
         shell: Rscript {0}
         run: |
           # runs gDR's own Incucyte templates, so this also covers run_report()
-          setwd("examples/Timecourse_HMSLINCS_MCF10A_2016")
+          setwd("examples/TimeCourse_Niepel_CellSyst_2019")
           # with the committed report/v1 in place run_report() writes v2, and the
           # check and the artefact below would see the old copy
           unlink("report", recursive = TRUE)
@@ -159,7 +159,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: timecourse-report-v1
-          path: examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/
+          path: examples/TimeCourse_Niepel_CellSyst_2019/report/v1/
 
       - name: Render PRISMBroadScreen reports
         shell: Rscript {0}
