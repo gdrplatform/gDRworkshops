@@ -76,14 +76,14 @@ jobs:
               examples/subsets/ChemicalGenomics/plots/
               examples/subsets/ChemicalGenomics/tables/
           # runs gDR's own Incucyte templates, so this also covers run_report()
-          - name: Timecourse_HMSLINCS_MCF10A_2016
-            dir: examples/Timecourse_HMSLINCS_MCF10A_2016
+          - name: TimeCourse_Niepel_CellSyst_2019
+            dir: examples/TimeCourse_Niepel_CellSyst_2019
             script: render_report.R
             clean: report
             expect: report/v1/plots/cell_count_curves_20160421_MCF10A.pdf
             artifact: timecourse-report-v1
             timeout: 60
-            outputs: examples/Timecourse_HMSLINCS_MCF10A_2016/report/v1/
+            outputs: examples/TimeCourse_Niepel_CellSyst_2019/report/v1/
     uses: ./.github/workflows/render-workshop-example.yaml
     with:
       os: ${{ matrix.os }}
