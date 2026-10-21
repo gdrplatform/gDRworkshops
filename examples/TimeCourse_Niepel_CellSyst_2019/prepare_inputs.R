@@ -12,6 +12,9 @@
 #  3. `Elapsed` counts from plating, not from treatment - and treatment starts
 #     24 h later on three plates and 48 h later on the other three. The clock is
 #     rebased here so that time zero is the first image after dosing.
+#  4. After the rebase the plates end at different times (X05-X06 at 72 h, X01-X03
+#     at 96-100 h), so later means come from fewer plates and the curves bump.
+#     Images after the last time point all plates share are dropped.
 #
 # The prepared exports are written as .xlsx rather than text. A worksheet has
 # explicit cells, so the metadata preamble and the much wider data block coexist
@@ -27,12 +30,11 @@ raw <- file.path(wd, "raw_data")
 out <- file.path(wd, "prepared")
 dir.create(out, showWarnings = FALSE)
 
-# --- 1 + 3. instrument exports ------------------------------------------------
+# --- 1, 3 + 4. instrument exports ----------------------------------------------
 
-prepare_export <- function(path, t0_nominal) {
+read_export <- function(path, t0_nominal) {
   txt <- readLines(path, warn = FALSE)
   hdr <- grep("^Date Time", txt)[1]
-  label <- trimws(sub("^[^:]*:", "", txt[1]))
 
   body <- data.table::fread(text = paste(txt[hdr:length(txt)], collapse = "\n"))
   # snap to the image nearest T0 rather than subtracting the nominal offset:
@@ -41,6 +43,14 @@ prepare_export <- function(path, t0_nominal) {
   t0 <- body$Elapsed[which.min(abs(body$Elapsed - t0_nominal))]
   body <- body[Elapsed >= t0]
   body[, Elapsed := round(Elapsed - t0, 4)]
+  list(path = path, txt = txt, hdr = hdr, body = body)
+}
+
+write_export <- function(export, t_end) {
+  txt <- export$txt
+  hdr <- export$hdr
+  body <- export$body[Elapsed <= t_end]
+  label <- trimws(sub("^[^:]*:", "", txt[1]))
 
   # One unnamed sheet: the original preamble kept as provenance, a `Barcode` row
   # added, then the data block. The loader scans the first column for its two
@@ -61,7 +71,7 @@ prepare_export <- function(path, t0_nominal) {
     as.matrix(body[, lapply(.SD, as.character)])
   )
 
-  dest <- file.path(out, sub("\\.txt$", ".xlsx", basename(path)))
+  dest <- file.path(out, sub("\\.txt$", ".xlsx", basename(export$path)))
   writexl::write_xlsx(as.data.frame(sheet, stringsAsFactors = FALSE), dest,
                       col_names = FALSE)
   dest
@@ -74,11 +84,13 @@ plate_tab[, t0_nominal := as.numeric(difftime(
   units = "hours"))]
 stopifnot(all(plate_tab$t0_nominal > 0))
 
-results_files <- vapply(seq_len(nrow(plate_tab)), function(i) {
+exports <- lapply(seq_len(nrow(plate_tab)), function(i) {
   f <- list.files(raw, pattern = paste0("^", plate_tab$Barcode[i], " total\\.txt$"), full.names = TRUE)
   stopifnot(length(f) == 1L)
-  prepare_export(f, plate_tab$t0_nominal[i])
-}, character(1))
+  read_export(f, plate_tab$t0_nominal[i])
+})
+t_end <- min(vapply(exports, function(e) max(e$body$Elapsed), numeric(1)))
+results_files <- vapply(exports, write_export, character(1), t_end = t_end)
 
 # --- 2. plate map and manifest ------------------------------------------------
 
@@ -113,5 +125,5 @@ write_xlsx(data.table(
   T0date        = plate_tab$T0date
 ), manifest_file)
 
-message(sprintf("prepared %d plates, %d wells -> %s",
-                nrow(plate_tab), nrow(layout), out))
+message(sprintf("prepared %d plates, %d wells, 0-%g h -> %s",
+                nrow(plate_tab), nrow(layout), t_end, out))
