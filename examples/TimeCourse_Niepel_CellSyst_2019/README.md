@@ -86,12 +86,16 @@ lands in `report/v2/` and stays out of the repository.
 
 Treatment labels must match the `treatment` column that `add_treatment_column()` builds:
 `"<DrugName> <concentration>uM"`, concentration rounded to four decimals, combination arms
-joined with `" + "`. This dataset is single-agent only, so the two comparisons here group the
-eight drugs by mechanism — growth signalling, then cell cycle and DNA — at one dose each.
+joined with `" + "`. This dataset is single-agent only, so there is one comparison per drug:
+DMSO and every tested concentration, lowest first. The lowest Paclitaxel dose rounds to
+`"Paclitaxel 0uM"`.
 
-The dose shown per drug is the tested concentration whose early-window growth rate comes closest
-to half the untreated rate; where a drug never halves growth over the range tested, the top
-concentration is used instead.
+The comparisons are the analysis, not a fixed layout — pick them for what the study asks. They
+apply to every cell line in the report; different comparisons per cell line mean separate runs.
+
+`all_colors` is applied in order to each comparison. Doses of one drug take a single-hue ramp,
+light to dark, so the order reads from the colour; different drugs or combinations on one page
+take distinct hues — the config keeps both lists, the second commented out.
 
 ## Two things worth knowing before you adapt this
 
