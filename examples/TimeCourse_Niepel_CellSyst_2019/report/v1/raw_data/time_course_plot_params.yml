@@ -6,23 +6,17 @@ plot_date: "20160421"
 cell_lines: ["MCF10A"]
 
 # Hours since treatment. prepare_inputs.R rebases the instrument clock, which
-# counts from plating, onto the first image after dosing - 24 h later on plates
-# X01-X03 and 48 h later on X04-X06. X01-X03 then run to 96-100 h, X04 to 76 h
-# and X05-X06 to 72 h. Rates are fitted per well, so a window needs at least two
-# time points on every plate; a plate with fewer drops out of the averages.
+# counts from plating, onto the first image after dosing, and cuts every plate at
+# 72 h, the last time point all six share.
 early_period:
 - 0
 - 24
 
-# (OPTIONAL) delete or comment out mid_period to get two phases instead of three
-mid_period:
-- 36
-- 60
+# (OPTIONAL) add a mid_period to get three phases instead of two
 
-# ends at 76 h so that every plate contributes the same four time points, 60-72 h
 late_period:
-- 60
-- 76
+- 24
+- 48
 
 # --- PER-PHASE NORMALIZATION MAP ---
 # "None"  = raw growth rate (log2/day)
@@ -31,7 +25,6 @@ late_period:
 # "late"  = normalize by the "late" phase DMSO rate
 normalization_map:
   early: "early"
-  mid: "mid"
   late: "late"
 # -----------------------------------
 
