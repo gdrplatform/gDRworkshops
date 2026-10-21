@@ -73,8 +73,8 @@ colData(se_tc)      # plates
 
 # periods and normalization_map have no defaults and change the answer more than anything else
 # here. "None" keeps the raw rate; naming a period divides by the DMSO rate of that period.
-periods <- list(early = c(0, 24), mid = c(36, 60), late = c(60, 76))
-norm_map <- c(early = "early", mid = "mid", late = "late")
+periods <- list(early = c(0, 24), late = c(24, 48))
+norm_map <- c(early = "early", late = "late")
 
 # Which timepoints actually fall in each window - a window can hold fewer points than intended
 get_period_timepoints(se_tc, periods)
