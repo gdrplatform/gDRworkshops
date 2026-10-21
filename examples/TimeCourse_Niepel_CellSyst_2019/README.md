@@ -21,7 +21,7 @@ experiment `MN20160421`. Raw exports, plate map and plate table are included exa
 | **Tissue** | Breast, non-tumorigenic |
 | **Plates** | 6 × 384-well, 308 wells used per plate |
 | **Drugs** | 8, at 7–9 concentrations each |
-| **Timepoints** | every 4 h from treatment: to 96–100 h on plates X01–X03, 76 h on X04, 72 h on X05–X06 |
+| **Timepoints** | every 4 h from treatment to 72 h (published: to 96–100 h on X01–X03, 76 h on X04, 72 h on X05–X06) |
 | **Analysis type** | Time-course (growth rate per phase) |
 | **Output** | one multi-page PDF per cell line, a page per treatment comparison |
 
@@ -103,7 +103,9 @@ take distinct hues — the config keeps both lists, the second commented out.
 the start of imaging, which here is plating. Treatment begins 24 h later on three plates and 48 h
 later on the other three, per the `T0date` column of the plate table. `prepare_inputs.R` rebases
 each plate onto the first image after dosing; skipping that step mixes pre-treatment growth into
-the response, and the two plate groups contribute different amounts of it.
+the response, and the two plate groups contribute different amounts of it. After the rebase the
+plates end at different times, so the script also cuts them at 72 h, the last time point all six
+share; past it each mean would come from fewer plates and the curves would bump.
 
 **The `treatment` marker in the report is drawn at a fixed 10 h.** It is not read from the config,
 so on this dataset — where the clock has been rebased and treatment is at 0 — the labelled line
