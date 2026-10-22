@@ -18,6 +18,11 @@ late_period:
 - 24
 - 48
 
+# Labels the plots show for the phases; the tables keep early/late
+period_labels:
+  early: "24h"
+  late: "48h"
+
 # --- PER-PHASE NORMALIZATION MAP ---
 # "None"  = raw growth rate (log2/day)
 # "early" = normalize by the "early" phase DMSO rate
@@ -27,6 +32,9 @@ normalization_map:
   early: "early"
   late: "late"
 # -----------------------------------
+
+# "GR" = GR value, 2^(rate / rate_0) - 1; "NormalizedGrowthRate" (default) = rate / rate_0
+growth_metric: "GR"
 
 # "free_y" = each phase gets its own y-axis; "fixed" = one shared scale
 y_axis_scaling: "free_y"
