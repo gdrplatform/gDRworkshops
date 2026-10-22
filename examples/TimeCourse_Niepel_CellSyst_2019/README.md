@@ -82,7 +82,9 @@ lands in `report/v2/` and stays out of the repository.
 
 `time_course_plot_params.yml` is where an analysis is defined. It sets the phases
 (`early_period`, optional `mid_period`, `late_period`), how each phase is normalized, and
-`treatment_comparisons` — a list of treatment sets, one page of the output PDF each.
+`treatment_comparisons` — a list of treatment sets, one page of the output PDF each. Here the
+normalized phases are shown as GR values (`growth_metric: "GR"`) and labelled by the hour they
+end at (`period_labels`); the tables keep `early` and `late`.
 
 Treatment labels must match the `treatment` column that `add_treatment_column()` builds:
 `"<DrugName> <concentration>uM"`, concentration rounded to four decimals, combination arms
