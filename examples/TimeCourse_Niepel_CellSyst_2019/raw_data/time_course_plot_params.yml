@@ -8,17 +8,20 @@ cell_lines: ["MCF10A"]
 # Hours since treatment. prepare_inputs.R rebases the instrument clock, which
 # counts from plating, onto the first image after dosing, and cuts every plate at
 # 72 h, the last time point all six share.
+# 12-h windows centred on 24 h and 48 h, as in Niepel et al. 2019. Images come every
+# 4 h, so each window holds three of them (20-28 h and 44-52 h).
 early_period:
-- 0
-- 24
+- 18
+- 30
 
 # (OPTIONAL) add a mid_period to get three phases instead of two
 
 late_period:
-- 24
-- 48
+- 42
+- 54
 
-# Labels the plots show for the phases; the tables keep early/late
+# Labels the plots show for the phases, named by the hour each window is centred on;
+# the tables keep early/late
 period_labels:
   early: "24h"
   late: "48h"
