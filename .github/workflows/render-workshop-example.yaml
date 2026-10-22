@@ -97,7 +97,7 @@ jobs:
           remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
           remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
           remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
-          remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDR@GDR-3742", upgrade = "never", lib = lib)  # TEMP: drop before merge
 
           install.packages(c(
             "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
