@@ -107,7 +107,8 @@ jobs:
 
           # gDR packages from GitHub (latest dev, ahead of BioC release)
           remotes::install_github("gdrplatform/gDRutils", upgrade = "never", lib = lib)
-          remotes::install_github("gdrplatform/gDRcore", upgrade = "never", lib = lib)
+          # TODO: back to main once the MuSyC fit function is merged in gDRcore
+          remotes::install_github("gdrplatform/gDRcore@GDR-3770", upgrade = "never", lib = lib)
           remotes::install_github("gdrplatform/gDRtestData", upgrade = "never", lib = lib)
           remotes::install_github("gdrplatform/gDR", upgrade = "never", lib = lib)
 
