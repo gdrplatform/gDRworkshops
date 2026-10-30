@@ -29,6 +29,7 @@ Large-scale drug combination screen evaluating RAF/MEK inhibitor synergy in skin
 | 1 | [data_import](1-data_import.html) | Import raw CSV plate reader files into gDR format |
 | 2 | [processing_and_QC](2-processing_and_QC.html) | Dose-response processing and quality control |
 | 3 | [analysis](3-analysis.html) | Synergy analysis (Bliss, HSA) and visualization |
+| 4 | [custom_fitting_musyc](4-custom_fitting_musyc.html) | Custom fitting: MuSyC synergy of potency and efficacy with `apply_fit()` |
 
 ## Quick start
 
