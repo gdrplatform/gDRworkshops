@@ -341,6 +341,23 @@ ggplot(compare, aes(bliss_score, beta)) +
 
 Bliss is positive in `r sum(compare$bliss_score > 0)` of `r NROW(compare)` fits, while `beta` exceeds 0.1 in only `r sum(compare$beta > 0.1)` of them and `log2(alpha)` is positive in `r sum(compare$log2_alpha > 0)`. In these data the combinations are synergistic mainly through **potency** — each drug makes the other work at lower doses — rather than through a deeper maximal effect, a distinction a single score cannot make.
 
+# MuSyC in the gDRplots combination plots
+
+The MuSyC assay has the layout of the native `scores` assay — one row per drug pair, cell line and normalization type — so the gDRplots functions that draw the Bliss score in Step 3 draw any of its columns. `log2_alpha` is clipped to [-10, 10], as in `musyc_summary_fn()`.
+
+```{r gdrplots_heatmap, fig.width=10, fig.height=6}
+musyc_params[, log2_alpha := pmin(pmax((log2(alpha12) + log2(alpha21)) / 2, -10), 10)]
+hm <- pheatmap_with_anno_combo(musyc_params, metric = "log2_alpha", fit_source = "musyc",
+                               hm_title = "MuSyC mean log2(alpha), GR")
+grid::grid.newpage()
+grid::grid.draw(hm$heatmap$gtable)
+```
+
+```{r gdrplots_boxplot, fig.width=10, fig.height=5}
+plot_boxplot_metric_combo(musyc_params, group_var = cell_line_col, metric = "beta",
+                          fit_source = "musyc", colored_pts_flag = TRUE)
+```
+
 # Provenance
 
 `apply_fit()` records how each assay was produced in the SE metadata, including the versions of the Python packages the MuSyC fit ran with, so the numbers can be traced back to the exact model.
