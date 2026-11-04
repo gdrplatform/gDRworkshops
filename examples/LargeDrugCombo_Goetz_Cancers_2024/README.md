@@ -36,6 +36,8 @@ Large-scale drug combination screen evaluating RAF/MEK inhibitor synergy in skin
 1. Set your working directory to this folder in RStudio
 2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
 
+Step 4 needs more than `setup.R` installs: gDRutils and gDRcore from GitHub (`remotes::install_github(c("gdrplatform/gDRutils", "gdrplatform/gDRcore"))`, as `musyc_fit_fn()` is not on Bioconductor yet) and the Python `synergy` package (`reticulate::py_install("synergy", pip = TRUE)`).
+
 ## Data
 
 | Directory | Contents |
