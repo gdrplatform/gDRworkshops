@@ -224,7 +224,7 @@ The model here is **MuSyC** (multi-dimensional synergy of combinations, Meyer et
 * **synergy of potency**, `alpha12` and `alpha21`: one drug shifts the potency of the other (`alpha > 1` synergistic, `alpha < 1` antagonistic);
 * **synergy of efficacy**, `beta`: the combination reaches a deeper maximal effect than the stronger drug alone (`beta > 0` synergistic).
 
-The fit function, `gDRcore::musyc_fit_fn()`, runs the fit in the Python `synergy` package through `reticulate`. Install it once with `reticulate::py_install("synergy", pip = TRUE)`.
+The fit function, `gDRcore::musyc_fit_fn()`, runs the fit in the Python `synergy` package through `reticulate`. Install it once with `reticulate::py_install("synergy", pip = TRUE)`. It needs gDRcore 1.11.30 or later, which is not on Bioconductor yet: install gDRutils and gDRcore from GitHub with `remotes::install_github(c("gdrplatform/gDRutils", "gdrplatform/gDRcore"))`.
 
 ```{r libraries}
 library(qs2)
@@ -238,7 +238,11 @@ library(ggplot2)
 ```
 
 ```{r check_python}
-if (!reticulate::py_module_available("synergy")) {
+if (packageVersion("gDRcore") < "1.11.30") {
+  stop("This report needs gDRcore 1.11.30 or later: ",
+       "remotes::install_github(c(\"gdrplatform/gDRutils\", \"gdrplatform/gDRcore\"))")
+}
+if (!musyc_available()) {
   stop("This report needs the Python 'synergy' package: reticulate::py_install(\"synergy\", pip = TRUE)")
 }
 ```
@@ -293,19 +297,21 @@ assayNames(combo_se)
 ```{r musyc_tables}
 musyc_params <- convert_se_assay_to_dt(combo_se, "musyc_params")
 musyc_summary <- convert_se_assay_to_dt(combo_se, "musyc_summary")
-param_cols <- c("E3", "h1", "h2", "C1", "C2", "alpha12", "alpha21", "beta", "r2", "converged")
+clip_log2 <- function(v) pmin(pmax(log2(v), -10), 10)
+musyc_params[, log2_alpha := (clip_log2(alpha12) + clip_log2(alpha21)) / 2]
+param_cols <- c("E3", "h1", "h2", "C1", "C2", "alpha12", "alpha21", "log2_alpha", "beta", "r2", "converged")
 musyc_gr <- musyc_params[normalization_type == "GR", c(id_cols, param_cols), with = FALSE]
 generate_datatable(musyc_gr[, lapply(.SD, function(v) if (is.numeric(v)) signif(v, 3) else v)])
 ```
 
-All `r sum(musyc_params$converged)` of `r NROW(musyc_params)` fits converged; the median R² is `r round(median(musyc_params$r2), 3)`.
+`log2_alpha` is the mean of `log2(alpha12)` and `log2(alpha21)`, each clipped to [-10, 10] first, as in `musyc_summary_fn()`. `r sum(musyc_params$converged %in% TRUE)` of `r NROW(musyc_params)` fits converged, with a median R² of `r round(median(musyc_params[converged %in% TRUE, r2]), 3)`. A fit that does not converge has `NA` parameters and is left out below.
 
 # Potency and efficacy synergy
 
 Each point is one cell line and drug pair (GR). Points to the right show synergy of potency, points above zero synergy of efficacy.
 
 ```{r potency_efficacy, fig.width=8, fig.height=5}
-musyc_gr[, log2_alpha := (log2(alpha12) + log2(alpha21)) / 2]
+musyc_gr <- musyc_gr[converged %in% TRUE]
 musyc_gr[, pair := paste(get(drug_col), "x", get(drug2_col))]
 ggplot(musyc_gr, aes(log2_alpha, beta, colour = pair)) +
   geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
@@ -325,11 +331,10 @@ The native `scores` assay holds the Bliss score of Step 3: one number for the ex
 ```{r musyc_vs_bliss, fig.width=8, fig.height=5}
 scores <- convert_se_assay_to_dt(combo_se, "scores")
 compare <- merge(
-  musyc_params[, c(id_cols, "alpha12", "alpha21", "beta"), with = FALSE],
+  musyc_params[converged %in% TRUE, c(id_cols, "log2_alpha", "beta"), with = FALSE],
   scores[, c(id_cols, "bliss_score"), with = FALSE],
   by = id_cols
 )
-compare[, log2_alpha := (log2(alpha12) + log2(alpha21)) / 2]
 ggplot(compare, aes(bliss_score, beta)) +
   geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
   geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
@@ -339,14 +344,29 @@ ggplot(compare, aes(bliss_score, beta)) +
   theme_bw()
 ```
 
-Bliss is positive in `r sum(compare$bliss_score > 0)` of `r NROW(compare)` fits, while `beta` exceeds 0.1 in only `r sum(compare$beta > 0.1)` of them and `log2(alpha)` is positive in `r sum(compare$log2_alpha > 0)`. In these data the combinations are synergistic mainly through **potency** — each drug makes the other work at lower doses — rather than through a deeper maximal effect, a distinction a single score cannot make.
+```{r synergy_counts, echo=FALSE}
+compare_gr <- compare[normalization_type == "GR"]
+n_bliss <- sum(compare_gr$bliss_score > 0, na.rm = TRUE)
+n_efficacy <- sum(compare_gr$beta > 0.1)
+n_potency <- sum(compare_gr$log2_alpha > 1)
+main_route <- if (n_potency + n_efficacy == 0) {
+  "neither from **potency** nor from **efficacy** above these thresholds"
+} else if (n_potency >= 2 * n_efficacy) {
+  "mostly through **potency** — each drug makes the other work at lower doses — rather than through a deeper maximal effect"
+} else if (n_efficacy >= 2 * n_potency) {
+  "mostly through **efficacy** — a deeper maximal effect than the stronger drug alone — rather than through potency"
+} else {
+  "through both **potency** and **efficacy**, neither twice as often as the other"
+}
+```
+
+Of the `r NROW(compare_gr)` converged GR fits, Bliss is positive in `r n_bliss`. `beta` exceeds 0.1 (the dead zone of `musyc_summary_fn()`) in `r n_efficacy` of them, and `log2(alpha)` exceeds 1, at least a two-fold shift in potency, in `r n_potency`. In these data the synergy comes `r main_route`. A single score such as Bliss cannot tell these apart.
 
 # MuSyC in the gDRplots combination plots
 
-The MuSyC assay has the layout of the native `scores` assay — one row per drug pair, cell line and normalization type — so the gDRplots functions that draw the Bliss score in Step 3 draw any of its columns. `log2_alpha` is clipped to [-10, 10], as in `musyc_summary_fn()`.
+The MuSyC assay has the layout of the native `scores` assay — one row per drug pair, cell line and normalization type — so the gDRplots functions that draw the Bliss score in Step 3 draw any of its columns, `log2_alpha` included.
 
 ```{r gdrplots_heatmap, fig.width=10, fig.height=6}
-musyc_params[, log2_alpha := pmin(pmax((log2(alpha12) + log2(alpha21)) / 2, -10), 10)]
 hm <- pheatmap_with_anno_combo(musyc_params, metric = "log2_alpha", fit_source = "musyc",
                                hm_title = "MuSyC mean log2(alpha), GR")
 grid::grid.newpage()
