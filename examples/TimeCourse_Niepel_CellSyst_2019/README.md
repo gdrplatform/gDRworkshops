@@ -83,9 +83,10 @@ lands in `report/v2/` and stays out of the repository.
 `time_course_plot_params.yml` is where an analysis is defined. It sets the phases
 (`early_period`, optional `mid_period`, `late_period`), how each phase is normalized, and
 `treatment_comparisons` — a list of treatment sets, one page of the output PDF each. Here the
-phases are the 12-h windows of the paper, 18-30 h and 42-54 h; they are labelled by the hour
-each is centred on (`period_labels`: "24h", "48h") and the normalized phases are shown as GR
-values (`growth_metric: "GR"`). The tables keep `early` and `late`.
+phases are the 12-h windows of the paper's Figure 4, 18-30 h and 42-54 h; they are labelled by
+the hour each is centred on (`period_labels`: "24h", "48h") and the normalized phases are shown
+as GR values (`growth_metric: "GR"`). The tables keep `early` and `late`. `treatment_time: 0`
+puts the treatment marker at 0 h, where the rebased clock starts.
 
 Treatment labels must match the `treatment` column that `add_treatment_column()` builds:
 `"<DrugName> <concentration>uM"`, concentration rounded to four decimals, combination arms
@@ -100,7 +101,7 @@ apply to every cell line in the report; different comparisons per cell line mean
 light to dark, so the order reads from the colour; different drugs or combinations on one page
 take distinct hues — the config keeps both lists, the second commented out.
 
-## Two things worth knowing before you adapt this
+## One thing worth knowing before you adapt this
 
 **The instrument clock is not the experiment clock.** `Elapsed` in an Incucyte export counts from
 the start of imaging, which here is plating. Treatment begins 24 h later on three plates and 48 h
@@ -109,7 +110,3 @@ each plate onto the first image after dosing; skipping that step mixes pre-treat
 the response, and the two plate groups contribute different amounts of it. After the rebase the
 plates end at different times, so the script also cuts them at 72 h, the last time point all six
 share; past it each mean would come from fewer plates and the curves would bump.
-
-**The `treatment` marker in the report is drawn at a fixed 10 h.** It is not read from the config,
-so on this dataset — where the clock has been rebased and treatment is at 0 — the labelled line
-sits in the wrong place. The curves and the phase windows are unaffected.
