@@ -566,6 +566,56 @@ sa_compare[, .(n = .N, spearman = round(stats::cor(musyc, gdr, method = "spearma
 
 Points far from the diagonal are mostly drugs with no effect in that cell line, where gDR reports a constant fit and the slope means nothing, and curves whose gDR slope sits at its upper bound of 5.
 
+## Per-combination panels {.tabset .tabset-fade .tabset-pills}
+
+Step 3 shows each combination as a panel of heatmaps over the dose grid. Here the panel holds the averaged response the fit was given, the MuSyC surface evaluated on the same grid, and their difference. The residual shows where the model misses the data, which `r2` sums up in one number. The measured and fitted heatmaps share one scale.
+
+```{r musyc_surface}
+synergy_py <- reticulate::import("synergy.combination", convert = FALSE)
+conc_col <- get_env_identifiers("concentration")
+conc2_col <- get_env_identifiers("concentration2")
+musyc_surface <- function(grid, fit) {
+  model <- do.call(synergy_py$MuSyC, c(as.list(fit[, c("E0", "E1", "E2", "E3", "h1", "h2", "C1", "C2",
+                                                      "alpha12", "alpha21")]),
+                                       list(gamma12 = 1, gamma21 = 1)))
+  as.numeric(reticulate::py_to_r(model$E(reticulate::np_array(grid[[conc_col]]),
+                                         reticulate::np_array(grid[[conc2_col]]))))
+}
+musyc_grid <- merge(avg_dt, musyc_converged[, c(id_cols, "E0", "E1", "E2", "E3", "h1", "h2", "C1", "C2",
+                                                "alpha12", "alpha21"), with = FALSE], by = id_cols)
+musyc_grid[, measured := x]
+musyc_grid[, musyc_fit := musyc_surface(.SD, .SD[1]), by = id_cols]
+musyc_grid[, residual := measured - musyc_fit]
+```
+
+```{r musyc_panels, results="asis", fig.width=12, fig.height=4, crop=NULL}
+panel_cells <- unique(musyc_grid[, id_cols, with = FALSE])
+setorderv(panel_cells, id_cols)
+musyc_panel <- function(cell) {
+  dt <- musyc_grid[cell, on = id_cols]
+  norm <- cell$normalization_type
+  response_limit <- c(min(0, dt$measured, dt$musyc_fit, na.rm = TRUE), max(1, dt$measured, dt$musyc_fit, na.rm = TRUE))
+  heatmap_of <- function(metric, title, scale_type, limit = NULL) {
+    heatmap_combo_metrics(dt, NULL, cell[[drug_col]], cell[[drug2_col]], cell[[cell_line_col]],
+                          metric = metric, normalization_type = norm, scale_type = scale_type, limit = limit) +
+      labs(title = title, fill = norm)
+  }
+  patchwork::wrap_plots(
+    heatmap_of("measured", "Measured (Averaged)", "smooth", response_limit),
+    heatmap_of("musyc_fit", "MuSyC fit", "smooth", response_limit),
+    heatmap_of("residual", "Residual (measured - fit)", "excess"),
+    nrow = 1
+  )
+}
+for (norm in names(norm_names)) {
+  cat("\n\n### ", norm_names[[norm]], " {.tabset .tabset-dropdown}\n\n", sep = "")
+  cells <- panel_cells[normalization_type == norm]
+  plots <- lapply(seq_len(NROW(cells)), function(i) musyc_panel(cells[i]))
+  names(plots) <- sprintf("%s (%s x %s)", cells[[cell_line_col]], cells[[drug_col]], cells[[drug2_col]])
+  plot_tabs(plots, level = 4)
+}
+```
+
 # Provenance
 
 `apply_fit()` records how each assay was produced in the SE metadata, including the versions of the Python packages the MuSyC fit ran with, so the numbers can be traced back to the exact model.
