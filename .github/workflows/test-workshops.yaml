@@ -57,7 +57,7 @@ jobs:
               examples/subsets/PRISMBroadScreen/tables/
           - name: LargeDrugCombo subset
             dir: examples/subsets/LargeDrugCombo
-            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd 4-custom_fitting_musyc.Rmd
             artifact: subset-largedrugcombo-reports
             timeout: 60
             outputs: |
@@ -131,7 +131,7 @@ jobs:
               examples/ChemicalGenomics_Hagenbeek_NatCancer_2023/tables/
           - name: LargeDrugCombo_Goetz_Cancers_2024
             dir: examples/LargeDrugCombo_Goetz_Cancers_2024
-            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd
+            reports: 1-data_import.Rmd 2-processing_and_QC.Rmd 3-analysis.Rmd 4-custom_fitting_musyc.Rmd
             artifact: largedrugcombo-goetz-reports
             timeout: 360
             outputs: |
