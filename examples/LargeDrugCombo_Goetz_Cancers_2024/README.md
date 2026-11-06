@@ -29,11 +29,14 @@ Large-scale drug combination screen evaluating RAF/MEK inhibitor synergy in skin
 | 1 | [data_import](1-data_import.html) | Import raw CSV plate reader files into gDR format |
 | 2 | [processing_and_QC](2-processing_and_QC.html) | Dose-response processing and quality control |
 | 3 | [analysis](3-analysis.html) | Synergy analysis (Bliss, HSA) and visualization |
+| 4 | [custom_fitting_musyc](4-custom_fitting_musyc.html) | Custom fitting: MuSyC synergy of potency and efficacy with `apply_fit()` |
 
 ## Quick start
 
 1. Set your working directory to this folder in RStudio
 2. Open any `.Rmd` file and follow along interactively, or view the pre-rendered `.html` reports in a browser
+
+Step 4 needs more than `setup.R` installs: gDRutils and gDRcore from GitHub (`remotes::install_github(c("gdrplatform/gDRutils", "gdrplatform/gDRcore"))`, as `musyc_fit_fn()` is not on Bioconductor yet) and the Python `synergy` package (`reticulate::py_install("synergy", pip = TRUE)`).
 
 ## Data
 

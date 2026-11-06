@@ -35,6 +35,18 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+      # The custom-fitting example fits MuSyC in the Python synergy package through reticulate
+      - uses: actions/setup-python@v5
+        id: python
+        with:
+          python-version: "3.12"
+
+      - name: Install Python synergy
+        shell: bash
+        run: |
+          python -m pip install "synergy==1.0.0"
+          echo "RETICULATE_PYTHON=${{ steps.python.outputs.python-path }}" >> "$GITHUB_ENV"
+
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
         run: |
@@ -102,7 +114,7 @@ jobs:
           install.packages(c(
             "data.table", "ggplot2", "ggpubr", "purrr", "qs2",
             "summarytools", "svglite", "writexl",
-            "rmarkdown", "knitr", "testthat"
+            "rmarkdown", "knitr", "testthat", "reticulate"
           ), lib = lib)
 
           remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
