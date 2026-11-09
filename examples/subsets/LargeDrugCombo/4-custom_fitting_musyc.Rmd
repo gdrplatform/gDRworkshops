@@ -324,7 +324,9 @@ ggplot(musyc_converged, aes(log2_alpha, beta, colour = pair)) +
   theme(legend.position = "bottom")
 ```
 
-`alpha` is estimated well only when the surface constrains it. Where the combination barely moves the response, very different `alpha` values fit the data equally well, so read `alpha` together with the dose-response surface and `r2`, not on its own.
+`alpha` is estimated well only when the surface constrains it. Where the combination barely moves the response, very different `alpha` values fit the data equally well.
+
+`beta` is `(min(E1, E2) - E3) / (E0 - min(E1, E2))`, so it gets large when the stronger drug alone has little effect. A large `beta` next to a strongly negative `log2(alpha)` is usually the fit trading potency against efficacy. Read both together with the dose-response surface and `r2`, not on their own.
 
 # Synergy call for each normalization type
 
@@ -338,7 +340,7 @@ generate_datatable(musyc_summary_by_norm[, lapply(.SD, function(v) if (is.numeri
 
 # MuSyC next to Bliss
 
-The native `scores` assay holds the Bliss score of Step 3: one number for the excess over the independence expectation, whatever its cause. MuSyC splits that excess into potency and efficacy.
+The native `scores` assay holds the Bliss score of Step 3: the mean of the top 10% of the excess over the Bliss independence expectation on the dose grid. It is above zero in almost every combination, synergistic or not, so it ranks combinations rather than calling them. MuSyC splits the excess into potency and efficacy.
 
 ```{r musyc_vs_bliss, fig.width=10, fig.height=5}
 scores <- convert_se_assay_to_dt(combo_se, "scores")
@@ -369,12 +371,12 @@ synergy_route <- function(dt) {
   } else {
     "through both **potency** and **efficacy**, neither twice as often as the other"
   }
-  sprintf("of the %d converged fits, Bliss is positive in %d, `beta` exceeds 0.1 in %d and `log2(alpha)` exceeds 1 in %d. The synergy comes %s.",
-          NROW(dt), sum(dt$bliss_score > 0, na.rm = TRUE), n_efficacy, n_potency, route)
+  sprintf("of the %d converged fits, `beta` exceeds 0.1 in %d and `log2(alpha)` exceeds 1 in %d. The synergy comes %s.",
+          NROW(dt), n_efficacy, n_potency, route)
 }
 ```
 
-`beta` above 0.1 is outside the dead zone of `musyc_summary_fn()`; `log2(alpha)` above 1 is at least a two-fold shift in potency.
+`beta` above 0.1 is outside the dead zone of `musyc_summary_fn()`; `log2(alpha)` above 1 is at least a two-fold shift in potency. The counts include the fits that trade potency against efficacy.
 
 * **Relative Viability:** `r synergy_route(compare[normalization_type == "RV"])`
 * **GR Value:** `r synergy_route(compare[normalization_type == "GR"])`
@@ -517,8 +519,12 @@ setnames(musyc_drugs, "label", drug_col)
 ```{r single_drug_heatmaps, results="asis", fig.width=10, fig.height=5.5}
 single_drug_metrics <- c(E = "E", log10_C = "log10(C)", h = "h")
 annotation_row_sd <- unique(musyc_drugs[, c(drug_col, "drug", "partner"), with = FALSE])
-annotation_map_sd <- c(get_ann_color_map(annotation_col[, tissue_col, with = FALSE]),
-                       get_ann_color_map(annotation_row_sd[, c("drug", "partner")]))
+tissues <- unique(annotation_col[[tissue_col]])
+drugs <- unique(c(annotation_row_sd$drug, annotation_row_sd$partner))
+sd_colors <- get_qual_colors(length(tissues) + length(drugs))
+drug_colors <- stats::setNames(sd_colors[length(tissues) + seq_along(drugs)], drugs)
+annotation_map_sd <- list(stats::setNames(sd_colors[seq_along(tissues)], tissues), drug_colors, drug_colors)
+names(annotation_map_sd) <- c(tissue_col, "drug", "partner")
 for (norm in names(norm_names)) {
   cat("\n\n#### ", norm_names[[norm]], " {.tabset}\n\n", sep = "")
   plots <- lapply(names(single_drug_metrics), function(metric) {
@@ -564,7 +570,7 @@ sa_compare[, .(n = .N, spearman = round(stats::cor(musyc, gdr, method = "spearma
            by = .(normalization_type, parameter)]
 ```
 
-Points far from the diagonal are mostly drugs with no effect in that cell line, where gDR reports a constant fit and the slope means nothing, and curves whose gDR slope sits at its upper bound of 5.
+The points furthest from the diagonal for `E` and `C` are curve fits (triangles) whose gDR `x_inf` sits at its lower bound, -1 for GR and 0 for RV; MuSyC gives these drugs a much weaker effect. Constant fits (circles) lie near the diagonal for `E` and stand apart only for `h`, where gDR reports a slope of about 0, as do curves whose gDR slope sits at its upper bound of 5.
 
 ## Per-combination panels {.tabset .tabset-fade .tabset-pills}
 
@@ -595,15 +601,15 @@ musyc_panel <- function(cell) {
   dt <- musyc_grid[cell, on = id_cols]
   norm <- cell$normalization_type
   response_limit <- c(min(0, dt$measured, dt$musyc_fit, na.rm = TRUE), max(1, dt$measured, dt$musyc_fit, na.rm = TRUE))
-  heatmap_of <- function(metric, title, scale_type, limit = NULL) {
+  heatmap_of <- function(metric, title, scale_type, limit = NULL, fill = norm) {
     heatmap_combo_metrics(dt, NULL, cell[[drug_col]], cell[[drug2_col]], cell[[cell_line_col]],
                           metric = metric, normalization_type = norm, scale_type = scale_type, limit = limit) +
-      labs(title = title, fill = norm)
+      labs(title = title, fill = fill)
   }
   patchwork::wrap_plots(
     heatmap_of("measured", "Measured (Averaged)", "smooth", response_limit),
     heatmap_of("musyc_fit", "MuSyC fit", "smooth", response_limit),
-    heatmap_of("residual", "Residual (measured - fit)", "excess"),
+    heatmap_of("residual", "Residual (measured - fit)", "excess", fill = paste(norm, "residual")),
     nrow = 1
   )
 }
