@@ -117,8 +117,7 @@ jobs:
             "rmarkdown", "knitr", "testthat", "reticulate"
           ), lib = lib)
 
-          # TODO: back to main once scale_type in heatmap_combo_metrics() is merged in gDRplots
-          remotes::install_github("gdrplatform/gDRplots@GDR-3786", upgrade = "never", lib = lib)
+          remotes::install_github("gdrplatform/gDRplots", upgrade = "never", lib = lib)
           remotes::install_github("broadinstitute/cdsr_models", upgrade = "never", lib = lib)
 
           # Verify critical packages
