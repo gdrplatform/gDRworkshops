@@ -45,7 +45,7 @@ bioc_pkgs <- c(
 
 cran_pkgs <- c(
   "data.table", "ggplot2", "purrr", "qs2",
-  "summarytools", "writexl", "testthat", "svglite", "ggpubr", "reticulate"
+  "summarytools", "writexl", "testthat", "svglite", "ggpubr"
 )
 
 # gDRimport first, from branch with CoreGx/PharmacoGx as optional (Suggests)
