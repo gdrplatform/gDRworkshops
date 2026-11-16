@@ -224,7 +224,7 @@ The model here is **MuSyC** (multi-dimensional synergy of combinations, Meyer et
 * **synergy of potency**, `alpha12` and `alpha21`: one drug shifts the potency of the other (`alpha > 1` synergistic, `alpha < 1` antagonistic);
 * **synergy of efficacy**, `beta`: the combination reaches a deeper maximal effect than the stronger drug alone (`beta > 0` synergistic).
 
-The fit function, `gDRcore::musyc_fit_fn()`, runs the fit in the Python `synergy` package through `reticulate`. Install it once with `reticulate::py_install("synergy", pip = TRUE)`. It needs gDRcore 1.11.30 or later, which is not on Bioconductor yet: install gDRutils and gDRcore from GitHub with `remotes::install_github(c("gdrplatform/gDRutils", "gdrplatform/gDRcore"))`.
+The fit function, `gDRcore::musyc_fit_fn()`, runs the fit in R. It needs gDRcore 1.11.33 or later, which is not on Bioconductor yet: install gDRutils and gDRcore from GitHub with `remotes::install_github(c("gdrplatform/gDRutils", "gdrplatform/gDRcore"))`.
 
 ```{r libraries}
 library(qs2)
@@ -237,13 +237,10 @@ library(gDRplots)
 library(ggplot2)
 ```
 
-```{r check_python}
-if (packageVersion("gDRcore") < "1.11.30") {
-  stop("This report needs gDRcore 1.11.30 or later: ",
+```{r check_gdrcore}
+if (packageVersion("gDRcore") < "1.11.33") {
+  stop("This report needs gDRcore 1.11.33 or later: ",
        "remotes::install_github(c(\"gdrplatform/gDRutils\", \"gdrplatform/gDRcore\"))")
-}
-if (!musyc_available()) {
-  stop("This report needs the Python 'synergy' package: reticulate::py_install(\"synergy\", pip = TRUE)")
 }
 ```
 
@@ -577,15 +574,10 @@ The points furthest from the diagonal for `E` and `C` are curve fits (triangles)
 Step 3 shows each combination as a panel of heatmaps over the dose grid. Here the panel holds the averaged response the fit was given, the MuSyC surface evaluated on the same grid, and their difference. The residual shows where the model misses the data, which `r2` sums up in one number. The measured and fitted heatmaps share one scale.
 
 ```{r musyc_surface}
-synergy_py <- reticulate::import("synergy.combination", convert = FALSE)
 conc_col <- get_env_identifiers("concentration")
 conc2_col <- get_env_identifiers("concentration2")
 musyc_surface <- function(grid, fit) {
-  model <- do.call(synergy_py$MuSyC, c(as.list(fit[, c("E0", "E1", "E2", "E3", "h1", "h2", "C1", "C2",
-                                                      "alpha12", "alpha21")]),
-                                       list(gamma12 = 1, gamma21 = 1)))
-  as.numeric(reticulate::py_to_r(model$E(reticulate::np_array(grid[[conc_col]]),
-                                         reticulate::np_array(grid[[conc2_col]]))))
+  predict_musyc_surface(grid[[conc_col]], grid[[conc2_col]], fit)
 }
 musyc_grid <- merge(avg_dt, musyc_converged[, c(id_cols, "E0", "E1", "E2", "E3", "h1", "h2", "C1", "C2",
                                                 "alpha12", "alpha21"), with = FALSE], by = id_cols)
@@ -624,11 +616,10 @@ for (norm in names(norm_names)) {
 
 # Provenance
 
-`apply_fit()` records how each assay was produced in the SE metadata, including the versions of the Python packages the MuSyC fit ran with, so the numbers can be traced back to the exact model.
+`apply_fit()` records how each assay was produced in the SE metadata, so the numbers can be traced back to the exact model.
 
 ```{r provenance}
 summarize_fit_provenance(combo_se)
-str(get_fit_provenance(combo_se, "musyc_params", "musyc")$fn$env)
 ```
 
 # Save the results
