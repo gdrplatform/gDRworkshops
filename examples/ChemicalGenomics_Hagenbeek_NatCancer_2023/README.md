@@ -17,7 +17,7 @@ sotorasib sensitivity (chemical-genomics readout).
 | **Sotorasib dose** | 30 nM for the parental lines, 900 nM for the resistant lines |
 | **Anchor** | Sotorasib (KRAS G12C) |
 | **Analysis type** | Chemical genomics + drug combination |
-| **Metrics** | RV and GR (GR only for the parental lines: no doubling time is known for the resistant lines), Bliss excess, HSA excess |
+| **Metrics** | Relative viability (RV), Bliss excess, HSA excess. GR is left out of this example: it needs the doubling time of each cell line, which is not known for the resistant lines |
 
 ## Anchor drug
 
@@ -34,7 +34,7 @@ The library includes published Genentech tool compounds such as GNE-7883 (pan-TE
 | 1 | [data_import](1-data_import.html) | Import raw Excel/CSV files into gDR format |
 | 2 | [processing_and_QC](2-processing_and_QC.html) | Dose-response processing and quality control |
 | 3 | [analysis](3-analysis.html) | Single-agent and combination analysis (Bliss, HSA) |
-| 3.1 | [chemical_genomics_analysis](3-1-chemical_genomics_analysis.html) | Cotreatment-vs-single-agent chemical-genomics analysis |
+| 3.1 | [chemical_genomics_analysis](3-1-chemical_genomics_analysis.html) | Co-treatment vs single agent per cell line, and resistant vs parental lines (Fig. 4d of the paper); needs gDRplots >= 0.99.17 |
 
 ## Quick start
 

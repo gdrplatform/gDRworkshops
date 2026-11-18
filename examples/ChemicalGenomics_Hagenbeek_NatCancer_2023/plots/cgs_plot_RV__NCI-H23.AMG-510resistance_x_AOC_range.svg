@@ -481,7 +481,7 @@
 <line x1='69.74' y1='355.66' x2='69.74' y2='379.69' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='65.44' y1='355.66' x2='65.44' y2='379.69' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='71.89' y1='355.66' x2='71.89' y2='379.69' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
-<text x='540.65' y='371.46' style='font-size: 11.00px;fill: #1B9E77; font-family: "Liberation Sans";' textLength='173.55px' lengthAdjust='spacingAndGlyphs'>PIM1|PIM2, NES=1.78, FDR=0.004</text>
+<text x='540.65' y='371.46' style='font-size: 11.00px;fill: #1B9E77; font-family: "Liberation Sans";' textLength='179.67px' lengthAdjust='spacingAndGlyphs'>PIM1|PIM2, NES=1.78, FDR=0.0035</text>
 <line x1='68.66' y1='100.87' x2='68.66' y2='231.49' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='68.66' y1='100.87' x2='68.66' y2='231.49' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='68.66' y1='100.87' x2='68.66' y2='231.49' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
@@ -702,7 +702,7 @@
 <line x1='74.04' y1='379.69' x2='74.04' y2='403.73' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='91.24' y1='379.69' x2='91.24' y2='403.73' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='97.69' y1='379.69' x2='97.69' y2='403.73' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
-<text x='540.65' y='395.49' style='font-size: 11.00px;fill: #D95F02; font-family: "Liberation Sans";' textLength='269.77px' lengthAdjust='spacingAndGlyphs'>TEAD1|TEAD2|TEAD3|TEAD4, NES=1.65, FDR=0.026</text>
+<text x='540.65' y='395.49' style='font-size: 11.00px;fill: #D95F02; font-family: "Liberation Sans";' textLength='269.77px' lengthAdjust='spacingAndGlyphs'>TEAD1|TEAD2|TEAD3|TEAD4, NES=1.66, FDR=0.028</text>
 <line x1='90.17' y1='118.48' x2='90.17' y2='255.53' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='90.17' y1='118.48' x2='90.17' y2='255.53' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='90.17' y1='118.48' x2='90.17' y2='255.53' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />

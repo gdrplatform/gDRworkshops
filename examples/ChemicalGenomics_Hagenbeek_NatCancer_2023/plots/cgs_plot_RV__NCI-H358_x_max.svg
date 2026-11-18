@@ -478,7 +478,7 @@
 <line x1='449.54' y1='318.59' x2='449.54' y2='339.92' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='75.78' y1='318.59' x2='75.78' y2='339.92' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='67.09' y1='318.59' x2='67.09' y2='339.92' style='stroke-width: 1.71; stroke: #1B9E77; stroke-linecap: butt;' />
-<text x='540.81' y='333.03' style='font-size: 11.00px;fill: #1B9E77; font-family: "Liberation Sans";' textLength='150.91px' lengthAdjust='spacingAndGlyphs'>PPARG, NES=1.43, FDR=0.37</text>
+<text x='540.81' y='333.03' style='font-size: 11.00px;fill: #1B9E77; font-family: "Liberation Sans";' textLength='150.91px' lengthAdjust='spacingAndGlyphs'>PPARG, NES=1.43, FDR=0.36</text>
 <line x1='139.89' y1='152.71' x2='139.89' y2='208.38' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='139.89' y1='152.71' x2='139.89' y2='208.38' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
 <line x1='139.89' y1='152.71' x2='139.89' y2='208.38' style='stroke-width: 1.07; stroke: #1B9E77; stroke-linecap: butt;' />
@@ -715,7 +715,7 @@
 <line x1='62.74' y1='339.92' x2='62.74' y2='361.25' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='112.72' y1='339.92' x2='112.72' y2='361.25' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='184.43' y1='339.92' x2='184.43' y2='361.25' style='stroke-width: 1.71; stroke: #D95F02; stroke-linecap: butt;' />
-<text x='540.81' y='354.36' style='font-size: 11.00px;fill: #D95F02; font-family: "Liberation Sans";' textLength='136.41px' lengthAdjust='spacingAndGlyphs'>DNA, NES=1.39, FDR=0.37</text>
+<text x='540.81' y='354.36' style='font-size: 11.00px;fill: #D95F02; font-family: "Liberation Sans";' textLength='136.41px' lengthAdjust='spacingAndGlyphs'>DNA, NES=1.39, FDR=0.36</text>
 <line x1='172.48' y1='158.53' x2='172.48' y2='229.71' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='172.48' y1='158.53' x2='172.48' y2='229.71' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />
 <line x1='172.48' y1='158.53' x2='172.48' y2='229.71' style='stroke-width: 1.07; stroke: #D95F02; stroke-linecap: butt;' />
@@ -936,7 +936,7 @@
 <line x1='519.08' y1='361.25' x2='519.08' y2='382.58' style='stroke-width: 1.71; stroke: #7570B3; stroke-linecap: butt;' />
 <line x1='475.62' y1='361.25' x2='475.62' y2='382.58' style='stroke-width: 1.71; stroke: #7570B3; stroke-linecap: butt;' />
 <line x1='284.39' y1='361.25' x2='284.39' y2='382.58' style='stroke-width: 1.71; stroke: #7570B3; stroke-linecap: butt;' />
-<text x='540.81' y='375.69' style='font-size: 11.00px;fill: #7570B3; font-family: "Liberation Sans";' textLength='156.00px' lengthAdjust='spacingAndGlyphs'>PIK3CA, NES=-1.55, FDR=0.37</text>
+<text x='540.81' y='375.69' style='font-size: 11.00px;fill: #7570B3; font-family: "Liberation Sans";' textLength='156.00px' lengthAdjust='spacingAndGlyphs'>PIK3CA, NES=-1.55, FDR=0.36</text>
 <line x1='476.71' y1='189.57' x2='476.71' y2='144.39' style='stroke-width: 1.07; stroke: #7570B3; stroke-linecap: butt;' />
 <line x1='476.71' y1='189.57' x2='476.71' y2='144.39' style='stroke-width: 1.07; stroke: #7570B3; stroke-linecap: butt;' />
 <line x1='476.71' y1='189.57' x2='476.71' y2='144.39' style='stroke-width: 1.07; stroke: #7570B3; stroke-linecap: butt;' />
@@ -1159,7 +1159,7 @@
 <line x1='473.45' y1='382.58' x2='473.45' y2='403.91' style='stroke-width: 1.71; stroke: #E7298A; stroke-linecap: butt;' />
 <line x1='486.49' y1='382.58' x2='486.49' y2='403.91' style='stroke-width: 1.71; stroke: #E7298A; stroke-linecap: butt;' />
 <line x1='497.35' y1='382.58' x2='497.35' y2='403.91' style='stroke-width: 1.71; stroke: #E7298A; stroke-linecap: butt;' />
-<text x='540.81' y='397.02' style='font-size: 11.00px;fill: #E7298A; font-family: "Liberation Sans";' textLength='152.91px' lengthAdjust='spacingAndGlyphs'>NR3C1, NES=-1.77, FDR=0.37</text>
+<text x='540.81' y='397.02' style='font-size: 11.00px;fill: #E7298A; font-family: "Liberation Sans";' textLength='152.91px' lengthAdjust='spacingAndGlyphs'>NR3C1, NES=-1.77, FDR=0.36</text>
 <line x1='476.71' y1='189.38' x2='476.71' y2='123.06' style='stroke-width: 1.07; stroke: #E7298A; stroke-linecap: butt;' />
 <line x1='476.71' y1='189.38' x2='476.71' y2='123.06' style='stroke-width: 1.07; stroke: #E7298A; stroke-linecap: butt;' />
 <line x1='476.71' y1='189.38' x2='476.71' y2='123.06' style='stroke-width: 1.07; stroke: #E7298A; stroke-linecap: butt;' />

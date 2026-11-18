@@ -137,7 +137,6 @@ a:hover {
 }
 
 
-
 /* Support & Feedback Card */
 .feedback-panel {
   background-color: #ffffff;
@@ -177,7 +176,6 @@ a:hover {
 }
 
 
-
 .fullwidth p {
   padding-left: 0px;
   padding-right: 0px;
@@ -204,11 +202,7 @@ a:hover {
 <strong>gDR Analysis Pipeline</strong>
 
 
-
-
 Date: `r Sys.Date()`
-
-
 
 
 Author: <a href="https://github.com/gdrplatform">gDR team</a>
@@ -219,6 +213,8 @@ Author: <a href="https://github.com/gdrplatform">gDR team</a>
 # Introduction
 
 This report documents the core data processing steps of the gDR pipeline. Starting with the cleaned data from Step 1, this workflow normalizes the raw viability readouts, averages technical replicates, and fits dose-response models to calculate drug sensitivity metrics. Each major step includes quality control visualizations to help assess the quality of the data and the resulting model fits.
+
+*This example shows relative viability (RV) only. GR values need the doubling time of each cell line, which is not known for the resistant lines, so they are left out of the whole example.*
 
 More information about each step of the gDR pipeline can be found in the [Data processing](https://docs.google.com/document/d/10SwVs3gSMJce0TqTZTjJJAQ_YYUQ-4yGweEDgfpwnJk/edit#heading=h.f9g2z53z3gl) subsection of gDR documentation.
 
@@ -402,7 +398,7 @@ save_plot(plt = p, path = file.path(wd, "plots", "combo_map_controls_to_treated"
 
 # Normalize Viability Data
 
-The raw readout values are converted to normalized values (Relative Viability or GR values) by comparing them to the mapped controls. This step creates the `Normalized` assay in the `SummarizedExperiment` object.
+The raw readout values are converted to normalized values (Relative Viability) by comparing them to the mapped controls. This step creates the `Normalized` assay in the `SummarizedExperiment` object.
 
 ```{r normalize_data_sa, warning=FALSE}
 se_sa <- normalize_SE(se_sa, data_type = sa_name)
@@ -422,7 +418,7 @@ se_combo <- normalize_SE(se_combo, data_type = combo_name)
 
 These plots show the distribution of normalized values for each cell line. This helps to check for any cell lines with unusual normalization behavior, such as extremely wide or offset distributions.
 
-**What to look for:** For **Relative Viability (RV)**, values should typically range from 0 to 1. For **GR values**, the range can be wider, often from -1 to 1. Look for distributions that are very different from the others, as they might indicate an issue with the controls or the cell line itself.
+**What to look for:** For **Relative Viability (RV)**, values should typically range from 0 to 1. Look for distributions that are very different from the others, as they might indicate an issue with the controls or the cell line itself.
 
 ```{r verbose_mode_info, echo=FALSE}
 if (FALSE) {
@@ -451,17 +447,6 @@ ls_plt_RV <- pmap(list(cl_name = cellline_vec),
                   dt_assay = norm_data_sa, 
                   normalization_type = "RV")
 names(ls_plt_RV) <- cellline_vec_names
-
-
-```
-
-
-```{r sa_norm_data_viz_GR, warning=FALSE, fig.show="hide"}
-ls_plt_GR <- pmap(list(cl_name = cellline_vec), 
-                  plot_var_distribution_qc, 
-                  dt_assay = norm_data_sa, 
-                  normalization_type = "GR")
-names(ls_plt_GR) <- cellline_vec_names
 
 
 ```
@@ -497,30 +482,6 @@ loop(seq_along(ls_plt_RV), function(x) {
 
 ::: {.fullwidth}
 
-### GR Value {.tabset .tabset-dropdown}
-
-```{r sa_norm_data_tab_GR, warning=FALSE, echo=FALSE}
-ls_link_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "sa_norm_GR__",
-                                 path_file = file.path(".", "plots"),
-                                 file_format = "svg")
-plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR, 
-                           link_list = ls_link_GR,
-                           chunk_name = "sa_norm_tab_GR", 
-                           header_level = 4)
-ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "sa_norm_GR__",
-                                 path_file = file.path(wd, "plots"))
-loop(seq_along(ls_plt_GR), function(x) {
-  save_plot(plt = ls_plt_GR[[x]],
-            path = ls_path_GR[[x]],
-            format = "svg")
-})
-
-
-```
-
-`r knitr::knit(text = unlist(plts_GR))`
 :::
 
 
@@ -543,17 +504,6 @@ ls_plt_RV <- pmap(list(cl_name = cellline_vec),
                   dt_assay = norm_data_combo, 
                   normalization_type = "RV")
 names(ls_plt_RV) <- cellline_vec_names
-
-
-```
-
-
-```{r combo_norm_data_viz_GR, warning=FALSE, fig.show="hide"}
-ls_plt_GR <- pmap(list(cl_name = cellline_vec), 
-                  plot_var_distribution_qc, 
-                  dt_assay = norm_data_combo, 
-                  normalization_type = "GR")
-names(ls_plt_GR) <- cellline_vec_names
 
 
 ```
@@ -589,30 +539,6 @@ loop(seq_along(ls_plt_RV), function(x) {
 
 ::: {.fullwidth}
 
-### GR Value {.tabset .tabset-dropdown}
-
-```{r norm_data_tab_GR, warning=FALSE, echo=FALSE}
-ls_link_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "combo_norm_GR__",
-                                 path_file = file.path(".", "plots"),
-                                 file_format = "svg")
-plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR, 
-                           link_list = ls_link_GR,
-                           chunk_name = "combo_norm_tab_GR", 
-                           header_level = 4)
-ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "combo_norm_GR__",
-                                 path_file = file.path(wd, "plots"))
-loop(seq_along(ls_plt_GR), function(x) {
-  save_plot(plt = ls_plt_GR[[x]],
-            path = ls_path_GR[[x]],
-            format = "svg")
-})
-
-
-```
-
-`r knitr::knit(text = unlist(plts_GR))`
 :::
 
 # Average Replicate Data
@@ -663,20 +589,6 @@ names(ls_plt_RV) <- metrics$hm_title
 ```
 
 
-```{r average_data_viz_GR, warning=FALSE, fig.show="hide"}
-metrics$hm_title <- paste("GR", c("value", "variance"))
-ls_plt_GR <- pmap(metrics, 
-                  pheatmap_qc, 
-                  dt_average = response_data_sa, 
-                  normalization_type = "GR",
-                  lbl_by_CellLineName = TRUE, 
-                  lbl_by_DrugName = TRUE)
-names(ls_plt_GR) <- metrics$hm_title
-
-
-```
-
-
 ### Relative Viability {.tabset}
 
 ```{r average_data_tab_RV, warning=FALSE, echo=FALSE}
@@ -705,34 +617,6 @@ loop(seq_along(ls_plt_RV), function(x) {
 :::
 
 
-### GR Value {.tabset}
-
-```{r average_data_tab_GR, warning=FALSE, echo=FALSE}
-ls_link_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "sa_avg_GR__",
-                                 path_file = file.path(".", "plots"),
-                                 file_format = "svg")
-plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR, 
-                           link_list = ls_link_GR,
-                           chunk_name = "average_tab_GR", 
-                           header_level = 4)
-ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "sa_avg_GR__",
-                                 path_file = file.path(wd, "plots"))
-loop(seq_along(ls_plt_GR), function(x) {
-  save_plot(plt = ls_plt_GR[[x]],
-            path = ls_path_GR[[x]],
-            format = "svg")
-})
-
-
-```
-
-::: {.fullwidth}
-`r knitr::knit(text = unlist(plts_GR))`
-:::
-
-
 ## Quality Control: Averaged Data - Combination Data {.tabset .tabset-fade .tabset-pills}
 
 ```{r average_data_combo_viz_RV, warning=FALSE, fig.show="hide", include = !is.null(dt_combo)}
@@ -748,19 +632,6 @@ ls_plt_RV <- pmap(metrics,
                   normalization_type = "RV",
                   lbl_by_CellLineName = TRUE, lbl_by_DrugName = TRUE)
 names(ls_plt_RV) <- metrics$hm_title
-
-
-```
-
-
-```{r average_data_combo_viz_GR, warning=FALSE, fig.show="hide", include = !is.null(dt_combo)}
-metrics$hm_title <- paste("GR", c("value", "variance"))
-ls_plt_GR <- pmap(metrics, 
-                  pheatmap_qc, 
-                  dt_average = response_data_combo, 
-                  normalization_type = "GR",
-                  lbl_by_CellLineName = TRUE, lbl_by_DrugName = TRUE)
-names(ls_plt_GR) <- metrics$hm_title
 
 
 ```
@@ -793,33 +664,6 @@ loop(seq_along(ls_plt_RV), function(x) {
 `r knitr::knit(text = unlist(plts_RV))`
 :::
 
-
-### GR Value {.tabset}
-
-```{r average_data_combo_tab_GR, warning=FALSE, echo=FALSE}
-ls_link_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "combo_avg_GR__",
-                                 path_file = file.path(".", "plots"),
-                                 file_format = "svg")
-plts_GR <- prep_plot_chunk(plt_list = ls_plt_GR, 
-                           link_list = ls_link_GR,
-                           chunk_name = "average_combo_tab_GR", 
-                           header_level = 4)
-ls_path_GR <- prep_filename_path(plt_list = ls_plt_GR,
-                                 prefix = "combo_avg_GR__",
-                                 path_file = file.path(wd, "plots"))
-loop(seq_along(ls_plt_GR), function(x) {
-  save_plot(plt = ls_plt_GR[[x]],
-            path = ls_path_GR[[x]],
-            format = "svg")
-})
-
-
-```
-
-::: {.fullwidth}
-`r knitr::knit(text = unlist(plts_GR))`
-:::
 
 # Fit Dose-Response Models
 
@@ -871,18 +715,6 @@ names(ls_panel_RV) <- cellline_vec_names
 ```
 
 
-```{r fit_data_curv_panel_GR, warning=FALSE, fig.show="hide"}
-ls_panel_GR <- pmap(list(cl_name = cellline_vec),
-                    plot_dose_response_sa_qc_panel,
-                    dt_metrics = response_metrics_sa,
-                    dt_average = response_data_sa,
-                    normalization_type = "GR")
-names(ls_panel_GR) <- cellline_vec_names
-
-
-```
-
-
 ::: {.fullwidth}
 
 ### Relative Viability {.tabset .tabset-dropdown}
@@ -913,30 +745,6 @@ loop(seq_along(ls_panel_RV), function(x) {
 
 ::: {.fullwidth}
 
-### GR Value {.tabset .tabset-dropdown}
-
-```{r fit_data_panel_tab_GR, warning=FALSE, echo=FALSE}
-ls_link_GR <- prep_filename_path(plt_list = ls_panel_GR,
-                                 prefix = "sa_fit_curve_panel_GR__",
-                                 path_file = file.path(".", "plots"),
-                                 file_format = "svg")
-plts_GR <- prep_plot_chunk(plt_list = ls_panel_GR, 
-                           link_list = ls_link_GR,
-                           chunk_name = "fit_panel_tab_GR", 
-                           header_level = 4)
-ls_path_GR <- prep_filename_path(plt_list = ls_panel_GR,
-                                 prefix = "sa_fit_curve_panel_GR__",
-                                 path_file = file.path(wd, "plots"))
-loop(seq_along(ls_panel_GR), function(x) {
-  save_plot(plt = ls_panel_GR[[x]], 
-            path = ls_path_GR[[x]],
-            format = "svg")
-})
-
-
-```
-
-`r knitr::knit(text = unlist(plts_GR))`
 :::
 
 # Assemble and Save Final Results
