@@ -33,7 +33,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # ubuntu-24.04, not -latest: the Linux binary repos in render-workshop-example.yaml are built for noble
+        os: [ubuntu-24.04, macos-latest, windows-latest]
         example:
           - name: SmallDrugCombo subset
             dir: examples/subsets/SmallDrugCombo
@@ -93,7 +94,7 @@ jobs:
   # PR and weekly runs and are rendered on request only. They get the 360-minute ceiling of
   # GitHub-hosted runners rather than a guess of ours, so a timeout means they do not fit at all.
   test-full-datasets:
-    name: ${{ matrix.example.name }} (ubuntu-latest)
+    name: ${{ matrix.example.name }} (ubuntu-24.04)
     if: github.event_name == 'workflow_dispatch' && inputs.full_datasets
     strategy:
       fail-fast: false
@@ -141,7 +142,7 @@ jobs:
               examples/LargeDrugCombo_Goetz_Cancers_2024/tables/
     uses: ./.github/workflows/render-workshop-example.yaml
     with:
-      os: ubuntu-latest
+      os: ubuntu-24.04
       example: ${{ toJSON(matrix.example) }}
 
   # GitHub emails a failed scheduled run only to the last person who edited this workflow, so a
