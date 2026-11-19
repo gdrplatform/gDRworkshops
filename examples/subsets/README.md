@@ -9,9 +9,9 @@ Reduced datasets for running the gDR pipeline locally during workshops. Each sub
 | **SmallDrugCombo** | 4 cell lines (full dataset) | Same as full example |
 | **LargeDrugCombo** | 10 cell lines (melanoma + SCC) | 43 in full dataset |
 | **PRISMBroadScreen** | 15 cell lines (diverse tissues) | 774 in full dataset |
-| **ChemicalGenomics** | 20 library compounds (both cell lines) | 747 compounds in full dataset |
+| **ChemicalGenomics** | 8 of 35 dosing templates: 64 of 280 plates, all four cell lines | 280 plates in full dataset |
 
-The ChemicalGenomics screen has only two cell lines, so its subset trims the compound library (the heavy dimension) instead: `1-data_import.Rmd` imports the full plates and keeps 20 library compounds before processing.
+In the ChemicalGenomics screen every library compound is spread over all plates, so its subset keeps whole dosing templates instead of cell lines or compounds: `1-data_import.Rmd` imports all 280 plates and keeps the plates of templates `Dosing1`-`Dosing8` (all eight arms, about 175 compounds) before processing.
 
 `TimeCourse_Niepel_CellSyst_2019` has no subset on purpose. The subsets exist because the full
 examples are 40-235 MB and take 30+ minutes; that example is 8 MB in total, of which 0.35 MB is
