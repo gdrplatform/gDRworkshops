@@ -54,9 +54,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-release-${{ hashFiles('setup.R') }}
+          key: ${{ runner.os }}-r-release-v2-${{ hashFiles('setup.R') }}
           restore-keys: |
-            ${{ runner.os }}-r-release-
+            ${{ runner.os }}-r-release-v2-
 
       - name: Create R library directory
         run: mkdir -p ${{ env.R_LIBS_USER }}
@@ -85,6 +85,9 @@ jobs:
             install.packages("BiocManager", lib = lib)
           if (!requireNamespace("remotes", quietly = TRUE))
             install.packages("remotes", lib = lib)
+
+          # install.packages() does not upgrade dependencies already in the restored cache
+          update.packages(lib.loc = lib, ask = FALSE)
 
           remotes::install_github("gdrplatform/gDRimport", upgrade = "never", lib = lib)
 
