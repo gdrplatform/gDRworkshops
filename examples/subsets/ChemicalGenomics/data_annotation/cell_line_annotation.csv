@@ -1,0 +1,5 @@
+clid,CellLineName,Tissue,parental_identifier,subtype,ReferenceDivisionTime
+CL00147,NCI-H23,Lung,NCI-H23,Carcinoma Non-Small Cell,
+CL00148,NCI-H358,Lung,NCI-H358,Carcinoma Non-Small Cell,
+CL00149,NCI-H23-R,Lung,NCI-H23,Carcinoma Non-Small Cell,
+CL00150,NCI-H358-R,Lung,NCI-H358,Carcinoma Non-Small Cell,
